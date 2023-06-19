@@ -43,11 +43,11 @@ O Sistema Olimpo 2.0 é uma reestruturação do antigo [Sistema Olimpo](https://
 | Fluxo principal | 1. O usuário busca por um evento que uma equipe que ele faz parte está inscrita clicando na página de "eventos". <br> 2. Na página do evento selecionado, o usuário clica em inscrever-se. <br> 3. O usuário preenche os campos textuais obrigatórios com suas informações pessoais. <br> 4. O usuário escolhe um método de pagamento de inscrição e clica em "pagar". <br> 5. O usuário é registrado na competição como "participante" e a inscrição da equipe é atualizada com mais um membro participante. |
 | Pós condições | O usuário está registrado na competição, a equipe tem mais um usuário participante. |
 
-#### Inscrição de equipe em evento
-| Identificação | [UC005] |
+#### Inscrição de usuário em evento
+| Identificação | [UC004] |
 | --- | --- |
-| Descrição | Permitir que um usuário inscreva sua equipe em um evento|
+| Descrição | Permitir que um usuário se inscreva em um evento|
 | Atores | Usuário |
-| Pré-condições | O usuário está logado no sistema |
-| Fluxo principal | 1. O usuário busca por um evento que uma equipe que ele faz parte não está inscrita clicando na página de "eventos". <br> 2. Na página do evento selecionado, o usuário clica em "gerenciar inscrição" da sua equipe. <br> 3. Na página de gerenciamento de inscrição de equipe, o usuário clica no botão "Escolher arquivo". <br> 4. O usuário escolhe um arquivo .pdf no pop-up que surge em sua tela. <br> 5. O usuário clica em "Submeter" e arquivo é enviado ao sistema. |
-| Pós ocndições | A inscrição da equipe é atualizada com o arquivo submetido pelo usuário. |
+| Pré-condições | O usuário está logado no sistema e precisa fazer parte de uma equipe que está inscrita no evento |
+| Fluxo principal | 1. O usuário busca por um evento que uma equipe que ele faz parte ainda não está inscrita clicando na página de "eventos". <br> 2. Ele escolhe um evento na página de "eventos" e clica em "inscrever equipe". <br> 3. O usuário preenche os campos textuais obrigatórios com as informações da equipe e dos participantes iniciais. <br> 4. O usuário escolhe um método de pagamento de inscrição, escolhe quais participantes irão pagar a inscrição. clica em "pagar e efetua o pagamento dos participantes escolhidos". <br> 5. A equipe e os participantes iniciais são registrados na competição. |
+| Pós condições | A equipe e os usuários estão registrado na competição. |
