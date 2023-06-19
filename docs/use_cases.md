@@ -26,7 +26,7 @@ O Sistema Olimpo 2.0 é uma reestruturação do antigo [Sistema Olimpo](https://
 | Pós ocndições | O usuário está registrado no sistema e logado. |
 
 #### Submissão de Team Description Paper
-| Identificação | [UC002] |
+| Identificação | [UC003] |
 | --- | --- |
 | Descrição | Permitir que o usuário submeta um arquivo .pdf para avaliação dos revisores |
 | Atores | Usuário |
