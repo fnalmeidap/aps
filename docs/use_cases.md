@@ -43,7 +43,7 @@ O Sistema Olimpo 2.0 é uma reestruturação do antigo [Sistema Olimpo](https://
 | Fluxo principal | 1. O usuário busca por um evento que uma equipe que ele faz parte está inscrita clicando na página de "eventos". <br> 2. Na página do evento selecionado, o usuário clica em inscrever-se. <br> 3. O usuário preenche os campos textuais obrigatórios com suas informações pessoais. <br> 4. O usuário escolhe um método de pagamento de inscrição e clica em "pagar". <br> 5. O usuário é registrado na competição como "participante" e a inscrição da equipe é atualizada com mais um membro participante. |
 | Pós condições | O usuário está registrado na competição, a equipe tem mais um usuário participante. |
 
-#### Inscrição de usuário em evento
+#### Inscrição de equipe em evento
 | Identificação | [UC004] |
 | --- | --- |
 | Descrição | Permitir que um usuário se inscreva em um evento|
