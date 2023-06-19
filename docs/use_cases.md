@@ -24,3 +24,12 @@ O Sistema Olimpo 2.0 é uma reestruturação do antigo [Sistema Olimpo](https://
 | Pré-condições | O usuário tem uma conta cadastrada no sistema |
 | Fluxo principal | 1. O usuário informa email e senha na tela de login e clica em "entrar" <br> 2. O sistema busca se as credenciais informadas pertencem a uma conta existente <br> 3. O sistema registra a sessão do usuário <br> 4. O Usuário é redirecionado para a página principal |
 | Pós ocndições | O usuário está registrado no sistema e logado. |
+
+#### Submissão de Team Description Paper
+| Identificação | [UC002] |
+| --- | --- |
+| Descrição | Permitir que o usuário submeta um arquivo .pdf para avaliação dos revisores |
+| Atores | Usuário |
+| Pré-condições | O usuário está logado no sistema |
+| Fluxo principal | 1. O usuário busca por um evento que uma equipe que ele faz parte está inscrita clicando na página de "eventos". <br> 2. Na página do evento selecionado, o usuário clica em "gerenciar inscrição" da sua equipe. <br> 3. Na página de gerenciamento de inscrição de equipe, o usuário clica no botão "Escolher arquivo". <br> 4. O usuário escolhe um arquivo .pdf no pop-up que surge em sua tela. <br> 5. O usuário clica em "Submeter" e arquivo é enviado ao sistema. |
+| Pós ocndições | A inscrição da equipe é atualizada com o arquivo submetido pelo usuário. |
