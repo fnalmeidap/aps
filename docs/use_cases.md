@@ -44,7 +44,7 @@ O Sistema Olimpo 2.0 é uma reestruturação do antigo [Sistema Olimpo](https://
 | Pós condições | O usuário está registrado na competição, a equipe tem mais um usuário participante. |
 
 #### Inscrição de equipe em evento
-| Identificação | [UC004] |
+| Identificação | [UC005] |
 | --- | --- |
 | Descrição | Permitir que um usuário inscreva sua equipe em um evento|
 | Atores | Usuário |
