@@ -5,7 +5,7 @@ O Sistema Olimpo 2.0 é uma reestruturação do antigo [Sistema Olimpo](https://
 
 ## Casos de uso
 ### Diagrama
-![diagrama_uc](/resources/diagram-uc.png)
+![diagrama_uc](/resources/diagram_uc.png)
 ### Fluxos de caso de uso
 #### Cadastro no sistema
 | Identificação | [UC001] |
