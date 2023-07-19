@@ -1,5 +1,6 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import Login from '../pages/Login/Login';
+import Login from '../pages/Login';
+import TelaEquipe from '../pages/TelaEquipe';
 
 const Null = () => null
 
@@ -8,7 +9,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Null />} />
-      <Route path="/createMusic" element={<Null />} />
+      <Route path="/telaEquipe" element={<TelaEquipe />} />
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );

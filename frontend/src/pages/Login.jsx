@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-import "./styles.css";
 import { Link } from "react-router-dom";
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import Input from '../components/Input';
+import Button from '../components/Button';
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Login = () => {
 
   return (
     <div className="Container">
-      <main className="LoginContainer">
+      <main className="MainContainer">
         <form onSubmit={onSubmit} className="FormContainer">
           <p className="Title">Login</p>
           <p className="subtitle">
