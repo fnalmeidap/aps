@@ -33,17 +33,15 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
-          >
-            Email
-          </Input>
+            label="Email"
+            />
           <Input
             type="password"
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          >
-            Senha
-          </Input>
+            label="Senha"
+            />
           <Button type="submit">Entrar</Button>
         </form>
       </main>

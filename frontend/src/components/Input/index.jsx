@@ -1,8 +1,8 @@
 import "./styles.css";
-const Input = ({ children, ...props }) => {
+const Input = ({ label, ...props }) => {
   return (
     <div className="Input-Wrapper">
-      <label className="LabelInput">{children}: </label>
+      <label className="LabelInput">{label}: </label>
       <input className="InputBox" {...props} />
     </div>
   );
