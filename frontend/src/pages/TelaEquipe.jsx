@@ -1,4 +1,4 @@
-import Input from "../components/Input";
+import { Input } from '@mui/material';
 import Button from "../components/Button";
 import React, { useState } from "react";
 
