@@ -51,3 +51,12 @@ O Sistema Olimpo 2.0 é uma reestruturação do antigo [Sistema Olimpo](https://
 | Pré-condições | O usuário está logado no sistema e precisa fazer parte de uma equipe que está inscrita no evento |
 | Fluxo principal | 1. O usuário busca por um evento que uma equipe que ele faz parte ainda não está inscrita clicando na página de "eventos". <br> 2. Ele escolhe um evento na página de "eventos" e clica em "inscrever equipe". <br> 3. O usuário preenche os campos textuais obrigatórios com as informações da equipe e dos participantes iniciais. <br> 4. O usuário escolhe um método de pagamento de inscrição, escolhe quais participantes irão pagar a inscrição. clica em "pagar e efetua o pagamento dos participantes escolhidos". <br> 5. A equipe e os participantes iniciais são registrados na competição. |
 | Pós condições | A equipe e os usuários estão registrado na competição. |
+
+#### Criação de uma equipe
+| Identificação | [UC006] |
+| --- | --- |
+| Descrição | Permitir que um usuário crie uma nova equipe |
+| Atores | Usuário |
+| Pré-condições | O usuário está logado no sistema |
+| Fluxo principal | 1. O usuário vai para a página de equipes. <br> 2. Ele clica no botão "criar nova equipe". <br> 3. O usuário preenche os campos textuais obrigatórios com as informações da equipe e dos possíveis usuários iniciais. <br> 4. O participante clica no botão de "Criar equipe". |
+| Pós condições | A equipe e os usuários iniciais estão registrado no sistema. |
