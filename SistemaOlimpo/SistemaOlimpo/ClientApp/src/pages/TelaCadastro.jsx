@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import GoogleLogin from 'react-google-login';
-import { Button, Form, FormGroup, Input, Label } from "reactstrap";
+import { Button, Col, Container, Form, FormGroup, Input, Label } from "reactstrap";
 
 export const TelaCadastro = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [participante, setParticipante] = useState({
+    nome: "",
+    tokenId: "",
+    email: "",
+    universidade: "",
+    aniversario: "",
+  });
 
   const [isLogged, setIsLogged] = useState(false);
 
@@ -31,11 +35,7 @@ export const TelaCadastro = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-      }),
+      body: JSON.stringify({participante}),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -49,28 +49,35 @@ export const TelaCadastro = () => {
       });
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setParticipante({ ...participante, [name]: value });
+  };
+
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-8 offset-md-2">
+    <Container>
+      <Col
+        md={{
+          offset: 3,
+          size: 6
+        }}
+        sm="12"
+      >
           <h1>Cadastre-se</h1>
-          <p>Ainda não possui conta?</p>
           {isLogged ? (
-            <Form onSubmit={handleSubmit}>
-              <FormGroup>
-                <Label for="name">Name</Label>
-                <Input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
-              </FormGroup>
-              <FormGroup>
-                <Label for="email">Email</Label>
-                <Input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-              </FormGroup>
-              <FormGroup>
-                <Label for="password">Password</Label>
-                <Input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-              </FormGroup>
-              <Button type="submit" color="primary">Register</Button>
-            </Form>
+            <>
+              <p>Preencha mais alguns dados mais alguns cados</p>
+              <Form onSubmit={handleSubmit}>
+                <FormGroup>
+                  <Label for="universidade">Universidade</Label>
+                  <Input type="text" name="universidade" value={participante.universidade} onChange={handleChange} />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="aniversario">aniversario</Label>
+                  <Input type="date" name="aniversario" value={participante.aniversario} onChange={handleChange} />
+                </FormGroup>
+              </Form>
+            </>
           ) : (
             <>
               <p>Ainda não possui conta?</p>
@@ -84,10 +91,8 @@ export const TelaCadastro = () => {
               />
             </>
           )}
-
-        </div>
-      </div>
-    </div>
+      </Col>
+    </Container>
   );
 };
 
