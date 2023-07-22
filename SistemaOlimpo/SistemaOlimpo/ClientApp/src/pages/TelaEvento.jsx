@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Container, ListGroup, ListGroupItem, Button, Col, Collapse } from "reactstrap";
+import { Container, ListGroup, ListGroupItem, Button, Col, Collapse, Badge } from "reactstrap";
 
 const eventosMock = [
-  { id: 1, nome: "Evento 1" },
-  { id: 2, nome: "Evento 2" },
-  { id: 3, nome: "Evento 3" },
+  { id: 1, nome: "Evento 1", data: "2023-07-25", categoria: "Categoria A" },
+  { id: 2, nome: "Evento 2", data: "2023-08-10", categoria: "Categoria B" },
+  { id: 3, nome: "Evento 3", data: "2023-09-05", categoria: "Categoria C" },
 ];
 
 const participantesMock = [
@@ -39,18 +39,32 @@ export const TelaEvento = () => {
 
   return (
     <Container>
+      <Col
+        md={{
+          offset: 3,
+          size: 6
+        }}
+        sm="12"
+      >
       <h2>Eventos de Robótica</h2>
-      <ListGroup >
+      <ListGroup>
         {eventosMock.map((evento) => (
           <ListGroupItem
-            key={evento.id}
-            active={eventoSelecionado === evento}
-            tag="button"
-            onClick={() => handleEventoSelect(evento)}
-            action
-          >
-            {evento.nome}
-          </ListGroupItem>
+          key={evento.id}
+          active={eventoSelecionado === evento}
+          tag="button"
+          onClick={() => handleEventoSelect(evento)}
+          action
+          className="d-flex justify-content-between align-items-center"
+        >
+          <div>
+            <span>{evento.nome}</span>
+            <Badge color="secondary" style={{marginLeft: 8}}>
+              {evento.categoria}
+            </Badge>
+          </div>
+          <span>{evento.data}</span>
+        </ListGroupItem>
         ))}
       </ListGroup>
       <Collapse isOpen={eventoSelecionado} className="mt-3">
@@ -81,6 +95,7 @@ export const TelaEvento = () => {
           Inscrever-se
         </Button>
       </Collapse>
+      </Col>
     </Container>
   );
 };
