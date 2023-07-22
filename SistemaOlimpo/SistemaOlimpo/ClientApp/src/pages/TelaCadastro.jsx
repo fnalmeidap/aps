@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import GoogleLogin from 'react-google-login';
-import { Button, Col, Container, Form, FormGroup, Input, Label } from "reactstrap";
+import { Button, Col, Collapse, Container, Form, FormGroup, Input, Label } from "reactstrap";
 
 export const TelaCadastro = () => {
   const [participante, setParticipante] = useState({
@@ -22,31 +22,34 @@ export const TelaCadastro = () => {
   }, []);
 
   function onSuccess(data) {
-    console.log(data)
+    console.log(data.profileObj.email)
+    setParticipante({...participante, nome: data.profileObj.name, email: data.profileObj.email, tokenId: data.tokenId})
     setIsLogged(true)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log(participante)
+
     // Send the registration request to the server
-    fetch("/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({participante}),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          // Redirect to the home page
-          window.location.href = "/";
-        } else {
-          // Show an error message
-          alert(data.error);
-        }
-      });
+    // fetch("/register", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({participante}),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     if (data.success) {
+    //       // Redirect to the home page
+    //       window.location.href = "/";
+    //     } else {
+    //       // Show an error message
+    //       alert(data.error);
+    //     }
+    //   });
   };
 
   const handleChange = (e) => {
@@ -64,33 +67,33 @@ export const TelaCadastro = () => {
         sm="12"
       >
           <h1>Cadastre-se</h1>
-          {isLogged ? (
-            <>
-              <p>Preencha mais alguns dados mais alguns cados</p>
-              <Form onSubmit={handleSubmit}>
-                <FormGroup>
-                  <Label for="universidade">Universidade</Label>
-                  <Input type="text" name="universidade" value={participante.universidade} onChange={handleChange} />
-                </FormGroup>
-                <FormGroup>
-                  <Label for="aniversario">aniversario</Label>
-                  <Input type="date" name="aniversario" value={participante.aniversario} onChange={handleChange} />
-                </FormGroup>
-              </Form>
-            </>
-          ) : (
-            <>
-              <p>Ainda não possui conta?</p>
-              <GoogleLogin
-                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                buttonText="Registre-se com Google"
-                onSuccess={onSuccess}
-                // onFailure={responseGoogle}
-                cookiePolicy={'single_host_origin'}
-                isSignedIn={isLogged}
-              />
-            </>
-          )}
+          <Collapse isOpen={!isLogged}>
+            <p>Ainda não possui conta?</p>
+            <GoogleLogin
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              buttonText="Registre-se com Google"
+              onSuccess={onSuccess}
+              // onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+              isSignedIn={isLogged}
+            />
+          </Collapse>
+          <Collapse isOpen={isLogged}>
+            <p>Preencha mais alguns dados</p>
+            <Form onSubmit={handleSubmit}>
+              <FormGroup>
+                <Label for="universidade">Universidade</Label>
+                <Input required type="text" name="universidade" value={participante.universidade} onChange={handleChange} />
+              </FormGroup>
+              <FormGroup>
+                <Label for="aniversario">Aniversário</Label>
+                <Input required type="date" name="aniversario" value={participante.aniversario} onChange={handleChange} />
+              </FormGroup>
+              <Button type='submit' color='primary'>
+                Enviar
+              </Button>
+            </Form>
+          </Collapse>
       </Col>
     </Container>
   );
