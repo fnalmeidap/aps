@@ -6,6 +6,7 @@ import { Counter } from "../pages/Counter";
 import { FetchData } from "../pages/FetchData";
 import { Home } from "../pages/Home";
 import { Login } from '../pages/Login';
+import { TelaCadastro } from '../pages/TelaCadastro';
 
 const routes = [
   {
@@ -15,6 +16,10 @@ const routes = [
   {
     path: '/home',
     element: <Home />
+  },
+  {
+    path: '/cadastro',
+    element: <TelaCadastro />
   },
   {
     path: '/counter',
