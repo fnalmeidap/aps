@@ -1,10 +1,13 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+//routes
 import { Counter } from "../pages/Counter";
 import { FetchData } from "../pages/FetchData";
 import { Home } from "../pages/Home";
-import Login from '../pages/Login';
+import { Login } from '../pages/Login';
 
-const AppRoutes = [
+const routes = [
   {
     index: true,
     element: <Login />
@@ -23,4 +26,15 @@ const AppRoutes = [
   }
 ];
 
-export default AppRoutes;
+
+export default function AppRoutes() {
+  return (
+    <Routes>
+      {routes.map((route, index) => {
+        const { element, ...rest } = route;
+        return <Route key={index} {...rest} element={element} />;
+      })}
+    </Routes>
+  )
+}
+
