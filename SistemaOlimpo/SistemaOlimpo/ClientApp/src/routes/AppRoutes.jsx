@@ -7,6 +7,7 @@ import { FetchData } from "../pages/FetchData";
 import { Home } from "../pages/Home";
 import { Login } from '../pages/Login';
 import { TelaCadastro } from '../pages/TelaCadastro';
+import { TelaEquipe } from '../pages/TelaEquipe';
 
 const routes = [
   {
@@ -28,6 +29,10 @@ const routes = [
   {
     path: '/fetch-data',
     element: <FetchData />
+  },
+  {
+    path: '/tela-equipe',
+    element: <TelaEquipe />
   }
 ];
 
