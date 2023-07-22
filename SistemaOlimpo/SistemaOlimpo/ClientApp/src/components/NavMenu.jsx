@@ -47,6 +47,9 @@ export class NavMenu extends Component {
               <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/tela-equipe">Tela Equipe</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink tag={Link} className="text-dark" to="/tela-evento">Tela Evento</NavLink>
+              </NavItem>
             </ul>
           </Collapse>
         </Navbar>
