@@ -2,10 +2,20 @@ namespace Olimpo;
 
 public class Participante
 {
-    public required int Id { get; set; }
-    public required string TokenId { get; set; }
-    public required string Name { get; set; }
-    public required string Email { get; set; }
-    public required string University { get; set; }
-    public required DateTime BirthDay { get; set; }
+    public Participante(int id, string tokenId, string name, string email, string university, DateTime birthDay)
+    {
+        Id = id;
+        TokenId = tokenId;
+        Name = name;
+        Email = email;
+        University = university;
+        BirthDay = birthDay;
+    }
+
+    public int Id { get;private set; }
+    public string TokenId { get;private set; }
+    public string Name { get;private set; }
+    public string Email { get;private set; }
+    public string University { get;private set; }
+    public DateTime BirthDay { get;private set; }
 }
