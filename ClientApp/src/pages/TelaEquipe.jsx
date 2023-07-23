@@ -41,9 +41,33 @@ export const TelaEquipe = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Dados da equipe:", equipe);
+
+    try {
+      const response = await fetch("/api/Equipe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
+        },
+        body: JSON.stringify({
+          Name: equipe.nome,
+          University: equipe.faculdade,
+          Members: []
+        }), // Converte os dados para JSON
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro na requisição");
+      }
+
+      const responseData = await response.json(); // Parse da resposta para JSON
+      console.log('RESPOSTA:', responseData)
+    } catch (error) {
+      console.error("Erro na requisição POST:", error);
+      alert("OPS, ALGO DEU ERRADO");
+    }
   };
 
   return (
@@ -68,7 +92,7 @@ export const TelaEquipe = () => {
             required
           />
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
           <Label for="endereco">Endereço</Label>
           <Input
             type="text"
@@ -78,7 +102,7 @@ export const TelaEquipe = () => {
             onChange={handleChange}
             required
           />
-        </FormGroup>
+        </FormGroup> */}
         <FormGroup>
           <Label for="faculdade">Faculdade</Label>
           <Input
@@ -90,7 +114,7 @@ export const TelaEquipe = () => {
             required
           />
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
           <Label for="categorias">Categorias</Label>
           {categoriasOpcoes.map((categoria) => (
             <FormGroup check key={categoria}>
@@ -106,7 +130,7 @@ export const TelaEquipe = () => {
               </Label>
             </FormGroup>
           ))}
-        </FormGroup>
+        </FormGroup> */}
         <Button type="submit" color="primary">
           Cadastrar Equipe
         </Button>
