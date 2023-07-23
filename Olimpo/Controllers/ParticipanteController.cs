@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Olimpo.Repository;
+using Olimpo.Models;
 
 namespace Olimpo.Controllers;
 
@@ -6,18 +8,18 @@ namespace Olimpo.Controllers;
 [Route("api/[controller]")]
 public class ParticipanteController : ControllerBase
 {
-    private static List<Participante> participantes = new List<Participante>();
+    private static IRepository<Participante> cadastroParticipantes = new ParticipantesRepository();
 
     [HttpGet(Name = "GetParticipanteList")]
     public List<Participante> GetParticipanteList()
     {
-        return participantes;
+        return (List<Participante>)cadastroParticipantes.List;
     }
 
     [HttpGet("{id}", Name = "GetParticipanteById")]
     public ActionResult<Participante> GetParticipanteById(int Id)
     {
-        var participante = participantes.FirstOrDefault(p => p.Id == Id);
+        var participante = cadastroParticipantes.FindById(Id);
         if (participante == null)
         {
             return NotFound();
@@ -32,8 +34,8 @@ public class ParticipanteController : ControllerBase
         {
             return BadRequest("Invalid data.");
         }
-      
-        participantes.Add(participante);
+
+        cadastroParticipantes.Add(participante);
 
         return CreatedAtRoute("GetParticipanteList", null, participante);
     }
@@ -41,13 +43,13 @@ public class ParticipanteController : ControllerBase
     [HttpDelete("{id}", Name = "DeleteParticipanteById")]
     public IActionResult DeleteParticipanteById(int id)
     {
-        var participante = participantes.FirstOrDefault(p => p.Id == id);
+        var participante = cadastroParticipantes.FindById(id);
         if (participante == null)
         {
             return NotFound();
         }
 
-        participantes.Remove(participante);
+        cadastroParticipantes.Delete(participante);
         return NoContent();
     }
 }

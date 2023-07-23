@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Olimpo.Models;
+using Olimpo.Repository;
 
 namespace Olimpo.Controllers;
 
@@ -6,18 +8,18 @@ namespace Olimpo.Controllers;
 [Route("api/[controller]")]
 public class EquipeController : ControllerBase
 {
-    private static List<Equipe> equipes = new List<Equipe>();
+    private static IRepository<Equipe> cadastroEquipes = new EquipesRepository();
 
     [HttpGet(Name = "GetEquipeList")]
     public List<Equipe> GetEquipeList()
     {
-        return equipes;
+        return (List<Equipe>)cadastroEquipes;
     }
 
-    [HttpGet("{name}", Name = "GetEquipeByName")]
-    public ActionResult<Equipe> GetEquipeById(string Name)
+    [HttpGet("{id}", Name = "GetEquipeByName")]
+    public ActionResult<Equipe> GetEquipeById(int id)
     {
-        var equipe = equipes.FirstOrDefault(e => e.Name == Name);
+        var equipe = cadastroEquipes.FindById(id);
         if (equipe == null)
         {
             return NotFound();
@@ -32,22 +34,22 @@ public class EquipeController : ControllerBase
         {
             return BadRequest("Invalid data.");
         }
-      
-        equipes.Add(equipe);
+
+        cadastroEquipes.Add(equipe);
 
         return CreatedAtRoute("GetEquipeList", null, equipe);
     }
 
     [HttpDelete("{id}", Name = "DeleteEquipeById")]
-    public IActionResult DeleteEquipeById(string Name)
+    public IActionResult DeleteEquipeById(int id)
     {
-        var equipe = equipes.FirstOrDefault(p => p.Name.ToLower() == Name.ToLower());
+        var equipe = cadastroEquipes.FindById(id);
         if (equipe == null)
         {
             return NotFound();
         }
 
-        equipes.Remove(equipe);
+        cadastroEquipes.Delete(equipe);
         return NoContent();
     }
 }

@@ -1,17 +1,20 @@
-﻿namespace NetApi;
+﻿using Olimpo.Repository;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-public class TDP
-{
-    public TDP(int equipeId, byte[] arquivo, CategoriasType categoria)
+
+namespace Olimpo.Models;
+
+
+[Table("TDP")]
+public partial class TDP : EntidadeBase
     {
-        EquipeId = equipeId;
-        Categoria = categoria;
-        Arquivo = arquivo;
-        UltimaVezModificado = DateTime.Now;
-    }
-    
-    public int EquipeId { get; private set; } 
+    [Required]
+    public int EquipeId { get; private set; }
+    [Required]
     public CategoriasType Categoria { get; private set; }
+    [Required]
     public byte[] Arquivo { get; private set; }
+    [Required]
     public DateTime UltimaVezModificado { get; private set; }
 }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Olimpo;
+using Olimpo.Models;
+using Olimpo.Repository;
 
 namespace NetApi.Controllers;
 
@@ -7,12 +9,12 @@ namespace NetApi.Controllers;
 [Route("api/[controller]")]
 public class TdpController : ControllerBase
 {
-    private static List<TDP> cadastroTDPs = new List<TDP>();
+    private static IRepository<TDP> cadastroTdps= new TdpsRepository();
 
     [HttpGet("{id}/{categoria}", Name = "GetTDPById")]
     public ActionResult<TDP> GetTDPById(int id, int categoria)
     {
-        var equipeTdps = cadastroTDPs.FindAll(p => p.EquipeId == id);
+        var equipeTdps = cadastroTdps.FindAll(id);
         if (equipeTdps == null)
         {
             return NotFound();
@@ -35,7 +37,7 @@ public class TdpController : ControllerBase
             return BadRequest("Invalid data.");
         }
 
-        cadastroTDPs.Add(tdp);
+        cadastroTdps.Add(tdp);
 
         return CreatedAtRoute("GetTdpList", null, tdp);
     }
@@ -43,7 +45,7 @@ public class TdpController : ControllerBase
     [HttpDelete("{id}/{categoria}", Name = "DeleteTdpById")]
     public IActionResult DeleteTdpById(int id, int categoria)
     {
-        var equipeTdps = cadastroTDPs.FindAll(p => p.EquipeId == id);
+        var equipeTdps = cadastroTdps.FindAll(id);
         if (equipeTdps == null)
         {
             return NotFound();
@@ -55,13 +57,7 @@ public class TdpController : ControllerBase
             return NotFound();
         }
 
-        var participante = cadastroTDPs.FirstOrDefault(p => p.Categoria == (CategoriasType)categoria);
-        if (participante == null)
-        {
-            return NotFound();
-        }
-
-        cadastroTDPs.Remove(tdp);
+        cadastroTdps.Delete(tdp);
         return NoContent();
     }
 }
