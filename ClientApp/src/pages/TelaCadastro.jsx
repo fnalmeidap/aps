@@ -31,7 +31,7 @@ export const TelaCadastro = () => {
     e.preventDefault();
 
     console.log(participante)
-    fetch("/register", {
+    fetch("/api/Participante", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -78,11 +78,11 @@ export const TelaCadastro = () => {
             <Form onSubmit={handleSubmit}>
               <FormGroup>
                 <Label for="universidade">Universidade</Label>
-                <Input required type="text" name="universidade" value={participante.University} onChange={handleChange} />
+                <Input required type="text" name="University" value={participante.University} onChange={handleChange} />
               </FormGroup>
               <FormGroup>
                 <Label for="aniversario">Aniversário</Label>
-                <Input required type="date" name="aniversario" value={participante.BirthDay} onChange={handleChange} />
+                <Input required type="date" name="BirthDay" value={participante.BirthDay} onChange={handleChange} />
               </FormGroup>
               <Button type='submit' color='primary'>
                 Enviar
