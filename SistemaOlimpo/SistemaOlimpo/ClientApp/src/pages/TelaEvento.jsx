@@ -1,39 +1,73 @@
 import React, { useState } from "react";
 import { Container, ListGroup, ListGroupItem, Button, Col, Collapse, Badge } from "reactstrap";
+import { categoriesEnum } from '../utils/constants';
+import { formatAddress, formatDate } from '../utils/formatters';
 
 const eventosMock = [
-  { id: 1, nome: "Evento 1", data: "2023-07-25", categoria: "Categoria A" },
-  { id: 2, nome: "Evento 2", data: "2023-08-10", categoria: "Categoria B" },
-  { id: 3, nome: "Evento 3", data: "2023-09-05", categoria: "Categoria C" },
-];
-
-const participantesMock = [
-  { id: 1, nome: "Participante 1" },
-  { id: 2, nome: "Participante 2" },
-  { id: 3, nome: "Participante 3" },
+  {
+    name: 'Qualquer',
+    endereco: {
+        cidade: "Recife",
+        estado: "Pernambuco",
+        pais: "Brasil"
+    },
+    startTime: "2023-07-22T00:00:00Z",
+    finalTime: "2023-07-27T00:00:00Z",
+    categorias: [
+        1,
+        2
+    ],
+    id: 0
+  },
+  {
+    name: 'Qualquer 2',
+    endereco: {
+        cidade: "Recife",
+        estado: "Pernambuco",
+        pais: "Brasil"
+    },
+    startTime: "2023-07-22T00:00:00Z",
+    finalTime: "2023-07-27T00:00:00Z",
+    categorias: [
+        1,
+    ],
+    id: 1
+  },
+  {
+    name: 'Qualquer 4',
+    endereco: {
+        cidade: "Recife",
+        estado: "Pernambuco",
+        pais: "Brasil"
+    },
+    startTime: "2023-07-22T00:00:00Z",
+    finalTime: "2023-07-27T00:00:00Z",
+    categorias: [
+        1,2,3
+    ],
+    id: 2
+  },
 ];
 
 export const TelaEvento = () => {
   const [eventoSelecionado, setEventoSelecionado] = useState(null);
-  const [participantesSelecionados, setParticipantesSelecionados] = useState([]);
+  const [categoriasSelecionadas, setCategoriasSelecionadas] = useState([]);
 
   const handleEventoSelect = (evento) => {
     setEventoSelecionado(evento);
-    setParticipantesSelecionados([]); // Limpar a lista de participantes selecionados ao selecionar um novo evento
+    setCategoriasSelecionadas([]); // Limpar a lista de categorias selecionados ao selecionar um novo evento
   };
 
   const handleInscricaoClick = () => {
-    // Implemente aqui a lógica para se inscrever no evento selecionado com os participantes selecionados
-    console.log("Evento selecionado:", eventoSelecionado);
-    console.log("Participantes selecionados:", participantesSelecionados);
+    console.log( eventoSelecionado.id, categoriasSelecionadas);
   };
 
-  const handleParticipanteSelect = (participante) => {
+  const handleCategorySelect = (category) => {
     // Toggle da seleção do participante
-    setParticipantesSelecionados((prevState) =>
-      prevState.includes(participante)
-        ? prevState.filter((item) => item !== participante)
-        : [...prevState, participante]
+    setCategoriasSelecionadas((prevState) =>
+      prevState.includes(category)
+        ? prevState.filter((item) => item !== category)
+        : [...prevState, category]
     );
   };
 
@@ -41,10 +75,8 @@ export const TelaEvento = () => {
     <Container>
       <Col
         md={{
-          offset: 3,
-          size: 6
+          size: 12
         }}
-        sm="12"
       >
       <h2>Eventos de Robótica</h2>
       <ListGroup>
@@ -57,38 +89,45 @@ export const TelaEvento = () => {
           action
           className="d-flex justify-content-between align-items-center"
         >
-          <div>
-            <span>{evento.nome}</span>
-            <Badge color="secondary" style={{marginLeft: 8}}>
-              {evento.categoria}
-            </Badge>
+          <div className="d-flex gap-2">
+            <span>{evento.name}</span>
+            {evento.categorias.map(categoria => (
+              <Badge color="secondary" style={{marginLeft: 8}}>
+                {categoriesEnum[categoria]}
+              </Badge>
+            ))}
           </div>
-          <span>{evento.data}</span>
+          <div className="d-flex gap-2">
+            <span style={{marginLeft: 8}} >{formatAddress(evento.endereco)}</span>
+            <span>{formatDate(evento.startTime)} a {formatDate(evento.finalTime)}</span>
+          </div>
         </ListGroupItem>
         ))}
       </ListGroup>
       <Collapse isOpen={eventoSelecionado} className="mt-3">
         <div className="mt-4">
-          <h3>Participantes</h3>
-          <ListGroup>
-            {participantesMock.map((participante) => (
+          <h3>Categorias</h3>
+          <ListGroup horizontal>
+            {eventoSelecionado?.categorias.map((categoria) => (
               <ListGroupItem
-                key={participante.id}
+                key={categoria}
                 tag="button"
-                onClick={() => handleParticipanteSelect(participante)}
-                active={participantesSelecionados.includes(participante)}
+                onClick={() => handleCategorySelect(categoria)}
+                active={categoriasSelecionadas.includes(categoria)}
                 action
               >
-                {participante.nome}
+                <Badge color="secondary" style={{marginLeft: 8}}>
+                  {categoriesEnum[categoria]}
+                </Badge>
               </ListGroupItem>
             ))}
           </ListGroup>
         </div>
       </Collapse>
-      <Collapse isOpen={eventoSelecionado && participantesSelecionados.length > 0} className="mt-3">
+      <Collapse isOpen={eventoSelecionado && categoriasSelecionadas.length > 0} className="mt-3">
         <Button
           color="primary"
-          disabled={!eventoSelecionado || !participantesSelecionados.length}
+          disabled={!eventoSelecionado || !categoriasSelecionadas.length}
           onClick={handleInscricaoClick}
           className="mt-3"
         >
