@@ -4,7 +4,7 @@ namespace Olimpo.Repository;
 public sealed class ParticipantesRepository : IRepository<Participante>
 {
 
-    private static List<Participante> cadastroParticipantes { get; set; }
+    private List<Participante> cadastroParticipantes { get; set; }
 
     private static ParticipantesRepository Instance = null;
 
