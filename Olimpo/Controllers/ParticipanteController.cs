@@ -34,7 +34,6 @@ public class ParticipanteController : ControllerBase
         }
       
         participantes.Add(participante);
-        Console.WriteLine(participantes.Count);
 
         return CreatedAtRoute("GetParticipanteList", null, participante);
     }
