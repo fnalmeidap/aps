@@ -16,13 +16,27 @@ public class TdpController : ControllerBase
         return cadastroTdps.List;
     }
 
-    [HttpGet("{equipe}/{categoria}", Name = "GetTDPByEquipeCategoria")]
-    public ActionResult<TDP> GetTDPByEquipeCategoria(Equipe equipe, CategoriasType categoria)
+    [HttpGet("{equipeId}", Name = "GetTDPByEquipe")]
+    public ActionResult<TDP> GetTDPByEquipe(int equipeId)
     {
-        if(equipe == null) return BadRequest();
-
+        Console.WriteLine(cadastroTdps.List.First().EquipeId);
+        Console.WriteLine(equipeId);
         var equipeTdps = cadastroTdps.FindByPredicate(t => 
-            t.EquipeId == equipe.Id &&
+            t.EquipeId == equipeId);
+
+        if (equipeTdps == null)
+        {
+            return NotFound();
+        }
+
+        return equipeTdps;
+    }
+
+    [HttpGet("{equipeId}/{categoria}", Name = "GetTDPByEquipeCategoria")]
+    public ActionResult<TDP> GetTDPByEquipeCategoria(int equipeId, CategoriasType categoria)
+    {
+        var equipeTdps = cadastroTdps.FindByPredicate(t => 
+            t.EquipeId == equipeId &&
             t.Categoria == categoria);
 
         if (equipeTdps == null)
@@ -43,25 +57,22 @@ public class TdpController : ControllerBase
 
         cadastroTdps.Add(tdp);
 
-        return CreatedAtRoute("GetTdpList", null, tdp);
+        return CreatedAtRoute("GetTDPList", null, tdp);
     }
 
-    [HttpDelete("{id}/{categoria}", Name = "DeleteTdpById")]
-    public IActionResult DeleteTdpById(int id, int categoria)
+    [HttpDelete("{equipeId}/{categoria}", Name = "DeleteTdpByEquipeCategoria")]
+    public IActionResult DeleteTdpById(int equipeId, CategoriasType categoria)
     {
-        var equipeTdps = cadastroTdps.FindAll(id);
+        var equipeTdps = cadastroTdps.FindByPredicate(t => 
+            t.EquipeId == equipeId &&
+            t.Categoria == categoria);
+
         if (equipeTdps == null)
         {
             return NotFound();
         }
 
-        var tdp = equipeTdps.FirstOrDefault(p => p.Categoria == (CategoriasType)categoria);
-        if (tdp == null)
-        {
-            return NotFound();
-        }
-
-        cadastroTdps.Delete(tdp);
+        cadastroTdps.Delete(equipeTdps);
         return NoContent();
     }
 }
