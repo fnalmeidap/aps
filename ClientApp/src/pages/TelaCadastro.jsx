@@ -22,8 +22,8 @@ export const TelaCadastro = () => {
   }, []);
 
   function onSuccess(data) {
-    console.log(data.profileObj.email)
-    setParticipante({...participante, Name: data.profileObj.name, Email: data.profileObj.email, TokenId: data.tokenId})
+    console.log(data)
+    setParticipante({...participante, Name: data.profileObj.name, Email: data.profileObj.email, TokenId: data.googleId})
     setIsLogged(true)
   }
 
@@ -31,25 +31,20 @@ export const TelaCadastro = () => {
     e.preventDefault();
 
     console.log(participante)
-
-    // Send the registration request to the server
-    // fetch("/register", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({participante}),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (data.success) {
-    //       // Redirect to the home page
-    //       window.location.href = "/";
-    //     } else {
-    //       // Show an error message
-    //       alert(data.error);
-    //     }
-    //   });
+    fetch("/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(participante),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // data
+      }).catch(error => {
+        alert('Ops, algo deu errado!')
+        console.log(error)
+      })
   };
 
   const handleChange = (e) => {
