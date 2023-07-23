@@ -1,29 +1,33 @@
-﻿namespace NetApi;
+﻿using Olimpo.Utils;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace Olimpo.Models;
 
 public enum CategoriasType {
+    NONE,
     SMALL_SIZE_LEAGUE,
     SIMULATION_2D,
     SIMULATION_3D,
     VERY_SMALL_SIZE_SOCCER
 }
 
-    public class Evento
+[Table("Evento")]
+public partial class Evento : EntidadeBase
     {
-    public Evento(int id, Endereco endereco, DateTime startTime, DateTime finalTime, CategoriasType[] categorias)
-    {
-        Id = id;
-        Endereco = endereco;
-        StartTime = startTime;
-        FinalTime = finalTime;
-        Categorias = categorias;
-    }
+    [Required]
+    public string Name { get; set; }
 
-    public int Id { get; private set; }
-    public Endereco Endereco { get; private set; }
-
-    public DateTime StartTime { get; private set; }
-    public DateTime FinalTime { get; private set; }
-
-    public CategoriasType[] Categorias { get; private set; }
+    [Required]
+    public Endereco Endereco { get; set; }
+    
+    [Required]
+    public DateTime StartTime { get; set; }
+    
+    [Required]
+    public DateTime FinalTime { get; set; }
+    
+    [Required]
+    public List<CategoriasType> Categorias { get; set; }
 }
 

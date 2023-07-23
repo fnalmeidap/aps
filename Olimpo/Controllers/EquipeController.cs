@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Olimpo.Models;
+using Olimpo.Repository;
 
 namespace Olimpo.Controllers;
 
@@ -6,18 +8,19 @@ namespace Olimpo.Controllers;
 [Route("api/[controller]")]
 public class EquipeController : ControllerBase
 {
-    private static List<Equipe> equipes = new List<Equipe>();
+    private static IRepository<Equipe> cadastroEquipes = new EquipesRepository();
+    private static IRepository<Participante> cadastroParticipantes = new ParticipantesRepository();
 
     [HttpGet(Name = "GetEquipeList")]
-    public List<Equipe> GetEquipeList()
+    public IEnumerable<Equipe> GetEquipeList()
     {
-        return equipes;
+        return cadastroEquipes.List;
     }
 
-    [HttpGet("{name}", Name = "GetEquipeByName")]
-    public ActionResult<Equipe> GetEquipeById(string Name)
+    [HttpGet("{id}", Name = "GetEquipeById")]
+    public ActionResult<Equipe> GetEquipeById(int id)
     {
-        var equipe = equipes.FirstOrDefault(e => e.Name == Name);
+        var equipe = cadastroEquipes.FindById(id);
         if (equipe == null)
         {
             return NotFound();
@@ -32,22 +35,31 @@ public class EquipeController : ControllerBase
         {
             return BadRequest("Invalid data.");
         }
-      
-        equipes.Add(equipe);
+
+        List<Participante> validMembers = new List<Participante>();
+        foreach (var member in equipe.Members) {
+            var participante = cadastroParticipantes.FindById(member.Id);
+            if (participante != null) {
+                validMembers.Add(participante);
+            }
+        }
+        equipe.Members = validMembers;  
+
+        cadastroEquipes.Add(equipe);
 
         return CreatedAtRoute("GetEquipeList", null, equipe);
     }
 
     [HttpDelete("{id}", Name = "DeleteEquipeById")]
-    public IActionResult DeleteEquipeById(string Name)
+    public IActionResult DeleteEquipeById(int id)
     {
-        var equipe = equipes.FirstOrDefault(p => p.Name.ToLower() == Name.ToLower());
+        var equipe = cadastroEquipes.FindById(id);
         if (equipe == null)
         {
             return NotFound();
         }
 
-        equipes.Remove(equipe);
+        cadastroEquipes.Delete(equipe);
         return NoContent();
     }
 }

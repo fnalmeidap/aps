@@ -1,8 +1,17 @@
-namespace Olimpo;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-public class Equipe
+namespace Olimpo.Models;
+
+[Table("Equipe")]
+public partial class Equipe : EntidadeBase
 {
-    public required string Name { get; set; }
-    public required string University { get; set; }
-    public required List<Participante> Members { get; set; }
+    [Required]
+    public string Name { get; set; }
+
+    [Required]
+    public string University { get; set; }
+
+    [Required]
+    public List<Participante> Members { get; set; }
 }

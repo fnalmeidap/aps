@@ -1,21 +1,23 @@
-namespace Olimpo;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-public class Participante
+namespace Olimpo.Models;
+
+[Table("Participante")]
+public partial class Participante : EntidadeBase
 {
-    public Participante(int id, string tokenId, string name, string email, string university, DateTime birthDay)
-    {
-        Id = id;
-        TokenId = tokenId;
-        Name = name;
-        Email = email;
-        University = university;
-        BirthDay = birthDay;
-    }
+    [Required]
+    public string TokenId { get; set; }
 
-    public int Id { get;private set; }
-    public string TokenId { get;private set; }
-    public string Name { get;private set; }
-    public string Email { get;private set; }
-    public string University { get;private set; }
-    public DateTime BirthDay { get;private set; }
+    [Required]
+    public string Name { get; set; }
+    
+    [Required]
+    public string Email { get; set; }
+    
+    [Required]
+    public string University { get; set; }
+    
+    [Required]
+    public DateTime BirthDay { get; set; }
 }
