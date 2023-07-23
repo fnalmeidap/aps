@@ -15,12 +15,12 @@ public enum CategoriasType {
     public partial class Evento : EntidadeBase
     {
     [Required]
-    public Endereco Endereco { get; private set; }
+    public Endereco Endereco { get; set; }
     [Required]
-    public DateTime StartTime { get; private set; }
+    public DateTime StartTime { get; set; }
     [Required]
-    public DateTime FinalTime { get; private set; }
+    public DateTime FinalTime { get; set; }
     [Required]
-    public CategoriasType[] Categorias { get; private set; }
+    public int[] Categorias { get; set; }
 }
 

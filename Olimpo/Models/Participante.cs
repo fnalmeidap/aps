@@ -8,13 +8,13 @@ namespace Olimpo.Models;
 public partial class Participante : EntidadeBase
 {
     [Required]
-    public string TokenId { get; private set; }
+    public string TokenId { get; set; }
     [Required]
-    public string Name { get; private set; }
+    public string Name { get; set; }
     [Required]
-    public string Email { get; private set; }
+    public string Email { get; set; }
     [Required]
-    public string University { get; private set; }
+    public string University { get; set; }
     [Required]
-    public DateTime BirthDay { get; private set; }
+    public DateTime BirthDay { get; set; }
 }

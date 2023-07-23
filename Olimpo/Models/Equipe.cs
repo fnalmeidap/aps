@@ -7,9 +7,9 @@ namespace Olimpo.Models;
 public partial class Equipe : EntidadeBase
 {
     [Required]
-    public string Name { get; private set; }
+    public string Name { get; set; }
     [Required]
-    public string University { get; private set; }
+    public string University { get; set; }
     [Required]
-    public  List<Participante> Members { get; private set; }
+    public  List<Participante> Members { get; set; }
 }

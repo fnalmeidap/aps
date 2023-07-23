@@ -16,7 +16,7 @@ public class EquipeController : ControllerBase
         return cadastroEquipes.List;
     }
 
-    [HttpGet("{id}", Name = "GetEquipeByName")]
+    [HttpGet("{id}", Name = "GetEquipeById")]
     public ActionResult<Equipe> GetEquipeById(int id)
     {
         var equipe = cadastroEquipes.FindById(id);

@@ -2,7 +2,7 @@
 using Olimpo.Models;
 using Olimpo.Repository;
 
-namespace NetApi.Controllers;
+namespace Olimpo.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
