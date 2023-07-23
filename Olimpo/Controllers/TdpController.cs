@@ -9,6 +9,7 @@ namespace Olimpo.Controllers;
 public class TdpController : ControllerBase
 {
     private static IRepository<TDP> cadastroTdps= new TdpsRepository();
+    private static int generateId = 0;
 
     [HttpGet(Name = "GetTDPList")]
     public IEnumerable<TDP> GetTDPList()
@@ -54,6 +55,9 @@ public class TdpController : ControllerBase
         {
             return BadRequest("Invalid data.");
         }
+
+        tdp.Id = generateId;
+        generateId += 1;
 
         cadastroTdps.Add(tdp);
 

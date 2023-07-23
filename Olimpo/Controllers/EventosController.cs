@@ -9,6 +9,7 @@ namespace Olimpo.Controllers;
 public class EventosController : ControllerBase
 {
     private static IRepository<Evento> cadastroEventos = new EventosRepository();
+    private static int generateId = 0;
 
     [HttpGet(Name = "GetEventosList")]
     public IEnumerable<Evento> GetEventosList()
@@ -34,6 +35,9 @@ public class EventosController : ControllerBase
         {
             return BadRequest("Invalid data.");
         }
+
+        evento.Id = generateId;
+        generateId += 1;
 
         cadastroEventos.Add(evento);
 
