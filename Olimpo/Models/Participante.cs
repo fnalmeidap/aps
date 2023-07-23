@@ -1,4 +1,4 @@
-namespace NetApi;
+namespace Olimpo;
 
 public class Participante
 {
