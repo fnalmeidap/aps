@@ -10,22 +10,27 @@ public class TdpController : ControllerBase
 {
     private static IRepository<TDP> cadastroTdps= new TdpsRepository();
 
-    [HttpGet("{id}/{categoria}", Name = "GetTDPById")]
-    public ActionResult<TDP> GetTDPById(int id, int categoria)
+    [HttpGet(Name = "GetTDPList")]
+    public IEnumerable<TDP> GetTDPList()
     {
-        var equipeTdps = cadastroTdps.FindAll(id);
+        return cadastroTdps.List;
+    }
+
+    [HttpGet("{equipe}/{categoria}", Name = "GetTDPByEquipeCategoria")]
+    public ActionResult<TDP> GetTDPByEquipeCategoria(Equipe equipe, CategoriasType categoria)
+    {
+        if(equipe == null) return BadRequest();
+
+        var equipeTdps = cadastroTdps.FindByPredicate(t => 
+            t.EquipeId == equipe.Id &&
+            t.Categoria == categoria);
+
         if (equipeTdps == null)
         {
             return NotFound();
         }
 
-        var tdp = equipeTdps.FirstOrDefault(p => p.Categoria == (CategoriasType)categoria);
-        if (tdp == null)
-        {
-            return NotFound();
-        }
-
-        return tdp;
+        return equipeTdps;
     }
 
     [HttpPost(Name = "CreateTdp")]

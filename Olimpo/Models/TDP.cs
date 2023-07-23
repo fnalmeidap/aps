@@ -7,11 +7,14 @@ namespace Olimpo.Models;
 public partial class TDP : EntidadeBase
     {
     [Required]
-    public int EquipeId { get; private set; }
+    public int EquipeId { get; set; }
+
     [Required]
-    public CategoriasType Categoria { get; private set; }
+    public CategoriasType Categoria { get; set; }
+
     [Required]
-    public byte[] Arquivo { get; private set; }
+    public List<byte> Arquivo { get; set; }
+    
     [Required]
-    public DateTime UltimaVezModificado { get; private set; }
+    public DateTime UltimaVezModificado { get; set; }
 }
