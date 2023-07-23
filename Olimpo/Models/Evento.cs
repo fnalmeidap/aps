@@ -16,6 +16,9 @@ public enum CategoriasType {
 public partial class Evento : EntidadeBase
     {
     [Required]
+    public string Name { get; set; }
+
+    [Required]
     public Endereco Endereco { get; set; }
     
     [Required]
