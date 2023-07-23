@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Olimpo;
 
-namespace NetApi.Controllers;
+namespace Olimpo.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
