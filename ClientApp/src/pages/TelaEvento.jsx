@@ -11,7 +11,6 @@ import {
 } from "reactstrap";
 import { categoriesEnum } from "../utils/constants";
 import { formatAddress, formatDate } from "../utils/formatters";
-import { api } from "../services/api";
 
 export const TelaEvento = () => {
   const [eventoSelecionado, setEventoSelecionado] = useState(null);
@@ -38,12 +37,6 @@ export const TelaEvento = () => {
 
   useEffect(() => {
     async function fetchEventos() {
-      // try {
-      //   const response = await api.get('/api/Eventos')
-      //   setlistaDeEventos(response.data)
-      // } catch (error) {
-      //   alert('OPS, ALGO DEU ERRADO')
-      // }
       fetch("/api/Eventos", {
         method: "GET",
         headers: {
@@ -77,6 +70,8 @@ export const TelaEvento = () => {
         <h2>Eventos de Robótica</h2>
         {!listaDeEventos ? (
           <Spinner>Loading...</Spinner>
+        ) : listaDeEventos.length === 0 ? (
+          <p>NÃO EXISTEM EVENTOS DISPONÍVEIS</p>
         ) : (
           <>
             <ListGroup>
