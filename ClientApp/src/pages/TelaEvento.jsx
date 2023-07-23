@@ -11,7 +11,6 @@ import {
 } from "reactstrap";
 import { categoriesEnum } from "../utils/constants";
 import { formatAddress, formatDate } from "../utils/formatters";
-import { api } from "../services/api";
 
 export const TelaEvento = () => {
   const [eventoSelecionado, setEventoSelecionado] = useState(null);
@@ -38,12 +37,6 @@ export const TelaEvento = () => {
 
   useEffect(() => {
     async function fetchEventos() {
-      // try {
-      //   const response = await api.get('/api/Eventos')
-      //   setlistaDeEventos(response.data)
-      // } catch (error) {
-      //   alert('OPS, ALGO DEU ERRADO')
-      // }
       fetch("/api/Eventos", {
         method: "GET",
         headers: {
@@ -52,13 +45,7 @@ export const TelaEvento = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          if (data) {
-            setlistaDeEventos(data);
-          } else {
-            // Show an error message
-            alert(data.error);
-          }
+          setlistaDeEventos(data);
         })
         .catch(() => {
           alert("OPS, ALGO DEU ERRADO");
