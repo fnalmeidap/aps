@@ -1,10 +1,7 @@
-﻿using Olimpo.Repository;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-
 namespace Olimpo.Models;
-
 
 [Table("TDP")]
 public partial class TDP : EntidadeBase

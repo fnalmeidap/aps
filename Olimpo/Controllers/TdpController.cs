@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Olimpo;
 using Olimpo.Models;
 using Olimpo.Repository;
 

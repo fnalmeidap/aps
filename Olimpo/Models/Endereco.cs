@@ -11,6 +11,7 @@ namespace Olimpo.Utils
         }
 
         public string Cidade { get; set; }
+
         public string Estado { get; set; }
 
         public string Pais { get; set; }
