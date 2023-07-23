@@ -1,5 +1,4 @@
-﻿using Olimpo.Repository;
-using Olimpo.Utils;
+﻿using Olimpo.Utils;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 

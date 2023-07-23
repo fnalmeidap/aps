@@ -11,9 +11,9 @@ public class EquipeController : ControllerBase
     private static IRepository<Equipe> cadastroEquipes = new EquipesRepository();
 
     [HttpGet(Name = "GetEquipeList")]
-    public List<Equipe> GetEquipeList()
+    public IEnumerable<Equipe> GetEquipeList()
     {
-        return (List<Equipe>)cadastroEquipes;
+        return cadastroEquipes.List;
     }
 
     [HttpGet("{id}", Name = "GetEquipeByName")]

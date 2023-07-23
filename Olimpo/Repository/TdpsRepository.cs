@@ -4,11 +4,11 @@ namespace Olimpo.Repository;
 public class TdpsRepository : IRepository<TDP>
 {
 
-    private static List<TDP> cadatroTdps { get; set; }
+    private static List<TDP> cadastroTdps { get; set; }
 
     public TdpsRepository()
     {
-        cadatroTdps = new List<TDP>();
+        cadastroTdps = new List<TDP>();
 
     }
 
@@ -16,35 +16,35 @@ public class TdpsRepository : IRepository<TDP>
     {
         get
         {
-            return cadatroTdps;
+            return cadastroTdps;
         }
 
     }
 
     public void Add(TDP entity)
     {
-        cadatroTdps.Add(entity);
+        cadastroTdps.Add(entity);
     }
 
     public void Delete(TDP entity)
     {
-        cadatroTdps.Remove(entity);
+        cadastroTdps.Remove(entity);
     }
 
     public void Update(TDP entity)
     {
-        cadatroTdps.Remove(entity);
-        cadatroTdps.Add(entity);
+        cadastroTdps.Remove(entity);
+        cadastroTdps.Add(entity);
     }
 
     public TDP? FindById(int Id)
     {
-        var result = (cadatroTdps.FirstOrDefault(p => p.Id == Id));
+        var result = (cadastroTdps.FirstOrDefault(p => p.Id == Id));
         return result;
     }
     public IEnumerable<TDP> FindAll(int Id)
     {
-        var result = (cadatroTdps.FindAll(p => p.Id == Id));
+        var result = (cadastroTdps.FindAll(p => p.Id == Id));
         return result;
     }
 }

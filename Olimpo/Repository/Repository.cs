@@ -1,4 +1,6 @@
-﻿namespace Olimpo.Repository
+﻿using Olimpo.Models;
+
+namespace Olimpo.Repository
 {
     public interface IRepository<T> where T : EntidadeBase
     {

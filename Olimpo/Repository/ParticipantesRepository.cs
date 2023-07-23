@@ -4,11 +4,11 @@ namespace Olimpo.Repository;
 public class ParticipantesRepository : IRepository<Participante>
 {
 
-    private static List<Participante> cadatroParticipantes { get; set; }
+    private static List<Participante> cadastroParticipantes { get; set; }
 
     public ParticipantesRepository()
     {
-        cadatroParticipantes = new List<Participante>();
+        cadastroParticipantes = new List<Participante>();
 
     }
 
@@ -16,36 +16,36 @@ public class ParticipantesRepository : IRepository<Participante>
     {
         get
         {
-            return cadatroParticipantes;
+            return cadastroParticipantes;
         }
 
     }
 
     public void Add(Participante entity)
     {
-        cadatroParticipantes.Add(entity);
+        cadastroParticipantes.Add(entity);
     }
 
     public void Delete(Participante entity)
     {
-        cadatroParticipantes.Remove(entity);
+        cadastroParticipantes.Remove(entity);
     }
 
     public void Update(Participante entity)
     {
-        cadatroParticipantes.Remove(entity);
-        cadatroParticipantes.Add(entity);
+        cadastroParticipantes.Remove(entity);
+        cadastroParticipantes.Add(entity);
     }
 
     public Participante? FindById(int Id)
     {
-        var result = (cadatroParticipantes.FirstOrDefault(p => p.Id == Id));
+        var result = (cadastroParticipantes.FirstOrDefault(p => p.Id == Id));
         return result;
     }
 
     public IEnumerable<Participante> FindAll(int Id)
     {
-        var result = (cadatroParticipantes.FindAll(p => p.Id == Id));
+        var result = (cadastroParticipantes.FindAll(p => p.Id == Id));
         return result;
     }
 }

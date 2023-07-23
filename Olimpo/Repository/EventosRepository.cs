@@ -4,11 +4,11 @@ namespace Olimpo.Repository;
 public class EventosRepository : IRepository<Evento>
 {
 
-    private static List<Evento> cadatroEventos { get; set; }
+    private static List<Evento> cadastroEventos { get; set; }
 
     public EventosRepository()
     {
-        cadatroEventos = new List<Evento>();
+        cadastroEventos = new List<Evento>();
 
     }
 
@@ -16,35 +16,35 @@ public class EventosRepository : IRepository<Evento>
     {
         get
         {
-            return cadatroEventos;
+            return cadastroEventos;
         }
 
     }
 
     public void Add(Evento entity)
     {
-        cadatroEventos.Add(entity);
+        cadastroEventos.Add(entity);
     }
 
     public void Delete(Evento entity)
     {
-        cadatroEventos.Remove(entity);
+        cadastroEventos.Remove(entity);
     }
 
     public void Update(Evento entity)
     {
-        cadatroEventos.Remove(entity);
-        cadatroEventos.Add(entity);
+        cadastroEventos.Remove(entity);
+        cadastroEventos.Add(entity);
     }
 
     public Evento? FindById(int Id)
     {
-        var result = (cadatroEventos.FirstOrDefault(p => p.Id == Id));
+        var result = (cadastroEventos.FirstOrDefault(p => p.Id == Id));
         return result;
     }
     public IEnumerable<Evento> FindAll(int Id)
     {
-        var result = (cadatroEventos.FindAll(p => p.Id == Id));
+        var result = (cadastroEventos.FindAll(p => p.Id == Id));
         return result;
     }
 }
