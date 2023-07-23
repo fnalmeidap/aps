@@ -9,6 +9,7 @@ namespace Olimpo.Controllers;
 public class EventosController : ControllerBase
 {
     private static IRepository<Evento> cadastroEventos = new EventosRepository();
+    private static IRepository<Equipe> cadastroEquipes = new EquipesRepository();
 
     [HttpGet(Name = "GetEventosList")]
     public IEnumerable<Evento> GetEventosList()
@@ -52,5 +53,35 @@ public class EventosController : ControllerBase
         cadastroEventos.Delete(participante);
         return NoContent();
     }
+
+    [HttpPatch(Name = "AddEquipeToEvento")]
+    public IActionResult AddEquipeToEvento([FromBody] EquipeData equipeData)
+    {
+        var eventoId = equipeData.EventoId;
+        var equipeId = equipeData.EquipeId;
+        var categorias = equipeData.Categorias;
+
+        var evento = cadastroEventos.FindById(eventoId);
+        if (evento == null)
+        {
+            return NotFound();
+        }
+
+        var equipe = cadastroEquipes.FindById(equipeId);
+        if (equipe == null)
+        {
+            return NotFound();
+        }
+
+        if(categorias == null || categorias.Count == 0) {
+            return BadRequest("Invalid data.");
+        }
+
+        evento.Equipes.Add(equipeData);
+        cadastroEventos.Update(evento);
+
+        return NoContent();
+    }
+        
 }
 
