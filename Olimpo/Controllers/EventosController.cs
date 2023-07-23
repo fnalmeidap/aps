@@ -37,7 +37,7 @@ public class EventosController : ControllerBase
 
         cadastroEventos.Add(evento);
 
-        return CreatedAtRoute("GetEventoList", null, evento);
+        return CreatedAtRoute("GetEventosList", null, evento);
     }
 
     [HttpDelete("{id}", Name = "DeleteEventoById")]

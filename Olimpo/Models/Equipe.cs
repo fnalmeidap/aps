@@ -11,5 +11,5 @@ public partial class Equipe : EntidadeBase
     [Required]
     public string University { get; set; }
     [Required]
-    public  List<Participante> Members { get; set; }
+    public List<Participante> Members { get; set; }
 }

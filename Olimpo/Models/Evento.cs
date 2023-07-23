@@ -11,16 +11,19 @@ public enum CategoriasType {
     VERY_SMALL_SIZE_SOCCER
 }
 
-    [Table("Evento")]
-    public partial class Evento : EntidadeBase
+[Table("Evento")]
+public partial class Evento : EntidadeBase
     {
     [Required]
     public Endereco Endereco { get; set; }
+    
     [Required]
     public DateTime StartTime { get; set; }
+    
     [Required]
     public DateTime FinalTime { get; set; }
+    
     [Required]
-    public int[] Categorias { get; set; }
+    public List<CategoriasType> Categorias { get; set; }
 }
 
