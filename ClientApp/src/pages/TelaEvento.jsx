@@ -1,57 +1,13 @@
-import React, { useState } from "react";
-import { Container, ListGroup, ListGroupItem, Button, Col, Collapse, Badge } from "reactstrap";
+import React, { useEffect, useState } from "react";
+import { Container, ListGroup, ListGroupItem, Button, Col, Collapse, Badge, Spinner } from "reactstrap";
 import { categoriesEnum } from '../utils/constants';
 import { formatAddress, formatDate } from '../utils/formatters';
-
-const eventosMock = [
-  {
-    name: 'Qualquer',
-    endereco: {
-        cidade: "Recife",
-        estado: "Pernambuco",
-        pais: "Brasil"
-    },
-    startTime: "2023-07-22T00:00:00Z",
-    finalTime: "2023-07-27T00:00:00Z",
-    categorias: [
-        1,
-        2
-    ],
-    id: 0
-  },
-  {
-    name: 'Qualquer 2',
-    endereco: {
-        cidade: "Recife",
-        estado: "Pernambuco",
-        pais: "Brasil"
-    },
-    startTime: "2023-07-22T00:00:00Z",
-    finalTime: "2023-07-27T00:00:00Z",
-    categorias: [
-        1,
-    ],
-    id: 1
-  },
-  {
-    name: 'Qualquer 4',
-    endereco: {
-        cidade: "Recife",
-        estado: "Pernambuco",
-        pais: "Brasil"
-    },
-    startTime: "2023-07-22T00:00:00Z",
-    finalTime: "2023-07-27T00:00:00Z",
-    categorias: [
-        1,2,3
-    ],
-    id: 2
-  },
-];
+import { api } from '../services/api';
 
 export const TelaEvento = () => {
   const [eventoSelecionado, setEventoSelecionado] = useState(null);
   const [categoriasSelecionadas, setCategoriasSelecionadas] = useState([]);
+  const [listaDeEventos, setlistaDeEventos] = useState([]);
 
   const handleEventoSelect = (evento) => {
     setEventoSelecionado(evento);
@@ -71,6 +27,18 @@ export const TelaEvento = () => {
     );
   };
 
+  useEffect(() => {
+    async function fetchEventos() {
+      try {
+        const response = await api.get('/api/Eventos')
+        setlistaDeEventos(response.data)
+      } catch (error) {
+        alert('OPS, ALGO DEU ERRADO')
+      }
+    }
+    fetchEventos()
+  }, []);
+
   return (
     <Container>
       <Col
@@ -79,61 +47,69 @@ export const TelaEvento = () => {
         }}
       >
       <h2>Eventos de Robótica</h2>
-      <ListGroup>
-        {eventosMock.map((evento) => (
-          <ListGroupItem
-          key={evento.id}
-          active={eventoSelecionado === evento}
-          tag="button"
-          onClick={() => handleEventoSelect(evento)}
-          action
-          className="d-flex justify-content-between align-items-center"
-        >
-          <div className="d-flex gap-2">
-            <span>{evento.name}</span>
-            {evento.categorias.map(categoria => (
-              <Badge color="secondary" style={{marginLeft: 8}}>
-                {categoriesEnum[categoria]}
-              </Badge>
-            ))}
-          </div>
-          <div className="d-flex gap-2">
-            <span style={{marginLeft: 8}} >{formatAddress(evento.endereco)}</span>
-            <span>{formatDate(evento.startTime)} a {formatDate(evento.finalTime)}</span>
-          </div>
-        </ListGroupItem>
-        ))}
-      </ListGroup>
-      <Collapse isOpen={eventoSelecionado} className="mt-3">
-        <div className="mt-4">
-          <h3>Categorias</h3>
-          <ListGroup horizontal>
-            {eventoSelecionado?.categorias.map((categoria) => (
+      {listaDeEventos ? (
+        <Spinner>
+        Loading...
+      </Spinner>
+      ) : (
+        <>
+          <ListGroup>
+            {listaDeEventos.map((evento) => (
               <ListGroupItem
-                key={categoria}
-                tag="button"
-                onClick={() => handleCategorySelect(categoria)}
-                active={categoriasSelecionadas.includes(categoria)}
-                action
-              >
-                <Badge color="secondary" style={{marginLeft: 8}}>
-                  {categoriesEnum[categoria]}
-                </Badge>
-              </ListGroupItem>
+              key={evento.id}
+              active={eventoSelecionado === evento}
+              tag="button"
+              onClick={() => handleEventoSelect(evento)}
+              action
+              className="d-flex justify-content-between align-items-center"
+            >
+              <div className="d-flex gap-2">
+                <span>{evento.name}</span>
+                {evento.categorias.map(categoria => (
+                  <Badge color="secondary" style={{marginLeft: 8}}>
+                    {categoriesEnum[categoria]}
+                  </Badge>
+                ))}
+              </div>
+              <div className="d-flex gap-2">
+                <span style={{marginLeft: 8}} >{formatAddress(evento.endereco)}</span>
+                <span>{formatDate(evento.startTime)} a {formatDate(evento.finalTime)}</span>
+              </div>
+            </ListGroupItem>
             ))}
           </ListGroup>
-        </div>
-      </Collapse>
-      <Collapse isOpen={eventoSelecionado && categoriasSelecionadas.length > 0} className="mt-3">
-        <Button
-          color="primary"
-          disabled={!eventoSelecionado || !categoriasSelecionadas.length}
-          onClick={handleInscricaoClick}
-          className="mt-3"
-        >
-          Inscrever-se
-        </Button>
-      </Collapse>
+          <Collapse isOpen={eventoSelecionado} className="mt-3">
+            <div className="mt-4">
+              <h3>Categorias</h3>
+              <ListGroup horizontal>
+                {eventoSelecionado?.categorias.map((categoria) => (
+                  <ListGroupItem
+                    key={categoria}
+                    tag="button"
+                    onClick={() => handleCategorySelect(categoria)}
+                    active={categoriasSelecionadas.includes(categoria)}
+                    action
+                  >
+                    <Badge color="secondary" style={{marginLeft: 8}}>
+                      {categoriesEnum[categoria]}
+                    </Badge>
+                  </ListGroupItem>
+                ))}
+              </ListGroup>
+            </div>
+          </Collapse>
+          <Collapse isOpen={eventoSelecionado && categoriasSelecionadas.length > 0} className="mt-3">
+            <Button
+              color="primary"
+              disabled={!eventoSelecionado || !categoriasSelecionadas.length}
+              onClick={handleInscricaoClick}
+              className="mt-3"
+            >
+              Inscrever-se
+            </Button>
+          </Collapse>
+        </>
+      )}
       </Col>
     </Container>
   );
