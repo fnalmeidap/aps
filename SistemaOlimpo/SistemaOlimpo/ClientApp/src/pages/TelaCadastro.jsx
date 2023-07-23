@@ -4,11 +4,11 @@ import { Button, Col, Collapse, Container, Form, FormGroup, Input, Label } from 
 
 export const TelaCadastro = () => {
   const [participante, setParticipante] = useState({
-    nome: "",
-    tokenId: "",
-    email: "",
-    universidade: "",
-    aniversario: "",
+    Name: "",
+    TokenId: "",
+    Email: "",
+    University: "",
+    BirthDay: "",
   });
 
   const [isLogged, setIsLogged] = useState(false);
@@ -23,7 +23,7 @@ export const TelaCadastro = () => {
 
   function onSuccess(data) {
     console.log(data.profileObj.email)
-    setParticipante({...participante, nome: data.profileObj.name, email: data.profileObj.email, tokenId: data.tokenId})
+    setParticipante({...participante, Name: data.profileObj.name, Email: data.profileObj.email, TokenId: data.tokenId})
     setIsLogged(true)
   }
 
@@ -83,11 +83,11 @@ export const TelaCadastro = () => {
             <Form onSubmit={handleSubmit}>
               <FormGroup>
                 <Label for="universidade">Universidade</Label>
-                <Input required type="text" name="universidade" value={participante.universidade} onChange={handleChange} />
+                <Input required type="text" name="universidade" value={participante.University} onChange={handleChange} />
               </FormGroup>
               <FormGroup>
                 <Label for="aniversario">Aniversário</Label>
-                <Input required type="date" name="aniversario" value={participante.aniversario} onChange={handleChange} />
+                <Input required type="date" name="aniversario" value={participante.BirthDay} onChange={handleChange} />
               </FormGroup>
               <Button type='submit' color='primary'>
                 Enviar
