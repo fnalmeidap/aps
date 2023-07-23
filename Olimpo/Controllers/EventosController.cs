@@ -11,9 +11,9 @@ public class EventosController : ControllerBase
     private static IRepository<Evento> cadastroEventos = new EventosRepository();
 
     [HttpGet(Name = "GetEventosList")]
-    public List<Evento> GetEventosList()
+    public IEnumerable<Evento> GetEventosList()
     {
-        return (List<Evento>)cadastroEventos;
+        return cadastroEventos.List;
     }
 
     [HttpGet("{id}", Name = "GetEventoById")]

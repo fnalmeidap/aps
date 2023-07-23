@@ -11,9 +11,9 @@ public class ParticipanteController : ControllerBase
     private static IRepository<Participante> cadastroParticipantes = new ParticipantesRepository();
 
     [HttpGet(Name = "GetParticipanteList")]
-    public List<Participante> GetParticipanteList()
+    public IEnumerable<Participante> GetParticipanteList()
     {
-        return (List<Participante>)cadastroParticipantes.List;
+        return cadastroParticipantes.List;
     }
 
     [HttpGet("{id}", Name = "GetParticipanteById")]
