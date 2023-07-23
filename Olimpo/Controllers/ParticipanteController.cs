@@ -8,9 +8,9 @@ namespace Olimpo.Controllers;
 [Route("api/[controller]")]
 public class ParticipanteController : ControllerBase
 {
-    private static IRepository<Participante> cadastroParticipantes = new ParticipantesRepository();
+    private static IRepository<Participante> cadastroParticipantes = ParticipantesRepository.GetInstance();
 
-    [HttpGet(Name = "GetParticipanteList")]
+    [HttpGet("participante-controller", Name = "GetParticipanteList")]
     public IEnumerable<Participante> GetParticipanteList()
     {
         return cadastroParticipantes.List;

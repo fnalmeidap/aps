@@ -1,15 +1,25 @@
 using Olimpo.Models;
 
 namespace Olimpo.Repository;
-public class ParticipantesRepository : IRepository<Participante>
+public sealed class ParticipantesRepository : IRepository<Participante>
 {
 
     private static List<Participante> cadastroParticipantes { get; set; }
 
-    public ParticipantesRepository()
+    private static ParticipantesRepository Instance = null;
+
+    public static ParticipantesRepository GetInstance()
+    {
+        if (Instance == null)
+        {
+            Instance = new ParticipantesRepository();
+        }
+        return Instance;
+    }
+
+    private ParticipantesRepository()
     {
         cadastroParticipantes = new List<Participante>();
-
     }
 
     public IEnumerable<Participante> List
