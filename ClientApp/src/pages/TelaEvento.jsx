@@ -29,12 +29,29 @@ export const TelaEvento = () => {
 
   useEffect(() => {
     async function fetchEventos() {
-      try {
-        const response = await api.get('/api/Eventos')
-        setlistaDeEventos(response.data)
-      } catch (error) {
-        alert('OPS, ALGO DEU ERRADO')
-      }
+      // try {
+      //   const response = await api.get('/api/Eventos')
+      //   setlistaDeEventos(response.data)
+      // } catch (error) {
+      //   alert('OPS, ALGO DEU ERRADO')
+      // }
+      fetch("/register", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          }
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data) {
+              setlistaDeEventos(data)
+            } else {
+              // Show an error message
+              alert(data.error);
+            }
+          }).catch(() => {
+            alert('OPS, ALGO DEU ERRADO')
+          })
     }
     fetchEventos()
   }, []);
