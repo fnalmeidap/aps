@@ -47,4 +47,10 @@ public class EquipesRepository : IRepository<Equipe>
         var result = (cadastroEquipes.FindAll(p => p.Id == Id));
         return result;
     }
+
+    public Equipe? FindByPredicate(Func<Equipe, bool> predicate)
+    {
+        var result = (cadastroEquipes.FirstOrDefault(predicate));
+        return result;
+    }
 }

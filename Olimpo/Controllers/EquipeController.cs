@@ -9,6 +9,7 @@ namespace Olimpo.Controllers;
 public class EquipeController : ControllerBase
 {
     private static IRepository<Equipe> cadastroEquipes = new EquipesRepository();
+    private static IRepository<Participante> cadastroParticipantes = new ParticipantesRepository();
 
     [HttpGet(Name = "GetEquipeList")]
     public IEnumerable<Equipe> GetEquipeList()
@@ -34,6 +35,15 @@ public class EquipeController : ControllerBase
         {
             return BadRequest("Invalid data.");
         }
+
+        List<Participante> validMembers = new List<Participante>();
+        foreach (var member in equipe.Members) {
+            var participante = cadastroParticipantes.FindById(member.Id);
+            if (participante != null) {
+                validMembers.Add(participante);
+            }
+        }
+        equipe.Members = validMembers;  
 
         cadastroEquipes.Add(equipe);
 

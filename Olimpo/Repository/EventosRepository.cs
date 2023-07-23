@@ -1,4 +1,5 @@
 using Olimpo.Models;
+using System.Linq;
 
 namespace Olimpo.Repository;
 public class EventosRepository : IRepository<Evento>
@@ -45,6 +46,11 @@ public class EventosRepository : IRepository<Evento>
     public IEnumerable<Evento> FindAll(int Id)
     {
         var result = (cadastroEventos.FindAll(p => p.Id == Id));
+        return result;
+    }
+    public Evento? FindByPredicate(Func<Evento, bool> predicate)
+    {
+        var result = (cadastroEventos.FirstOrDefault(predicate));
         return result;
     }
 }

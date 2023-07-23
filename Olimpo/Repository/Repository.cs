@@ -11,5 +11,7 @@ namespace Olimpo.Repository
         void Update(T entity);
         T? FindById(int Id);
         IEnumerable<T> FindAll(int Id);
+
+        T? FindByPredicate(Func<T, bool> predicate);
     }
 }

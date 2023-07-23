@@ -47,4 +47,9 @@ public class TdpsRepository : IRepository<TDP>
         var result = (cadastroTdps.FindAll(p => p.Id == Id));
         return result;
     }
+
+    public TDP? FindByPredicate(Func<TDP, bool> predicate) {
+        var result = (cadastroTdps.FirstOrDefault(predicate));
+        return result;
+    }
 }

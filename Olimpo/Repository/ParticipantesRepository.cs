@@ -48,4 +48,10 @@ public class ParticipantesRepository : IRepository<Participante>
         var result = (cadastroParticipantes.FindAll(p => p.Id == Id));
         return result;
     }
+
+    public Participante? FindByPredicate(Func<Participante, bool> predicate)
+    {
+        var result = (cadastroParticipantes.FirstOrDefault(predicate));
+        return result;
+    }
 }
