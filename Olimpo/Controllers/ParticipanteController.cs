@@ -10,7 +10,7 @@ public class ParticipanteController : ControllerBase
 {
     private static IRepository<Participante> cadastroParticipantes = ParticipantesRepository.GetInstance();
 
-    [HttpGet("participante-controller", Name = "GetParticipanteList")]
+    [HttpGet(Name = "GetParticipanteList")]
     public IEnumerable<Participante> GetParticipanteList()
     {
         return cadastroParticipantes.List;
