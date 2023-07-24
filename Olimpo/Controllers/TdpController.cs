@@ -16,8 +16,6 @@ public class TdpController
 
     public TDP? GetTDPByEquipe(int equipeId)
     {
-        Console.WriteLine(cadastroTdps.List.First().EquipeId);
-        Console.WriteLine(equipeId);
         var equipeTdps = cadastroTdps.FindByPredicate(t => 
             t.EquipeId == equipeId);
 

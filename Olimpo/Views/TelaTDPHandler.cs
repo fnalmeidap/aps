@@ -19,14 +19,12 @@ namespace Olimpo.Views
         [HttpGet("{equipeId}", Name = "GetTDPByEquipe")]
         public ActionResult<TDP> GetTDPByEquipe(int equipeId)
         {
-            var equipeTdps = tdpController.GetTDPByEquipe(equipeId);
-
-            if (equipeTdps == null)
-            {
+            var tdp = tdpController.GetTDPByEquipe(equipeId);
+            if(tdp == null){
                 return NotFound();
             }
 
-            return equipeTdps;
+            return tdp;
         }
 
         [HttpGet("{equipeId}/{categoria}", Name = "GetTDPByEquipeCategoria")]
