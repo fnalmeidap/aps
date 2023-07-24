@@ -59,7 +59,7 @@ O Sistema Olimpo 2.0 é uma reestruturação do antigo [Sistema Olimpo](https://
 | Atores | Usuário |
 | Pré-condições | O usuário está logado no sistema |
 | Fluxo principal | 1. O usuário vai para a página de equipes. <br> 2. Ele clica no botão "criar nova equipe". <br> 3. O usuário preenche os campos textuais obrigatórios com as informações da equipe e dos possíveis usuários iniciais. <br> 4. O participante clica no botão de "Criar equipe". |
-| Pós condições | A equipe e os usuários iniciais estão registrado no sistema. |
+| Pós condições | A equipe está registrada no sistema. |
 
 #### Buscar eventos
 | Identificação | [UC007] |
