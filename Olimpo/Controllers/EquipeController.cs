@@ -62,4 +62,28 @@ public class EquipeController : ControllerBase
         cadastroEquipes.Delete(equipe);
         return NoContent();
     }
+
+    [HttpPatch(Name = "AddParticipanteToEquipe")]
+    public IActionResult AddParticipanteToEquipe([FromBody] ParticipanteData participanteData)
+    {
+        var equipeId = participanteData.EquipeId;
+        var participanteId = participanteData.ParticipanteId;
+
+        var equipe = cadastroEquipes.FindById(equipeId);
+        if (equipe == null)
+        {
+            return NotFound();
+        }
+
+        var participante = cadastroParticipantes.FindById(participanteId);
+        if (participante == null)
+        {
+            return NotFound();
+        }
+
+        equipe.Members.Add(participante);
+        cadastroEquipes.Update(equipe);
+
+        return NoContent();
+    }
 }

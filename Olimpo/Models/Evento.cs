@@ -15,6 +15,7 @@ public enum CategoriasType {
 [Table("Evento")]
 public partial class Evento : EntidadeBase
     {
+
     [Required]
     public string Name { get; set; }
 
@@ -29,5 +30,8 @@ public partial class Evento : EntidadeBase
     
     [Required]
     public List<CategoriasType> Categorias { get; set; }
+
+    [Required]
+    public List<EquipeData> Equipes { get; set; }
 }
 
