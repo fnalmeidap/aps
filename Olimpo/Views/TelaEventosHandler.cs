@@ -52,7 +52,7 @@ namespace Olimpo.Views
         }
 
         [HttpPatch(Name = "AddEquipeToEvento")]
-        public IActionResult AddEquipeToEvento([FromBody] EquipeData equipeData)
+        public IActionResult AddEquipeToEvento([FromBody] InscricaoEquipeRequest equipeData)
         {
             if (!eventoController.AddEquipeToEvento(equipeData))
             {

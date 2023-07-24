@@ -4,6 +4,13 @@ using Olimpo.Repository;
 
 namespace Olimpo.Controllers;
 
+public class InscricaoEquipeRequest
+{
+    public int EventoId { get; set; }
+    public int EquipeId { get; set; }
+    public List<CategoriasType> Categorias { get; set; }
+}
+
 public class EventosController
 {
     private static IRepository<Evento> cadastroEventos = EventosRepository.GetInstance();
@@ -37,11 +44,12 @@ public class EventosController
         }
         return participante;
     }
-    public bool AddEquipeToEvento(EquipeData equipeData)
+
+    public bool AddEquipeToEvento(InscricaoEquipeRequest inscricaoEquipeRequest)
     {
-        var eventoId = equipeData.EventoId;
-        var equipeId = equipeData.EquipeId;
-        var categorias = equipeData.Categorias;
+        var eventoId = inscricaoEquipeRequest.EventoId;
+        var equipeId = inscricaoEquipeRequest.EquipeId;
+        var categorias = inscricaoEquipeRequest.Categorias;
 
         var evento = cadastroEventos.FindById(eventoId);
         if (evento == null)
@@ -59,7 +67,10 @@ public class EventosController
             return false;
         }
 
-        evento.Equipes.Add(equipeData);
+        evento.Equipes.Add(new InscricaoEvento {
+            EquipeId = eventoId,
+            Categorias = categorias,
+        });
         cadastroEventos.Update(evento);
 
         return true;
