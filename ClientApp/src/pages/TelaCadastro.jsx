@@ -17,14 +17,6 @@ export const TelaCadastro = () => {
 
   const [isLogged, setIsLogged] = useState(false);
 
-  useEffect(() => {
-    // Check if the user is already logged in
-    if (localStorage.getItem("user")) {
-      // Redirect to the home page
-      window.location.href = "/";
-    }
-  }, []);
-
   function onSuccess(data) {
     console.log(data)
     setParticipante({...participante, Name: data.profileObj.name, Email: data.profileObj.email, TokenId: data.googleId})

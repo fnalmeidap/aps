@@ -2,7 +2,7 @@ import React from 'react'
 import GoogleLogin from 'react-google-login';
 import { Col, Container } from 'reactstrap';
 import { useLogin } from '../hooks/Login';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export function Login() {
   const { setUser } = useLogin()
@@ -26,6 +26,7 @@ export function Login() {
     } catch (error) {
       console.error("Erro na requisição POST:", error);
       alert("OPS, ALGO DEU ERRADO");
+      navigate('/tela-cadastro')
     }
   }
 
@@ -40,11 +41,15 @@ export function Login() {
       >
         <GoogleLogin
           clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-          buttonText="Registre-se com Google"
+          buttonText="Login com Google"
           onSuccess={onSuccess}
           // onFailure={responseGoogle}
           cookiePolicy={'single_host_origin'}
         />
+         <p>Ainda não possui conta?</p>
+         <Link to={'/cadastro'}>
+          Cadastro
+        </Link>
       </Col>
     </Container>
   )
