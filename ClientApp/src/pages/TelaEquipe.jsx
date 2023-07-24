@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   Form,
@@ -9,13 +10,8 @@ import {
   Col,
 } from "reactstrap";
 
-const categoriasOpcoes = [
-  "Categoria A",
-  "Categoria B",
-  "Categoria C"
-];
-
 export const TelaEquipe = () => {
+  const navigate = useNavigate()
   const [equipe, setEquipe] = useState({
     nome: "",
     endereco: "",
@@ -64,6 +60,7 @@ export const TelaEquipe = () => {
 
       const responseData = await response.json(); // Parse da resposta para JSON
       console.log('RESPOSTA:', responseData)
+      navigate('/tela-equipes')
     } catch (error) {
       console.error("Erro na requisição POST:", error);
       alert("OPS, ALGO DEU ERRADO");

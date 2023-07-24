@@ -26,7 +26,7 @@ export function Login() {
     } catch (error) {
       console.error("Erro na requisição POST:", error);
       alert("OPS, ALGO DEU ERRADO");
-      navigate('/tela-cadastro')
+      navigate('/cadastro')
     }
   }
 

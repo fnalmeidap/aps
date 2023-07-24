@@ -11,8 +11,10 @@ import {
 } from "reactstrap";
 import { categoriesEnum } from "../utils/constants";
 import { formatAddress, formatDate } from "../utils/formatters";
+import { useLogin } from '../hooks/Login';
 
 export const TelaEvento = () => {
+  const { user } = useLogin()
   const [eventoSelecionado, setEventoSelecionado] = useState(null);
   const [categoriasSelecionadas, setCategoriasSelecionadas] = useState([]);
   const [listaDeEventos, setlistaDeEventos] = useState(null);
@@ -20,10 +22,6 @@ export const TelaEvento = () => {
   const handleEventoSelect = (evento) => {
     setEventoSelecionado(evento);
     setCategoriasSelecionadas([]); // Limpar a lista de categorias selecionados ao selecionar um novo evento
-  };
-
-  const handleInscricaoClick = () => {
-    console.log(eventoSelecionado.id, categoriasSelecionadas);
   };
 
   const handleCategorySelect = (category) => {
@@ -59,6 +57,34 @@ export const TelaEvento = () => {
     }
     fetchEventos();
   }, []);
+
+  console.log(categoriasSelecionadas)
+
+  const handleInscricaoClick = async () => {
+    try {
+      const response = await fetch("/api/Equipe", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
+        },
+        body: JSON.stringify({
+          "EventoId" : eventoSelecionado.id,
+          "EquipeId" : user.equipe.id,
+          "Categorias" : categoriasSelecionadas
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro na requisição");
+      }
+
+      const responseData = await response.json(); // Parse da resposta para JSON
+      console.log('RESPOSTA:', responseData)
+    } catch (error) {
+      console.error("Erro na requisição POST:", error);
+      alert("OPS, ALGO DEU ERRADO");
+    }
+  };
 
   return (
     <Container>
@@ -104,7 +130,7 @@ export const TelaEvento = () => {
                 </ListGroupItem>
               ))}
             </ListGroup>
-            <Collapse isOpen={eventoSelecionado} className="mt-3">
+            <Collapse isOpen={!!eventoSelecionado} className="mt-3">
               <div className="mt-4">
                 <h3>Categorias</h3>
                 <ListGroup horizontal>
@@ -125,7 +151,7 @@ export const TelaEvento = () => {
               </div>
             </Collapse>
             <Collapse
-              isOpen={eventoSelecionado && categoriasSelecionadas.length > 0}
+              isOpen={!!eventoSelecionado && categoriasSelecionadas.length > 0}
               className="mt-3"
             >
               <Button
