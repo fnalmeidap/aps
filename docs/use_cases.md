@@ -76,5 +76,5 @@ O Sistema Olimpo 2.0 é uma reestruturação do antigo [Sistema Olimpo](https://
 | Descrição | Permitir que um usuário entre em uma equipe |
 | Atores | Usuário |
 | Pré-condições | O usuário está logado no sistema |
-| Fluxo principal | 1. O usuário vai para a página de Equipes. <br> 2. Ele seleciona a equipe que deseja entrar. <br> 3. O usuário entra na equipe selecionada. <br> |
+| Fluxo principal | 1. O usuário vai para a página de Equipes. <br> 2. Ele seleciona a equipe que deseja entrar. <br> 3. O usuário clica no botão "Entrar em equipe". <br> |
 | Pós condições | O usuário está cadastrado na equipe escolhida. |
