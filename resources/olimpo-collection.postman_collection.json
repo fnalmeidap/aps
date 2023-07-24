@@ -93,6 +93,35 @@
 					"response": []
 				},
 				{
+					"name": "AddParticipanteToEquipe",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"EquipeId\": 199,\n    \"ParticipanteId\": 199\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5211/api/Equipe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Equipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "DeleteParticipantById",
 					"request": {
 						"method": "DELETE",
@@ -168,7 +197,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5211/api/Equipe/0",
+							"raw": "http://localhost:5211/api/Equipe/199",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -177,7 +206,7 @@
 							"path": [
 								"api",
 								"Equipe",
-								"0"
+								"199"
 							]
 						}
 					},
@@ -280,13 +309,42 @@
 					"response": []
 				},
 				{
+					"name": "AddEquipeToEvento",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"EventoId\" : 0,\n    \"EquipeId\" : 199,\n    \"Categorias\" : [1,2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5211/api/Eventos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Eventos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "CreateEvento",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"Endereco\" : { \n        \"Cidade\" : \"Recife\",\n        \"Estado\" : \"Pernambuco\",\n        \"Pais\" : \"Brasil\"\n    },\n    \"StartTime\" : \"2023-07-22T00:00:00Z\",\n    \"FinalTime\" : \"2023-07-27T00:00:00Z\",\n    \"Categorias\" : [1,2]\n\n\n}",
+							"raw": "{\n    \"Name\": \"MyEvent2\",\n    \"Endereco\" : { \n        \"Cidade\" : \"Recife\",\n        \"Estado\" : \"Pernambuco\",\n        \"Pais\" : \"Brasil\"\n    },\n    \"StartTime\" : \"2023-07-22T00:00:00Z\",\n    \"FinalTime\" : \"2023-07-27T00:00:00Z\",\n    \"Categorias\" : [1,2],\n    \"Equipes\":[]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
