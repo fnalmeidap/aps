@@ -59,7 +59,7 @@ namespace Olimpo.Views
                 return BadRequest("Invalid data.");
             }
 
-            return NoContent();
+            return Ok();
         }
 
     }
