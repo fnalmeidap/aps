@@ -82,7 +82,7 @@ export default function TelaEquipes() {
                 <ListGroupItem
                   key={equipe.id}
                   active={equipeSelecionada === equipe}
-                  tag="button"
+                  tag="div"
                   onClick={() => handleEquipeSelect(equipe)}
                   action
                   className="d-flex justify-content-between align-items-center"

@@ -155,7 +155,7 @@ export const TelaCadastrarEvento = () => {
               {categoriasLista.map((categoria) => (
                 <ListGroupItem
                   key={categoria}
-                  tag="button"
+                  tag="div"
                   onClick={() => handleCategorySelect(categoria)}
                   active={evento.Categorias.includes(categoria)}
                   action

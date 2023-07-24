@@ -139,7 +139,7 @@ export const TelaEvento = () => {
                   {eventoSelecionado?.categorias.map((categoria) => (
                     <ListGroupItem
                       key={categoria}
-                      tag="button"
+                      tag="div"
                       onClick={() => handleCategorySelect(categoria)}
                       active={categoriasSelecionadas.includes(categoria)}
                       action
