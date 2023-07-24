@@ -10,6 +10,7 @@ import { TelaCadastro } from '../pages/TelaCadastro';
 import { TelaEquipe } from '../pages/TelaEquipe';
 import { TelaEvento } from '../pages/TelaEvento';
 import TelaEquipes from '../pages/TelaEquipes';
+import { TelaCadastrarEvento } from '../pages/TelaCadastroEvento';
 
 const routes = [
   {
@@ -43,6 +44,10 @@ const routes = [
   {
     path: '/tela-equipes',
     element: <TelaEquipes />
+  },
+  {
+    path: '/tela-cadastro-evento',
+    element: <TelaCadastrarEvento />
   }
 ];
 

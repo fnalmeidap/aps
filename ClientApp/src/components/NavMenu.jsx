@@ -13,7 +13,7 @@ export function NavMenu()  {
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
           <NavbarBrand tag={Link} to={!user ? "/" : '/tela-evento'}>SistemaOlimpo</NavbarBrand>
           <div>
-            <ul className="navbar-nav flex-grow">
+            <ul className="navbar-nav flex-grow gap-2">
               <Collapse isOpen={!user} horizontal>
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/">Login</NavLink>
@@ -27,6 +27,9 @@ export function NavMenu()  {
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/tela-evento">Tela Evento</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} className="text-dark" to="/tela-cadastro-evento">Cadastrar evento</NavLink>
               </NavItem>
             </ul>
           </div>
