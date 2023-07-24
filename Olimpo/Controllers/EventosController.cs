@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Olimpo.Models;
 using Olimpo.Repository;
 
@@ -10,6 +10,7 @@ public class EventosController : ControllerBase
 {
     private static IRepository<Evento> cadastroEventos = EventosRepository.GetInstance();
     private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
+    private static int generateId = 0;
 
     [HttpGet(Name = "GetEventosList")]
     public IEnumerable<Evento> GetEventosList()
@@ -35,6 +36,9 @@ public class EventosController : ControllerBase
         {
             return BadRequest("Invalid data.");
         }
+
+        evento.Id = generateId;
+        generateId += 1;
 
         cadastroEventos.Add(evento);
 
