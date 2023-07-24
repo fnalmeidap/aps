@@ -7,32 +7,19 @@ namespace Olimpo.Views
     [ApiController]
     [Route("api/login")]
     public class LoginHandler : ControllerBase
-    {
-        private ParticipanteController participanteController = new ParticipanteController();
-        private EquipeController equipeController = new EquipeController();
+    {   
+        private CadastroController cadastroController = new CadastroController();
 
         [HttpGet("{tokenId}", Name = "ValidadeParticipanteByToken")]
-        public ActionResult<ParticipanteEquipe> ValidadeParticipanteByToken(string tokenId)
+        public ActionResult<LoginResponse> ValidadeParticipanteByToken(string tokenId)
         {
-            var participante = participanteController.GetParticipanteList().FirstOrDefault(e => e.TokenId == tokenId);
-            if (participante == null)
+            var response = cadastroController.ValidadeParticipanteByToken(tokenId); 
+            if(response == null)
             {
                 return NotFound();
             }
 
-            Equipe? pEquipe = null;
-            foreach (var equipe in equipeController.GetEquipeList())
-            {
-                foreach (var membro in equipe.Members)
-                {
-                    if (membro.Id == participante.Id)
-                    {
-                        pEquipe = equipe; break;
-                    }
-                }
-            }
-
-            return new ParticipanteEquipe(participante, pEquipe);
+            return response;
         }
     }
 }
