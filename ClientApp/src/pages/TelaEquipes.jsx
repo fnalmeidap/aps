@@ -3,7 +3,7 @@ import { Badge, Button, Col, Collapse, Container, ListGroup, ListGroupItem, Spin
 import { useLogin } from '../hooks/Login';
 
 export default function TelaEquipes() {
-  const { user } = useLogin()
+  const { user, setUser } = useLogin()
   const [equipes, setEquipes] = useState(null);
   const [equipeSelecionada, setEquipeSelecionada] = useState(null);
 
@@ -55,11 +55,11 @@ export default function TelaEquipes() {
 
       const responseData = await response.json(); // Parse da resposta para JSON
       console.log('RESPOSTA:', responseData)
+      setUser(p => ({...p, equipe: responseData.id}))
+      alert("Inscrito");
     } catch (error) {
       console.error("Erro na requisição POST:", error);
       // alert("OPS, ALGO DEU ERRADO");
-    } finally {
-      alert("Inscrito");
     }
   };
 
