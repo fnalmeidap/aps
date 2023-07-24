@@ -125,7 +125,7 @@ export const TelaCadastrarEvento = () => {
         <FormGroup>
           <Label for="StartTime">Início</Label>
           <Input
-            type="datetime-local"
+            type="date"
             name="StartTime"
             id="StartTime"
             value={evento.StartTime}
@@ -136,7 +136,7 @@ export const TelaCadastrarEvento = () => {
         <FormGroup>
           <Label for="FinalTime">Término</Label>
           <Input
-            type="datetime-local"
+            type="date"
             name="FinalTime"
             id="FinalTime"
             value={evento.FinalTime}
