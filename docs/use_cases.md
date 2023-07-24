@@ -12,9 +12,9 @@ O Sistema Olimpo 2.0 é uma reestruturação do antigo [Sistema Olimpo](https://
 | --- | --- |
 | Descrição | Permitir que o usuário se cadastre no sistema através da API do Google |
 | Atores | GoogleLoginAPI, Usuário |
-| Pré-condições | Não há pré-condições |
-| Fluxo principal | 1. O usuário clica em “registrar-se” <br> 2. O usuário se autentica com uma conta do google <br> 3. O sistema registra o usuário com a conta associada do Google <br> 4. O Usuário é redirecionado para  a página principal |
-| Pós condições | O usuário está registrado no sistema e logado. |
+| Pré-condições | O usuário tem uma conta do Google |
+| Fluxo principal | 1. O usuário clica em “registrar” <br> 2. O usuário se autentica com uma conta do google <br> 3. O sistema registra o usuário com a conta associada do Google <br> 4. O Usuário é redirecionado para  a página principal |
+| Pós condições | O usuário está registrado no sistema e logado na página de eventos. |
 
 #### Login no sistema
 | Identificação | [UC002] |
