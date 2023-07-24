@@ -10,6 +10,9 @@ public partial class TDP : EntidadeBase
     public int EquipeId { get; set; }
 
     [Required]
+    public int EventoId { get; set; }
+
+    [Required]
     public CategoriasType Categoria { get; set; }
 
     [Required]

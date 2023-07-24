@@ -62,9 +62,6 @@ export const TelaEvento = () => {
 
   const handleInscricaoClick = async () => {
     try {
-      console.log(eventoSelecionado);
-      console.log(user);
-      console.log(categoriasSelecionadas);
       const response = await fetch("/api/Eventos", {
         method: "PATCH",
         headers: {
@@ -83,6 +80,7 @@ export const TelaEvento = () => {
 
       //const responseData = await response.json(); // Parse da resposta para JSON
       //console.log("RESPOSTA:", responseData);
+      alert("Equipe inscrita");
     } catch (error) {
       console.error("Erro na requisição PATCH:", error);
       alert("OPS, ALGO DEU ERRADO");

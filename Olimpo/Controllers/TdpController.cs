@@ -6,7 +6,10 @@ namespace Olimpo.Controllers;
 
 public class TdpController
 {
-    private static IRepository<TDP> cadastroTdps= new TdpsRepository();
+    private static IRepository<TDP> cadastroTdps = TdpsRepository.GetInstance();
+    private static IRepository<Evento> cadastroEventos = EventosRepository.GetInstance();
+    private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
+
     private static int generateId = 0;
 
     public IEnumerable<TDP> GetTDPList()
@@ -31,12 +34,26 @@ public class TdpController
         return equipeTdps;
     }
 
-    public void CreateTdp(TDP tdp)
+    public bool CreateTdp(TDP tdp)
     {
+        var evento = cadastroEventos.FindById(tdp.EventoId);
+        if (evento == null)
+        {
+            return false;
+        }
+
+        var equipe = cadastroEventos.FindById(tdp.EquipeId);
+        if (equipe == null)
+        {
+            return false;
+        }
+
         tdp.Id = generateId;
         generateId += 1;
 
         cadastroTdps.Add(tdp);
+
+        return true;
     }
 
     public bool DeleteTdpById(int equipeId, CategoriasType categoria)

@@ -48,6 +48,10 @@ namespace Olimpo.Views
                 return BadRequest("Invalid data.");
             }
 
+            if (!tdpController.CreateTdp(tdp)) {
+                return BadRequest("Invalid data.");
+            }
+
             tdpController.CreateTdp(tdp);
             return CreatedAtRoute("GetTDPList", null, tdp);
         }
