@@ -118,10 +118,9 @@ export const TelaTDP = () => {
             {categoriasDaEquipe.map((categoria) => (
               <ListGroupItem
                 key={categoria}
-                tag="button"
+                tag="div"
                 onClick={() => setCategoriasSelecionada(categoria)}
                 active={categoriasSelecionada === categoria}
-                action
               >
                 <Badge color="secondary" style={{ marginLeft: 8 }}>
                   {categoriesEnum[categoria]}
