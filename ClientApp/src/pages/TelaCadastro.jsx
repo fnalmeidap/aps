@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import GoogleLogin from 'react-google-login';
 import { Button, Col, Collapse, Container, Form, FormGroup, Input, Label } from "reactstrap";
+import { useLogin } from '../hooks/Login';
+import { useNavigate } from 'react-router-dom';
 
 export const TelaCadastro = () => {
+  const navigate = useNavigate()
+  const { setUser } = useLogin()
   const [participante, setParticipante] = useState({
     Name: "",
     TokenId: "",
@@ -12,14 +16,6 @@ export const TelaCadastro = () => {
   });
 
   const [isLogged, setIsLogged] = useState(false);
-
-  useEffect(() => {
-    // Check if the user is already logged in
-    if (localStorage.getItem("user")) {
-      // Redirect to the home page
-      window.location.href = "/";
-    }
-  }, []);
 
   function onSuccess(data) {
     console.log(data)
@@ -40,7 +36,11 @@ export const TelaCadastro = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // data
+        setUser({
+          "participante": data,
+          "equipe": null
+        })
+        navigate('/tela-evento')
       }).catch(error => {
         alert('Ops, algo deu errado!')
         console.log(error)
