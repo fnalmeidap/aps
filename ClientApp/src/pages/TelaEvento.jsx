@@ -63,7 +63,7 @@ export const TelaEvento = () => {
   return (
     <Container>
       <Col
-        md={{
+      md={{
           size: 12,
         }}
       >

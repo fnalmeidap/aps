@@ -20,7 +20,10 @@ export function NavMenu()  {
                 </NavItem>
               </Collapse>
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/tela-equipe">Tela Equipe</NavLink>
+                <NavLink tag={Link} className="text-dark" to="/tela-equipe">Cadastrar Equipe</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} className="text-dark" to="/tela-equipes">Equipes</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/tela-evento">Tela Evento</NavLink>

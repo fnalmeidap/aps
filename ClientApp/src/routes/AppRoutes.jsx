@@ -9,6 +9,7 @@ import { Login } from '../pages/Login';
 import { TelaCadastro } from '../pages/TelaCadastro';
 import { TelaEquipe } from '../pages/TelaEquipe';
 import { TelaEvento } from '../pages/TelaEvento';
+import TelaEquipes from '../pages/TelaEquipes';
 
 const routes = [
   {
@@ -38,6 +39,10 @@ const routes = [
   {
     path: '/tela-evento',
     element: <TelaEvento />
+  },
+  {
+    path: '/tela-equipes',
+    element: <TelaEquipes />
   }
 ];
 
