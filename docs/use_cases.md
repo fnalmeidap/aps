@@ -12,9 +12,9 @@ O Sistema Olimpo 2.0 é uma reestruturação do antigo [Sistema Olimpo](https://
 | --- | --- |
 | Descrição | Permitir que o usuário se cadastre no sistema através da API do Google |
 | Atores | GoogleLoginAPI, Usuário |
-| Pré-condições | Não há pré-condições |
-| Fluxo principal | 1. O usuário clica em “registrar-se” <br> 2. O usuário se autentica com uma conta do google <br> 3. O sistema registra o usuário com a conta associada do Google <br> 4. O Usuário é redirecionado para  a página principal |
-| Pós condições | O usuário está registrado no sistema e logado. |
+| Pré-condições | O usuário tem uma conta do Google |
+| Fluxo principal | 1. O usuário clica em “registrar” <br> 2. O usuário se autentica com uma conta do google <br> 3. O sistema registra o usuário com a conta associada do Google <br> 4. O Usuário é redirecionado para  a página principal |
+| Pós condições | O usuário está registrado no sistema e logado na página de eventos. |
 
 #### Login no sistema
 | Identificação | [UC002] |
@@ -58,5 +58,23 @@ O Sistema Olimpo 2.0 é uma reestruturação do antigo [Sistema Olimpo](https://
 | Descrição | Permitir que um usuário crie uma nova equipe |
 | Atores | Usuário |
 | Pré-condições | O usuário está logado no sistema |
-| Fluxo principal | 1. O usuário vai para a página de equipes. <br> 2. Ele clica no botão "criar nova equipe". <br> 3. O usuário preenche os campos textuais obrigatórios com as informações da equipe e dos possíveis usuários iniciais. <br> 4. O participante clica no botão de "Criar equipe". |
-| Pós condições | A equipe e os usuários iniciais estão registrado no sistema. |
+| Fluxo principal | 1. O usuário vai para a página de Cadastrar Equipes. <br> 2. Ele clica no botão "criar nova equipe". <br> 3. O usuário preenche os campos textuais obrigatórios com as informações da equipe e dos possíveis usuários iniciais. <br> 4. O participante clica no botão de "Criar equipe". |
+| Pós condições | A equipe está registrada no sistema. |
+
+#### Buscar eventos
+| Identificação | [UC007] |
+| --- | --- |
+| Descrição | Permitir que um usuário busque pelos eventos existentes |
+| Atores | Usuário |
+| Pré-condições | O usuário está logado no sistema |
+| Fluxo principal | 1. O usuário clica no botão de "Eventos" <br>
+| Pós condições | Os eventos existentes são listados na tela. |
+
+#### Adicionar usuário em equipe
+| Identificação | [UC008] |
+| --- | --- |
+| Descrição | Permitir que um usuário entre em uma equipe |
+| Atores | Usuário |
+| Pré-condições | O usuário está logado no sistema |
+| Fluxo principal | 1. O usuário vai para a página de Equipes. <br> 2. Ele seleciona a equipe que deseja entrar. <br> 3. O usuário clica no botão "Entrar em equipe". <br> |
+| Pós condições | O usuário está cadastrado na equipe escolhida. |
