@@ -8,8 +8,8 @@ namespace Olimpo.Controllers
     [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
-        private static IRepository<Participante> cadastroParticipantes = new ParticipantesRepository();
-        private static IRepository<Equipe> cadastroEquipes = new EquipesRepository();
+        private static IRepository<Participante> cadastroParticipantes =ParticipantesRepository.GetInstance();
+        private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
 
         [HttpGet("{tokenId}", Name = "ValidadeParticipanteByToken")]
         public ActionResult<ParticipanteEquipe> ValidadeParticipanteByToken(string tokenId)
