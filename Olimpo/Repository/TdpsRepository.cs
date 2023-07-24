@@ -3,8 +3,17 @@ using Olimpo.Models;
 namespace Olimpo.Repository;
 public class TdpsRepository : IRepository<TDP>
 {
-
+    private static TdpsRepository Instance = null;
     private static List<TDP> cadastroTdps { get; set; }
+
+    public static TdpsRepository GetInstance()
+    {
+        if (Instance == null)
+        {
+            Instance = new TdpsRepository();
+        }
+        return Instance;
+    }
 
     public TdpsRepository()
     {

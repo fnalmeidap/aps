@@ -31,6 +31,9 @@ export function NavMenu()  {
               <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/tela-cadastro-evento">Cadastrar evento</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink tag={Link} className="text-dark" to="/tela-TDP">Enviar TDP</NavLink>
+              </NavItem>
             </ul>
           </div>
         </Navbar>
