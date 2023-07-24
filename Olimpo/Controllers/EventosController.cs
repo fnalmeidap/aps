@@ -8,7 +8,7 @@ namespace Olimpo.Controllers;
 [Route("api/[controller]")]
 public class EventosController : ControllerBase
 {
-    private static IRepository<Evento> cadastroEventos = new EventosRepository();
+    private static IRepository<Evento> cadastroEventos = EventosRepository.GetInstance();
 
     [HttpGet(Name = "GetEventosList")]
     public IEnumerable<Evento> GetEventosList()

@@ -4,9 +4,20 @@ namespace Olimpo.Repository;
 public class EquipesRepository : IRepository<Equipe>
 {
 
-    private static List<Equipe> cadastroEquipes { get; set; }
+    private List<Equipe> cadastroEquipes { get; set; }
 
-    public EquipesRepository()
+    private static EquipesRepository Instance = null;
+
+    public static EquipesRepository GetInstance()
+    {
+        if (Instance == null)
+        {
+            Instance = new EquipesRepository();
+        }
+        return Instance;
+    }
+
+    private EquipesRepository()
     {
         cadastroEquipes = new List<Equipe>();
 

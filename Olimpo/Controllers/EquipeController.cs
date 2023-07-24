@@ -8,7 +8,7 @@ namespace Olimpo.Controllers;
 [Route("api/[controller]")]
 public class EquipeController : ControllerBase
 {
-    private static IRepository<Equipe> cadastroEquipes = new EquipesRepository();
+    private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
     private static IRepository<Participante> cadastroParticipantes = ParticipantesRepository.GetInstance();
 
     [HttpGet(Name = "GetEquipeList")]
@@ -61,11 +61,5 @@ public class EquipeController : ControllerBase
 
         cadastroEquipes.Delete(equipe);
         return NoContent();
-    }
-
-    [HttpGet("equipe-controller", Name = "GetParticipantesList")]
-    public IEnumerable<Participante> GetParticipantesList()
-    {
-        return cadastroParticipantes.List;
     }
 }

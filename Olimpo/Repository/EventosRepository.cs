@@ -5,9 +5,20 @@ namespace Olimpo.Repository;
 public class EventosRepository : IRepository<Evento>
 {
 
-    private static List<Evento> cadastroEventos { get; set; }
+    private List<Evento> cadastroEventos { get; set; }
 
-    public EventosRepository()
+    private static EventosRepository Instance = null;
+
+    public static EventosRepository GetInstance()
+    {
+        if (Instance == null)
+        {
+            Instance = new EventosRepository();
+        }
+        return Instance;
+    }
+
+    private EventosRepository()
     {
         cadastroEventos = new List<Evento>();
 
