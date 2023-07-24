@@ -1,27 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Olimpo.Controllers;
 using Olimpo.Models;
-using Olimpo.Repository;
 
-namespace Olimpo.Controllers
+namespace Olimpo.Views
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LoginController : ControllerBase
+    public class TelaLoginController : ControllerBase
     {
-        private static IRepository<Participante> cadastroParticipantes =ParticipantesRepository.GetInstance();
-        private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
+        private ParticipanteController participanteController = new ParticipanteController();
+        private EquipeController equipeController = new EquipeController();
 
         [HttpGet("{tokenId}", Name = "ValidadeParticipanteByToken")]
         public ActionResult<ParticipanteEquipe> ValidadeParticipanteByToken(string tokenId)
         {
-            var participante = cadastroParticipantes.FindByPredicate(e => e.TokenId == tokenId);
+            var participante = participanteController.GetParticipanteList().FirstOrDefault(e => e.TokenId == tokenId);
             if (participante == null)
             {
                 return NotFound();
             }
 
             Equipe? pEquipe = null;
-            foreach (var equipe in cadastroEquipes.List)
+            foreach (var equipe in equipeController.GetEquipeList())
             {
                 foreach (var membro in equipe.Members)
                 {

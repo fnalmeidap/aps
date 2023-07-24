@@ -4,40 +4,26 @@ using Olimpo.Repository;
 
 namespace Olimpo.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class EquipeController : ControllerBase
+public class EquipeController 
 {
     private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
     private static IRepository<Participante> cadastroParticipantes = ParticipantesRepository.GetInstance();
 
     private static int generateId = 0;
 
-    [HttpGet(Name = "GetEquipeList")]
     public IEnumerable<Equipe> GetEquipeList()
     {
         return cadastroEquipes.List;
     }
 
-    [HttpGet("{id}", Name = "GetEquipeById")]
-    public ActionResult<Equipe> GetEquipeById(int id)
+    public Equipe? GetEquipeById(int id)
     {
         var equipe = cadastroEquipes.FindById(id);
-        if (equipe == null)
-        {
-            return NotFound();
-        }
         return equipe;
     }
 
-    [HttpPost(Name = "CreateEquipe")]
-    public IActionResult CreateEquipe([FromBody]Equipe equipe)
+    public void CreateEquipe(Equipe equipe)
     {
-        if (equipe == null)
-        {
-            return BadRequest("Invalid data.");
-        }
-
         equipe.Id = generateId;
         generateId += 1;
 
@@ -48,28 +34,23 @@ public class EquipeController : ControllerBase
                 validMembers.Add(participante);
             }
         }
+
         equipe.Members = validMembers;  
-
         cadastroEquipes.Add(equipe);
-
-        return CreatedAtRoute("GetEquipeList", null, equipe);
     }
-
-    [HttpDelete("{id}", Name = "DeleteEquipeById")]
-    public IActionResult DeleteEquipeById(int id)
+    public bool DeleteEquipeById(int id)
     {
         var equipe = cadastroEquipes.FindById(id);
         if (equipe == null)
         {
-            return NotFound();
+            return false;
         }
 
         cadastroEquipes.Delete(equipe);
-        return NoContent();
+        return true;
     }
 
-    [HttpPatch(Name = "AddParticipanteToEquipe")]
-    public IActionResult AddParticipanteToEquipe([FromBody] ParticipanteData participanteData)
+    public bool AddParticipanteToEquipe(ParticipanteData participanteData)
     {
         var equipeId = participanteData.EquipeId;
         var participanteId = participanteData.ParticipanteId;
@@ -77,18 +58,18 @@ public class EquipeController : ControllerBase
         var equipe = cadastroEquipes.FindById(equipeId);
         if (equipe == null)
         {
-            return NotFound();
+            return false;
         }
 
         var participante = cadastroParticipantes.FindById(participanteId);
         if (participante == null)
         {
-            return NotFound();
+            return false;
         }
 
         equipe.Members.Add(participante);
         cadastroEquipes.Update(equipe);
 
-        return NoContent();
+        return true;
     }
 }
