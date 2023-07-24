@@ -3,56 +3,38 @@ using Olimpo.Repository;
 using Olimpo.Models;
 
 namespace Olimpo.Controllers;
-
-[ApiController]
-[Route("api/[controller]")]
-public class ParticipanteController : ControllerBase
+public class ParticipanteController
 {
     private static IRepository<Participante> cadastroParticipantes = ParticipantesRepository.GetInstance();
     private static int generateId = 0;
 
-    [HttpGet(Name = "GetParticipanteList")]
     public IEnumerable<Participante> GetParticipanteList()
     {
         return cadastroParticipantes.List;
     }
 
-    [HttpGet("{id}", Name = "GetParticipanteById")]
-    public ActionResult<Participante> GetParticipanteById(int Id)
+    public Participante? GetParticipanteById(int Id)
     {
         var participante = cadastroParticipantes.FindById(Id);
-        if (participante == null)
-        {
-            return NotFound();
-        }
         return participante;
     }
 
-    [HttpPost(Name = "CreateParticipante")]
-    public IActionResult CreateParticipante([FromBody]Participante participante)
+    public void CreateParticipante(Participante participante)
     {
-        if (participante == null)
-        {
-            return BadRequest("Invalid data.");
-        }
         participante.Id = generateId;
         generateId += 1;
 
         cadastroParticipantes.Add(participante);
-
-        return CreatedAtRoute("GetParticipanteList", null, participante);
     }
-
-    [HttpDelete("{id}", Name = "DeleteParticipanteById")]
-    public IActionResult DeleteParticipanteById(int id)
+    public bool DeleteParticipanteById(int id)
     {
         var participante = cadastroParticipantes.FindById(id);
         if (participante == null)
         {
-            return NotFound();
+            return false;
         }
 
         cadastroParticipantes.Delete(participante);
-        return NoContent();
+        return true;
     }
 }

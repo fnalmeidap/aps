@@ -4,35 +4,45 @@ using Olimpo.Repository;
 
 namespace Olimpo.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class LoginController : ControllerBase
+    public class LoginResponse
+    {
+        public Participante? Participante { get;  set; }
+
+        public Equipe? Equipe { get;  set; }
+
+        public LoginResponse(Participante participante, Equipe equipe) { 
+            Participante = participante;
+            Equipe = equipe;
+
+        }
+    }
+
+    public class CadastroController
     {
         private static IRepository<Participante> cadastroParticipantes = ParticipantesRepository.GetInstance();
         private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
 
-        [HttpGet("{tokenId}", Name = "ValidadeParticipanteByToken")]
-        public ActionResult<ParticipanteEquipe> ValidadeParticipanteByToken(string tokenId)
+        public ActionResult<LoginResponse>? ValidadeParticipanteByToken(string tokenId)
         {
             var participante = cadastroParticipantes.FindByPredicate(e => e.TokenId == tokenId);
             if (participante == null)
             {
-                return NotFound();
+                return null;
             }
 
-            Equipe? pEquipe = null;
+            Equipe? equipeDoParticipante = null;
             foreach (var equipe in cadastroEquipes.List)
             {
                 foreach (var membro in equipe.Members)
                 {
                     if (membro.Id == participante.Id)
                     {
-                        pEquipe = equipe; break;
+                        equipeDoParticipante = equipe; break;
                     }
                 }
-            }
+            }   
 
-            return new ParticipanteEquipe(participante, pEquipe);
+            return new LoginResponse(participante, equipeDoParticipante);
         }
     }
 }
