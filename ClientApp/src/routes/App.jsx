@@ -4,6 +4,7 @@ import AppRoutes from './AppRoutes';
 import { Layout } from './Layout';
 import './custom.css';
 import { gapi } from 'gapi-script';
+import { LoginProvider } from '../hooks/Login';
 
 
 
@@ -11,7 +12,6 @@ export default class App extends Component {
   static displayName = App.name;
   componentDidMount(){
     function start() {
-      console.log('START')
       gapi.client.init({
         client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
         scope: ''
@@ -23,9 +23,11 @@ export default class App extends Component {
 
   render() {
     return (
-      <Layout>
-       <AppRoutes/>
-      </Layout>
+      <LoginProvider>
+        <Layout>
+          <AppRoutes/>
+        </Layout>
+      </LoginProvider>
     );
   }
 }
