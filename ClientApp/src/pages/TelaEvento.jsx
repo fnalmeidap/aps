@@ -11,10 +11,10 @@ import {
 } from "reactstrap";
 import { categoriesEnum } from "../utils/constants";
 import { formatAddress, formatDate } from "../utils/formatters";
-import { useLogin } from '../hooks/Login';
+import { useLogin } from "../hooks/Login";
 
 export const TelaEvento = () => {
-  const { user } = useLogin()
+  const { user } = useLogin();
   const [eventoSelecionado, setEventoSelecionado] = useState(null);
   const [categoriasSelecionadas, setCategoriasSelecionadas] = useState([]);
   const [listaDeEventos, setlistaDeEventos] = useState(null);
@@ -58,19 +58,22 @@ export const TelaEvento = () => {
     fetchEventos();
   }, []);
 
-  console.log(categoriasSelecionadas)
+  console.log(categoriasSelecionadas);
 
   const handleInscricaoClick = async () => {
     try {
-      const response = await fetch("/api/Equipe", {
+      console.log(eventoSelecionado);
+      console.log(user);
+      console.log(categoriasSelecionadas);
+      const response = await fetch("/api/Eventos", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
         },
         body: JSON.stringify({
-          "EventoId" : eventoSelecionado.id,
-          "EquipeId" : user.equipe.id,
-          "Categorias" : categoriasSelecionadas
+          EquipeId: user.equipe.id,
+          EventoId: eventoSelecionado.id,
+          Categorias: categoriasSelecionadas,
         }),
       });
 
@@ -78,10 +81,10 @@ export const TelaEvento = () => {
         throw new Error("Erro na requisição");
       }
 
-      const responseData = await response.json(); // Parse da resposta para JSON
-      console.log('RESPOSTA:', responseData)
+      //const responseData = await response.json(); // Parse da resposta para JSON
+      //console.log("RESPOSTA:", responseData);
     } catch (error) {
-      console.error("Erro na requisição POST:", error);
+      console.error("Erro na requisição PATCH:", error);
       alert("OPS, ALGO DEU ERRADO");
     }
   };
@@ -89,7 +92,7 @@ export const TelaEvento = () => {
   return (
     <Container>
       <Col
-      md={{
+        md={{
           size: 12,
         }}
       >
