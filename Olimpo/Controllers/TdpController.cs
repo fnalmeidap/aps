@@ -42,7 +42,7 @@ public class TdpController
             return false;
         }
 
-        var equipe = cadastroEventos.FindById(tdp.EquipeId);
+        var equipe = cadastroEquipes.FindById(tdp.EquipeId);
         if (equipe == null)
         {
             return false;
