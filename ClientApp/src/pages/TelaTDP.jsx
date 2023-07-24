@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Form, FormGroup, Label, Input, Button, Col, Collapse, ListGroup, ListGroupItem, Badge } from "reactstrap";
 import { useLogin } from '../hooks/Login';
 import { categoriasLista, categoriesEnum } from '../utils/constants';
@@ -8,31 +8,33 @@ export const TelaTDP = () => {
   const { user } = useLogin()
   const [arquivo, setArquivo] = useState(null);
   const [categoriasSelecionada, setCategoriasSelecionada] = useState(null);
+  const [categoriasDaEquipe, setCategoriasDaEquipe] = useState([]);
 
-  // useEffect(() => {
-  //   async function fetchEventos() {
-  //     fetch("/api/Eventos", {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //         if (data) {
-  //           const equipeInscrita = data.equipes.filter(equipe => equipe.id === user.equipe)
-  //         } else {
-  //           // Show an error message
-  //           alert(data.error);
-  //         }
-  //       })
-  //       .catch(() => {
-  //         alert("OPS, ALGO DEU ERRADO");
-  //       });
-  //   }
-  //   fetchEventos();
-  // }, []);
+  useEffect(() => {
+    async function fetchEventos() {
+      fetch("/api/Eventos", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          if (data) {
+            const equipeInscrita = data.equipes.filter(equipe => equipe.equipeId === user.equipe)
+            setCategoriasDaEquipe(equipeInscrita.categorias)
+          } else {
+            // Show an error message
+            alert(data.error);
+          }
+        })
+        .catch(() => {
+          alert("OPS, ALGO DEU ERRADO");
+        });
+    }
+    fetchEventos();
+  }, []);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -101,7 +103,7 @@ export const TelaTDP = () => {
         <FormGroup >
           <Label for="Categorias">Categorias</Label>
           <ListGroup horizontal>
-            {categoriasLista.map((categoria) => (
+            {categoriasDaEquipe.map((categoria) => (
               <ListGroupItem
                 key={categoria}
                 tag="button"
