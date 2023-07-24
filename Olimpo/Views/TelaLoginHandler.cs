@@ -5,8 +5,8 @@ using Olimpo.Models;
 namespace Olimpo.Views
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class TelaLoginController : ControllerBase
+    [Route("api/login")]
+    public class LoginHandler : ControllerBase
     {
         private ParticipanteController participanteController = new ParticipanteController();
         private EquipeController equipeController = new EquipeController();

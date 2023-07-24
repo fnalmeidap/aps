@@ -5,8 +5,8 @@ using Olimpo.Models;
 namespace Olimpo.Views
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class TelaTDPController : ControllerBase
+    [Route("api/tdp")]
+    public class TDPHandler : ControllerBase
     {
         private TdpController tdpController = new TdpController();
 

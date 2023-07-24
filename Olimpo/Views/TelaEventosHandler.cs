@@ -5,8 +5,8 @@ using Olimpo.Models;
 namespace Olimpo.Views
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class TelaEventosController : ControllerBase
+    [Route("api/eventos")]
+    public class EventosHandler : ControllerBase
     {
         private EventosController eventoController = new EventosController();
 
