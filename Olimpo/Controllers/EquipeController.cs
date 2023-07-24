@@ -4,6 +4,12 @@ using Olimpo.Repository;
 
 namespace Olimpo.Controllers;
 
+public class ParticipanteEquipeRequest
+{
+    public int EquipeId { get; set; }
+    public int ParticipanteId { get; set; }
+}
+
 public class EquipeController 
 {
     private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
@@ -50,10 +56,10 @@ public class EquipeController
         return true;
     }
 
-    public bool AddParticipanteToEquipe(ParticipanteData participanteData)
+    public bool AddParticipanteToEquipe(ParticipanteEquipeRequest participanteEquipeRequest)
     {
-        var equipeId = participanteData.EquipeId;
-        var participanteId = participanteData.ParticipanteId;
+        var equipeId = participanteEquipeRequest.EquipeId;
+        var participanteId = participanteEquipeRequest.ParticipanteId;
 
         var equipe = cadastroEquipes.FindById(equipeId);
         if (equipe == null)

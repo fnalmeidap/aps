@@ -52,9 +52,9 @@ namespace Olimpo.Views
         }
 
         [HttpPatch(Name = "AddParticipanteToEquipe")]
-        public IActionResult AddParticipanteToEquipe([FromBody] ParticipanteData participanteData)
+        public IActionResult AddParticipanteToEquipe([FromBody] ParticipanteEquipeRequest participanteEquipeRequest)
         {
-            if (!equipeController.AddParticipanteToEquipe(participanteData))
+            if (!equipeController.AddParticipanteToEquipe(participanteEquipeRequest))
             {
                 return NotFound();
             }
