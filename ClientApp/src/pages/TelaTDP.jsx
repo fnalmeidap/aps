@@ -6,6 +6,7 @@ import { toBase64 } from '../services/base64';
 
 export const TelaTDP = () => {
   const { user } = useLogin()
+  console.log('user:',user)
   const [arquivo, setArquivo] = useState(null);
   const [categoriasSelecionada, setCategoriasSelecionada] = useState(null);
   const [categoriasDaEquipe, setCategoriasDaEquipe] = useState([]);
@@ -20,28 +21,39 @@ export const TelaTDP = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           if (data) {
-            const equipeInscrita = data.equipes.filter(equipe => equipe.equipeId === user.equipe)
-            setCategoriasDaEquipe(equipeInscrita.categorias)
+            // console.log({data})
+            for(const evento of data) {
+              // console.log(evento)
+              const equipeInscrita = evento.equipes.find(equipe => equipe.equipeId === user.equipe.id)
+              // console.log({equipeInscrita})
+              if(equipeInscrita) {
+                // console.log('categorias',equipeInscrita.categorias)
+                setCategoriasDaEquipe(equipeInscrita.categorias)
+                break
+              }
+
+            }
           } else {
             // Show an error message
             alert(data.error);
           }
         })
         .catch(() => {
-          alert("OPS, ALGO DEU ERRADO");
+          alert("OPS, ALGO DEU ERRADO AO PUXAR EVENTOS");
         });
     }
     fetchEventos();
   }, []);
 
   const handleFileChange = (e) => {
+    e.preventDefault();
     const selectedFile = e.target.files[0];
     setArquivo(selectedFile);
   };
 
-  const handleUpload = async () => {
+  const handleUpload = async (e) => {
+    e.preventDefault();
     if (!user?.equipe) {
       alert('Você não está cadastrado numa equipe')
     }
@@ -61,16 +73,16 @@ export const TelaTDP = () => {
           }),
         });
 
-        if (!response.ok) {
-          throw new Error("Erro na requisição");
-        }
+        // if (!response.ok) {
+        //   throw new Error("Erro na requisição");
+        // }
 
         //const responseData = await response.json(); // Parse da resposta para JSON
         //console.log("RESPOSTA:", responseData);
         alert('TDp Enviado cadastrado')
       } catch (error) {
         console.error("Erro na requisição PATCH:", error);
-        alert("OPS, ALGO DEU ERRADO");
+        alert("OPS, ALGO DEU ERRADO AO ENVIAR TDP");
       }
     }
   };
@@ -86,7 +98,7 @@ export const TelaTDP = () => {
       <Collapse isOpen={!user?.equipe}>
         <p>Você não está cadastrado em nenhuma equipe</p>
       </Collapse>
-      <Collapse isOpen={!!user?.equipe}>
+      <Collapse isOpen={categoriasDaEquipe.length <= 0}>
         <p>Sua equipe não está em nenhum evento</p>
       </Collapse>
       <Form>

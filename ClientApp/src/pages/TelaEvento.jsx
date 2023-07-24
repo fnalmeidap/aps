@@ -60,7 +60,8 @@ export const TelaEvento = () => {
 
   console.log(categoriasSelecionadas);
 
-  const handleInscricaoClick = async () => {
+  const handleInscricaoClick = async (e) => {
+    e.preventDefault();
     try {
       const response = await fetch("/api/Eventos", {
         method: "PATCH",
