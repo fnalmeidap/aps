@@ -4,7 +4,7 @@ namespace Olimpo.Repository;
 public class TdpsRepository : IRepository<TDP>
 {
     private static TdpsRepository Instance = null;
-    private static List<TDP> cadastroTdps { get; set; }
+    private List<TDP> cadastroTdps { get; set; }
 
     public static TdpsRepository GetInstance()
     {

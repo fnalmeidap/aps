@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography;
 
 namespace Olimpo.Models;
 
@@ -16,7 +17,7 @@ public partial class TDP : EntidadeBase
     public CategoriasType Categoria { get; set; }
 
     [Required]
-    public List<byte> Arquivo { get; set; }
+    public string Arquivo { get; set; }
     
     [Required]
     public DateTime UltimaVezModificado { get; set; }
