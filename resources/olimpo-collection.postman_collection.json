@@ -1,0 +1,552 @@
+{
+	"info": {
+		"_postman_id": "cc853877-6c2c-426a-bdc8-b389ef4a1214",
+		"name": "olimpo-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8052778",
+		"_collection_link": "https://crimson-satellite-592047.postman.co/workspace/olimpo~a62d11c9-e90a-47df-9403-e6e3277b2494/collection/8052778-cc853877-6c2c-426a-bdc8-b389ef4a1214?action=share&creator=8052778&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Participante",
+			"item": [
+				{
+					"name": "GetParticipanteList",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5211/api/Participante",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Participante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetParticipanteById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5211/api/Participante/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Participante",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateParticipante",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Id\" : 199,\n    \"TokenId\" : \"thisisahashedtokenid\",\n    \"Name\" : \"Else\",\n    \"Email\": \"something@mail.com\",\n    \"University\": \"something university of else country\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5211/api/Participante",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Participante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddParticipanteToEquipe",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"EquipeId\": 199,\n    \"ParticipanteId\": 199\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5211/api/Equipe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Equipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteParticipantById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5211/api/Participante/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Participante",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Equipe",
+			"item": [
+				{
+					"name": "GetEquipes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5211/api/Equipe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Equipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetEquipeById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Id\" : 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5211/api/Equipe/199",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Equipe",
+								"199"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateEquipe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Id\" : 199,\n    \"Name\" : \"RoboCIn199\",\n    \"University\" : \"UFPE\",\n    \"Members\" : [{\n        \"Id\" : 199,\n        \"TokenId\" : \"thisisahashedtokenid\",\n        \"Name\" : \"Else\",\n        \"Email\": \"something@mail.com\",\n        \"University\": \"something university of else country\"}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5211/api/Equipe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Equipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteEquipeById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5211/api/Equipe/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Equipe",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Eventos",
+			"item": [
+				{
+					"name": "GetEventos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5211/api/Eventos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Eventos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetEventosById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5211/api/Eventos/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Eventos",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddEquipeToEvento",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"EventoId\" : 0,\n    \"EquipeId\" : 199,\n    \"Categorias\" : [1,2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5211/api/Eventos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Eventos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateEvento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Name\": \"MyEvent2\",\n    \"Endereco\" : { \n        \"Cidade\" : \"Recife\",\n        \"Estado\" : \"Pernambuco\",\n        \"Pais\" : \"Brasil\"\n    },\n    \"StartTime\" : \"2023-07-22T00:00:00Z\",\n    \"FinalTime\" : \"2023-07-27T00:00:00Z\",\n    \"Categorias\" : [1,2],\n    \"Equipes\":[]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5211/api/Eventos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Eventos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteEventoById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5211/api/Eventos/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Eventos",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TDP",
+			"item": [
+				{
+					"name": "GetTdps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5211/api/Tdp",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Tdp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTdpByEquipe",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5211/api/Tdp/199",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Tdp",
+								"199"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTdpByEquipeCategoria",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5211/api/Tdp/199/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Tdp",
+								"199",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTdp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"EquipeId\" : 199,\n    \"Categoria\" : 1,\n    \"Arquivo\" : [97, 98, 99],\n    \"UltimaVezModificado\" : \"2023-07-22T00:00:00Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5211/api/Tdp",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Tdp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteTdpByEquipeCategoria",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5211/api/Tdp/199/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Tdp",
+								"199",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "isHashedUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5211/api/Login/thisisahashedtokenid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"Login",
+								"thisisahashedtokenid"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
