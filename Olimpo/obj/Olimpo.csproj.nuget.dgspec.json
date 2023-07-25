@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\RieiR\\Documents\\aps-olimpo\\Olimpo\\Olimpo.csproj": {}
+    "C:\\Users\\RieiR\\Downloads\\aps-olimpo\\Olimpo\\Olimpo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\RieiR\\Documents\\aps-olimpo\\Olimpo\\Olimpo.csproj": {
+    "C:\\Users\\RieiR\\Downloads\\aps-olimpo\\Olimpo\\Olimpo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\RieiR\\Documents\\aps-olimpo\\Olimpo\\Olimpo.csproj",
+        "projectUniqueName": "C:\\Users\\RieiR\\Downloads\\aps-olimpo\\Olimpo\\Olimpo.csproj",
         "projectName": "Olimpo",
-        "projectPath": "C:\\Users\\RieiR\\Documents\\aps-olimpo\\Olimpo\\Olimpo.csproj",
+        "projectPath": "C:\\Users\\RieiR\\Downloads\\aps-olimpo\\Olimpo\\Olimpo.csproj",
         "packagesPath": "C:\\Users\\RieiR\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\RieiR\\Documents\\aps-olimpo\\Olimpo\\obj\\",
+        "outputPath": "C:\\Users\\RieiR\\Downloads\\aps-olimpo\\Olimpo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
