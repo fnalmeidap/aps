@@ -4,64 +4,59 @@ using Olimpo.Repository;
 
 namespace Olimpo.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class TdpController : ControllerBase
+public class TdpController
 {
-    private static IRepository<TDP> cadastroTdps= new TdpsRepository();
+    private static IRepository<TDP> cadastroTdps = TdpsRepository.GetInstance();
+    private static IRepository<Evento> cadastroEventos = EventosRepository.GetInstance();
+    private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
 
-    [HttpGet(Name = "GetTDPList")]
+    private static int generateId = 0;
+
     public IEnumerable<TDP> GetTDPList()
     {
         return cadastroTdps.List;
     }
 
-    [HttpGet("{equipeId}", Name = "GetTDPByEquipe")]
-    public ActionResult<TDP> GetTDPByEquipe(int equipeId)
+    public TDP? GetTDPByEquipe(int equipeId)
     {
-        Console.WriteLine(cadastroTdps.List.First().EquipeId);
-        Console.WriteLine(equipeId);
         var equipeTdps = cadastroTdps.FindByPredicate(t => 
             t.EquipeId == equipeId);
 
-        if (equipeTdps == null)
-        {
-            return NotFound();
-        }
-
         return equipeTdps;
     }
 
-    [HttpGet("{equipeId}/{categoria}", Name = "GetTDPByEquipeCategoria")]
-    public ActionResult<TDP> GetTDPByEquipeCategoria(int equipeId, CategoriasType categoria)
+    public TDP? GetTDPByEquipeCategoria(int equipeId, CategoriasType categoria)
     {
         var equipeTdps = cadastroTdps.FindByPredicate(t => 
             t.EquipeId == equipeId &&
             t.Categoria == categoria);
 
-        if (equipeTdps == null)
-        {
-            return NotFound();
-        }
-
         return equipeTdps;
     }
 
-    [HttpPost(Name = "CreateTdp")]
-    public IActionResult CreateTdp([FromBody] TDP tdp)
+    public bool CreateTdp(TDP tdp)
     {
-        if (tdp == null)
+        var evento = cadastroEventos.FindById(tdp.EventoId);
+        if (evento == null)
         {
-            return BadRequest("Invalid data.");
+            return false;
         }
+
+        var equipe = cadastroEquipes.FindById(tdp.EquipeId);
+        if (equipe == null)
+        {
+            return false;
+        }
+
+        tdp.Id = generateId;
+        generateId += 1;
 
         cadastroTdps.Add(tdp);
 
-        return CreatedAtRoute("GetTDPList", null, tdp);
+        return true;
     }
 
-    [HttpDelete("{equipeId}/{categoria}", Name = "DeleteTdpByEquipeCategoria")]
-    public IActionResult DeleteTdpById(int equipeId, CategoriasType categoria)
+    public bool DeleteTdpById(int equipeId, CategoriasType categoria)
     {
         var equipeTdps = cadastroTdps.FindByPredicate(t => 
             t.EquipeId == equipeId &&
@@ -69,11 +64,11 @@ public class TdpController : ControllerBase
 
         if (equipeTdps == null)
         {
-            return NotFound();
+            return false;
         }
 
         cadastroTdps.Delete(equipeTdps);
-        return NoContent();
+        return true;
     }
 }
 

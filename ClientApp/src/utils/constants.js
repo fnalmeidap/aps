@@ -5,3 +5,5 @@ export const categoriesEnum = {
   3: 'SIMULATION_3D',
   4: 'VERY_SMALL_SIZE_SOCCER'
 }
+
+export const categoriasLista = [ 1, 2, 3, 4]

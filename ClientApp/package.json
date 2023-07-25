@@ -2,7 +2,9 @@
   "name": "sistemaolimpo",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5211",
   "dependencies": {
+    "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "gapi-script": "^1.2.0",
     "http-proxy-middleware": "^2.0.6",

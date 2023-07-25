@@ -1,56 +1,80 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Olimpo.Models;
 using Olimpo.Repository;
 
 namespace Olimpo.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class EventosController : ControllerBase
+public class InscricaoEquipeRequest
 {
-    private static IRepository<Evento> cadastroEventos = new EventosRepository();
+    public int EventoId { get; set; }
+    public int EquipeId { get; set; }
+    public List<CategoriasType> Categorias { get; set; }
+}
 
-    [HttpGet(Name = "GetEventosList")]
+public class EventosController
+{
+    private static IRepository<Evento> cadastroEventos = EventosRepository.GetInstance();
+    private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
+    private static int generateId = 0;
+
     public IEnumerable<Evento> GetEventosList()
     {
         return cadastroEventos.List;
     }
 
-    [HttpGet("{id}", Name = "GetEventoById")]
-    public ActionResult<Evento> GetEventoById(int Id)
+    public Evento? GetEventoById(int Id)
     {
         var evento = cadastroEventos.FindById(Id);
-        if (evento == null)
-        {
-            return NotFound();
-        }
         return evento;
     }
-
-    [HttpPost(Name = "CreateEvento")]
-    public IActionResult CreateEvento([FromBody] Evento evento)
+    public void CreateEvento(Evento evento)
     {
-        if (evento == null)
-        {
-            return BadRequest("Invalid data.");
-        }
+        evento.Id = generateId;
+        generateId += 1;
 
         cadastroEventos.Add(evento);
-
-        return CreatedAtRoute("GetEventosList", null, evento);
     }
 
-    [HttpDelete("{id}", Name = "DeleteEventoById")]
-    public IActionResult DeleteEventoById(int id)
+    public Evento? DeleteEventoById(int id)
     {
         var participante = cadastroEventos.FindById(id);
-        if (participante == null)
+        if (participante != null)
         {
-            return NotFound();
+            cadastroEventos.Delete(participante);
+        }
+        return participante;
+    }
+
+    public bool AddEquipeToEvento(InscricaoEquipeRequest inscricaoEquipeRequest)
+    {
+        var eventoId = inscricaoEquipeRequest.EventoId;
+        var equipeId = inscricaoEquipeRequest.EquipeId;
+        var categorias = inscricaoEquipeRequest.Categorias;
+
+        var evento = cadastroEventos.FindById(eventoId);
+        if (evento == null)
+        {
+            return false;
         }
 
-        cadastroEventos.Delete(participante);
-        return NoContent();
+        var equipe = cadastroEquipes.FindById(equipeId);
+        if (equipe == null)
+        {
+            return false;
+        }
+
+        if(categorias == null || categorias.Count == 0) {
+            return false;
+        }
+
+        evento.Equipes.Add(new InscricaoEvento {
+            EquipeId = eventoId,
+            Categorias = categorias,
+        });
+        cadastroEventos.Update(evento);
+
+        return true;
     }
+        
 }
 

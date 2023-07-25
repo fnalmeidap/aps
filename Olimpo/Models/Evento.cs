@@ -12,9 +12,21 @@ public enum CategoriasType {
     VERY_SMALL_SIZE_SOCCER
 }
 
+public class InscricaoEvento
+{
+    public int EquipeId { get; set; }
+    
+    public List<CategoriasType> Categorias { get; set; }
+}
+
 [Table("Evento")]
 public partial class Evento : EntidadeBase
+{
+    public Evento()
     {
+        Equipes = new List<InscricaoEvento>();
+    }
+
     [Required]
     public string Name { get; set; }
 
@@ -29,5 +41,7 @@ public partial class Evento : EntidadeBase
     
     [Required]
     public List<CategoriasType> Categorias { get; set; }
+
+    public List<InscricaoEvento> Equipes { get; set; }
 }
 

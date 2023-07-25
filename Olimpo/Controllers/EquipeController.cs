@@ -4,37 +4,34 @@ using Olimpo.Repository;
 
 namespace Olimpo.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class EquipeController : ControllerBase
+public class ParticipanteEquipeRequest
 {
-    private static IRepository<Equipe> cadastroEquipes = new EquipesRepository();
-    private static IRepository<Participante> cadastroParticipantes = new ParticipantesRepository();
+    public int EquipeId { get; set; }
+    public int ParticipanteId { get; set; }
+}
 
-    [HttpGet(Name = "GetEquipeList")]
+public class EquipeController 
+{
+    private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
+    private static IRepository<Participante> cadastroParticipantes = ParticipantesRepository.GetInstance();
+
+    private static int generateId = 0;
+
     public IEnumerable<Equipe> GetEquipeList()
     {
         return cadastroEquipes.List;
     }
 
-    [HttpGet("{id}", Name = "GetEquipeById")]
-    public ActionResult<Equipe> GetEquipeById(int id)
+    public Equipe? GetEquipeById(int id)
     {
         var equipe = cadastroEquipes.FindById(id);
-        if (equipe == null)
-        {
-            return NotFound();
-        }
         return equipe;
     }
 
-    [HttpPost(Name = "CreateEquipe")]
-    public IActionResult CreateEquipe([FromBody]Equipe equipe)
+    public void CreateEquipe(Equipe equipe)
     {
-        if (equipe == null)
-        {
-            return BadRequest("Invalid data.");
-        }
+        equipe.Id = generateId;
+        generateId += 1;
 
         List<Participante> validMembers = new List<Participante>();
         foreach (var member in equipe.Members) {
@@ -43,23 +40,42 @@ public class EquipeController : ControllerBase
                 validMembers.Add(participante);
             }
         }
+
         equipe.Members = validMembers;  
-
         cadastroEquipes.Add(equipe);
-
-        return CreatedAtRoute("GetEquipeList", null, equipe);
     }
-
-    [HttpDelete("{id}", Name = "DeleteEquipeById")]
-    public IActionResult DeleteEquipeById(int id)
+    public bool DeleteEquipeById(int id)
     {
         var equipe = cadastroEquipes.FindById(id);
         if (equipe == null)
         {
-            return NotFound();
+            return false;
         }
 
         cadastroEquipes.Delete(equipe);
-        return NoContent();
+        return true;
+    }
+
+    public bool AddParticipanteToEquipe(ParticipanteEquipeRequest participanteEquipeRequest)
+    {
+        var equipeId = participanteEquipeRequest.EquipeId;
+        var participanteId = participanteEquipeRequest.ParticipanteId;
+
+        var equipe = cadastroEquipes.FindById(equipeId);
+        if (equipe == null)
+        {
+            return false;
+        }
+
+        var participante = cadastroParticipantes.FindById(participanteId);
+        if (participante == null)
+        {
+            return false;
+        }
+
+        equipe.Members.Add(participante);
+        cadastroEquipes.Update(equipe);
+
+        return true;
     }
 }
