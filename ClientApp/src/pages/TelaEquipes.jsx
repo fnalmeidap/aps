@@ -38,7 +38,7 @@ export default function TelaEquipes() {
 
   const handleInscricaoClick = async () => {
     try {
-      const response = await fetch("/api/Equipe", {
+      await fetch("/api/Equipe", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
@@ -48,14 +48,7 @@ export default function TelaEquipes() {
           ParticipanteId: Number(user.participante.id)
         }),
       });
-
-      if (!response.ok) {
-        throw new Error("Erro na requisição");
-      }
-
-      const responseData = await response.json(); // Parse da resposta para JSON
-      console.log('RESPOSTA:', responseData)
-      setUser(p => ({...p, equipe: responseData.id}))
+      setUser(p => ({...p, equipe: {id: equipeSelecionada.id}}))
       alert("Inscrito");
     } catch (error) {
       console.error("Erro na requisição POST:", error);

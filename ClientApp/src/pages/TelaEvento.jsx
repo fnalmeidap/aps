@@ -63,7 +63,7 @@ export const TelaEvento = () => {
   const handleInscricaoClick = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/Eventos", {
+      await fetch("/api/Eventos", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
@@ -74,13 +74,6 @@ export const TelaEvento = () => {
           Categorias: categoriasSelecionadas,
         }),
       });
-
-      if (!response.ok) {
-        throw new Error("Erro na requisição");
-      }
-
-      //const responseData = await response.json(); // Parse da resposta para JSON
-      //console.log("RESPOSTA:", responseData);
       alert("Equipe inscrita");
     } catch (error) {
       console.error("Erro na requisição PATCH:", error);
@@ -115,7 +108,7 @@ export const TelaEvento = () => {
                   <div className="d-flex gap-2">
                     <span>{evento.name}</span>
                     {evento.categorias.map((categoria) => (
-                      <Badge color="secondary" style={{ marginLeft: 8 }}>
+                      <Badge key={categoria} color="secondary" style={{ marginLeft: 8 }}>
                         {categoriesEnum[categoria]}
                       </Badge>
                     ))}

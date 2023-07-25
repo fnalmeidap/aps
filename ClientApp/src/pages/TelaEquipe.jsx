@@ -61,6 +61,7 @@ export const TelaEquipe = () => {
       const responseData = await response.json(); // Parse da resposta para JSON
       console.log('RESPOSTA:', responseData)
       navigate('/tela-equipes')
+      alert("Equipe cadastrada");
     } catch (error) {
       console.error("Erro na requisição POST:", error);
       alert("OPS, ALGO DEU ERRADO");

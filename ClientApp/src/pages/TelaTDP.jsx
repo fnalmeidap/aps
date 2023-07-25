@@ -60,26 +60,19 @@ export const TelaTDP = () => {
     if (arquivo) {
       console.log("Arquivo selecionado:", arquivo);
       try {
-        const response = await fetch("/api/Tdp", {
+        await fetch("/api/Tdp", {
           method: "POST",
           headers: {
             "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
           },
           body: JSON.stringify({
-            "EquipeId" : user.equipe,
+            "EquipeId" : user.equipe.id,
             "Categoria" : categoriasSelecionada,
-            "Arquivo" : toBase64(arquivo),
+            "Arquivo" : await toBase64(arquivo),
             "UltimaVezModificado" : arquivo.lastModifiedDate
           }),
         });
-
-        // if (!response.ok) {
-        //   throw new Error("Erro na requisição");
-        // }
-
-        //const responseData = await response.json(); // Parse da resposta para JSON
-        //console.log("RESPOSTA:", responseData);
-        alert('TDp Enviado cadastrado')
+        alert('TDp Enviado')
       } catch (error) {
         console.error("Erro na requisição PATCH:", error);
         alert("OPS, ALGO DEU ERRADO AO ENVIAR TDP");
@@ -113,7 +106,7 @@ export const TelaTDP = () => {
           />
         </FormGroup>
         <FormGroup >
-          <Label for="Categorias">Categorias</Label>
+          <Label for="Categoria">Categoria</Label>
           <ListGroup horizontal>
             {categoriasDaEquipe.map((categoria) => (
               <ListGroupItem
