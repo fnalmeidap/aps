@@ -1,0 +1,10 @@
+services:
+  app:
+    image: mono:latest
+    command: dotnet run
+    working_dir: /Olimpo
+    volumes:
+      - D:\Users\fnap\Documents\aps-olimpo\Olimpo:\Olimpo\
+    ports:
+      - 127.0.0.1:5211:5211
+    
