@@ -14,6 +14,11 @@ public class EquipeController
 {
     private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
     private static IRepository<Participante> cadastroParticipantes = ParticipantesRepository.GetInstance();
+    private static ParticipanteServiceImpl _participanteService;
+
+    EquipeController() {
+        _participanteService = new ParticipanteServiceImpl();
+    }
 
     private static int generateId = 0;
 
@@ -35,7 +40,7 @@ public class EquipeController
 
         List<Participante> validMembers = new List<Participante>();
         foreach (var member in equipe.Members) {
-            var participante = cadastroParticipantes.FindById(member.Id);
+            var participante = _participanteServico.FindById(member.Id);
             if (participante != null) {
                 validMembers.Add(participante);
             }
