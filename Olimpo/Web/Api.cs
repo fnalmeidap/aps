@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Olimpo.Controllers;
 using Olimpo.Models;
 
-namespace Web.Api
+namespace Web
 {
     [ApiController]
     [Route("/")]
-    public class ApiRouter : ControllerBase
+    public class Api : ControllerBase
     {
         // Login
 
@@ -91,6 +91,51 @@ namespace Web.Api
         }
 
         // Evento
+
+        [HttpGet]
+        [Route("api/evento")]
+        public IActionResult GetEventosList()
+        {
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("api/evento/{id}")]
+        public ActionResult<Evento> GetEventoById(int id)
+        {
+            Console.WriteLine(id);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("api/evento")]
+        public IActionResult CreateEvento([FromBody] Evento evento)
+        {
+            if (evento == null)
+            {
+                return BadRequest("Invalid data.");
+            }
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("api/evento/{id}")]
+        public IActionResult DeleteEventoById(int id)
+        {
+            Console.WriteLine(id);
+
+            return NoContent();
+        }
+
+        [HttpPatch]
+        [Route("api/evento")]
+        public IActionResult AddEquipeToEvento([FromBody] InscricaoEquipeRequest equipeData)
+        {
+
+            return Ok();
+        }
 
         // TDP
     }
