@@ -1,6 +1,4 @@
-using Olimpo.Common;
-
-namespace Olimpo.Repository
+namespace Olimpo.ParticipanteService.Models
 {
     public interface IRepository<T> where T : EntidadeBase
     {

@@ -1,40 +1,77 @@
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using Olimpo.Repository;
 using Olimpo.ParticipanteService.Models;
 
-namespace Olimpo.Controllers;
-public class ParticipanteController
+namespace Olimpo.ParticipanteService.Web
 {
-    private static IRepository<Participante> cadastroParticipantes = ParticipantesRepository.GetInstance();
-    private static int generateId = 0;
-
-    public IEnumerable<Participante> GetParticipanteList()
+    public class ParticipanteEquipeRequest
     {
-        return cadastroParticipantes.List;
+        public int EquipeId { get; set; }
+        public int ParticipanteId { get; set; }
     }
-
-    public Participante? GetParticipanteById(int Id)
-    {
-        var participante = cadastroParticipantes.FindById(Id);
-        return participante;
-    }
-
-    public void CreateParticipante(Participante participante)
-    {
-        participante.Id = generateId;
-        generateId += 1;
-
-        cadastroParticipantes.Add(participante);
-    }
-    public bool DeleteParticipanteById(int id)
-    {
-        var participante = cadastroParticipantes.FindById(id);
-        if (participante == null)
-        {
-            return false;
+    
+    [ApiController]
+    [Route("/")]
+    public class EquipeHandler : ControllerBase
+    {   
+        [Route("api/equipe")]
+        [HttpGet()]
+        public IActionResult GetEquipes(){
+            return Ok();
         }
+        // //todo: implementar comunicação com serviço de equipe via rabbitMQ
+        // private EquipeServiceImpl equipeService;
 
-        cadastroParticipantes.Delete(participante);
-        return true;
+        // [HttpGet(Name = "GetEquipeList")]
+        // public IEnumerable<Equipe> GetEquipeList()
+        // {
+        //     return equipeService.GetEquipeList();
+        // }
+
+        // [HttpGet("{id}", Name = "GetEquipeById")]
+        // public ActionResult<Equipe> GetEquipeById(int id)
+        // {
+        //     var equipe = equipeService.GetEquipeById(id);
+        //     if (equipe == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //     return equipe;
+        // }
+
+        // [HttpPost(Name = "CreateEquipe")]
+        // public IActionResult CreateEquipe([FromBody] Equipe equipe)
+        // {
+        //     if (equipe == null)
+        //     {
+        //         return BadRequest("Invalid data.");
+        //     }
+
+        //     equipeService.CreateEquipe(equipe);
+
+        //     return CreatedAtRoute("GetEquipeList", null, equipe);
+        // }
+
+        // [HttpDelete("{id}", Name = "DeleteEquipeById")]
+        // public IActionResult DeleteEquipeById(int id)
+        // {
+        //     if (!equipeService.DeleteEquipeById(id))
+        //     {
+        //         return NotFound();
+        //     }
+
+        //     return NoContent();
+        // }
+
+        // [HttpPatch(Name = "AddParticipanteToEquipe")]
+        // public IActionResult AddParticipanteToEquipe([FromBody] ParticipanteEquipeRequest participanteEquipeRequest)
+        // {
+        //     if (!equipeService.AddParticipanteToEquipe(participanteEquipeRequest))
+        //     {
+        //         return NotFound();
+        //     }
+        //     return NoContent();
+        // }
+
     }
 }
