@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Olimpo.Repository;
-using Olimpo.Models;
+using Olimpo.Model;
 
 namespace Olimpo.Controllers;
 public class ParticipanteController

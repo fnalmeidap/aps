@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Olimpo.Models;
+using Olimpo.Model;
 using Olimpo.Repository;
 
 namespace Olimpo.Controllers;
@@ -11,7 +11,7 @@ public class InscricaoEquipeRequest
     public List<CategoriasType> Categorias { get; set; }
 }
 
-public class EventosController
+public class EventoController
 {
     private static IRepository<Evento> cadastroEventos = EventosRepository.GetInstance();
     private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();

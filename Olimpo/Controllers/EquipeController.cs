@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Olimpo.Models;
+using Olimpo.Model;
 using Olimpo.Repository;
 
 namespace Olimpo.Controllers;
