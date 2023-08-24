@@ -10,7 +10,7 @@ namespace Web
     {
         // Login
 
-        // Participante
+        # region Participante
         [HttpGet]
         [Route("api/participante")]
         public IActionResult GetParticipanteList()
@@ -44,8 +44,9 @@ namespace Web
             Console.WriteLine(id);
             return NoContent();
         }
+        #endregion
 
-        // Equipe
+        # region Equipe
         [HttpGet]
         [Route("api/equipe")]
         public IActionResult GetEquipeList()
@@ -89,9 +90,9 @@ namespace Web
 
             return NoContent();
         }
+        #endregion
 
-        // Evento
-
+        # region Evento
         [HttpGet]
         [Route("api/evento")]
         public IActionResult GetEventosList()
@@ -136,6 +137,7 @@ namespace Web
 
             return Ok();
         }
+        #endregion
 
         // TDP
     }
