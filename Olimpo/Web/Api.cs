@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Olimpo.Controllers;
 using Olimpo.Models;
+using Olimpo.Web.Model;
 
 namespace Web
 {
@@ -8,9 +9,16 @@ namespace Web
     [Route("/")]
     public class Api : ControllerBase
     {
-        // Login
+        #region Login
+        [HttpPost]
+        [Route("api/login")]
+        public IActionResult LoginParticipante([FromBody] LoginRequest loginRequest)
+        {
+            return Ok();
+        }
+        #endregion
 
-        # region Participante
+        #region Participante
         [HttpGet]
         [Route("api/participante")]
         public IActionResult GetParticipanteList()
@@ -46,7 +54,7 @@ namespace Web
         }
         #endregion
 
-        # region Equipe
+        #region Equipe
         [HttpGet]
         [Route("api/equipe")]
         public IActionResult GetEquipeList()
@@ -92,7 +100,7 @@ namespace Web
         }
         #endregion
 
-        # region Evento
+        #region Evento
         [HttpGet]
         [Route("api/evento")]
         public IActionResult GetEventosList()
