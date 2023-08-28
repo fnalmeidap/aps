@@ -25,8 +25,8 @@ export function Login() {
       navigate('/tela-evento')
     } catch (error) {
       console.error("Erro na requisição POST:", error);
-      alert("OPS, ALGO DEU ERRADO");
-      navigate('/cadastro')
+      alert("OPS, parece que você ainda não possui conta!");
+      navigate('/')
     }
   }
 
