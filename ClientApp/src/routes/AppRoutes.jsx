@@ -16,24 +16,24 @@ import { TelaTDP } from '../pages/TelaTDP';
 const routes = [
   {
     index: true,
-    element: <Login />
-  },
-  {
-    path: '/home',
-    element: <Home />
-  },
-  {
-    path: '/cadastro',
     element: <TelaCadastro />
   },
   {
-    path: '/counter',
-    element: <Counter />
+    path: '/login',
+    element: <Login />
   },
-  {
-    path: '/fetch-data',
-    element: <FetchData />
-  },
+  // {
+  //   path: '/home',
+  //   element: <Home />
+  // },
+  // {
+  //   path: '/counter',
+  //   element: <Counter />
+  // },
+  // {
+  //   path: '/fetch-data',
+  //   element: <FetchData />
+  // },
   {
     path: '/tela-equipe',
     element: <TelaEquipe />

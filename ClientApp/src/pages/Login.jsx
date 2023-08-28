@@ -47,7 +47,7 @@ export function Login() {
           cookiePolicy={'single_host_origin'}
         />
          <p>Ainda não possui conta?</p>
-         <Link to={'/cadastro'}>
+         <Link to={'/'}>
           Cadastro
         </Link>
       </Col>
