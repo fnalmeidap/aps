@@ -17,11 +17,16 @@ import { useNavigate } from 'react-router-dom';
 export const TelaEvento = () => {
   const { user } = useLogin();
   const [listaDeEventos, setlistaDeEventos] = useState(null);
+  const [eventoSelecionado, setEventoSelecionado] = useState(null);
   const navigate = useNavigate()
 
   const handleEventoSelect = (evento) => {
-    navigate('/tela-evento/' + evento.id)
+    setEventoSelecionado(evento);
   };
+
+  const handleInscreverSeEvento = () => {
+    navigate('/tela-evento/' + eventoSelecionado.id)
+  }
 
   useEffect(() => {
     async function fetchEventos() {
@@ -66,6 +71,7 @@ export const TelaEvento = () => {
               {listaDeEventos.map((evento) => (
                 <ListGroupItem
                   key={evento.id}
+                  active={eventoSelecionado === evento}
                   tag="button"
                   onClick={() => handleEventoSelect(evento)}
                   action
@@ -91,6 +97,29 @@ export const TelaEvento = () => {
                 </ListGroupItem>
               ))}
             </ListGroup>
+            <Collapse
+              isOpen={!!eventoSelecionado}
+              className="mt-3"
+            >
+              <Container className='d-flex gap-2'>
+                <Button
+                  color="primary"
+                  disabled={!eventoSelecionado}
+                  onClick={() => null}
+                  className="mt-3"
+                >
+                  Ver detalhes do evento
+                </Button>
+                <Button
+                  color="primary"
+                  disabled={!eventoSelecionado}
+                  onClick={handleInscreverSeEvento}
+                  className="mt-3"
+                >
+                  Inscrever-se
+                </Button>
+              </Container>
+            </Collapse>
           </>
         )}
       </Col>
