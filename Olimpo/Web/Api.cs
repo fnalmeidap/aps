@@ -9,6 +9,7 @@ namespace Olimpo.Web
     [Route("/")]
     public class Api : ControllerBase
     {
+        private static Fachada _fachada = new Fachada();
         #region Login
         [HttpPost]
         [Route("api/login")]
@@ -23,14 +24,25 @@ namespace Olimpo.Web
         [Route("api/participante")]
         public IActionResult GetParticipanteList()
         {
-            return Ok();
+            var listaDeParticipantes = _fachada.buscarTodosParticipantes();
+
+            if (listaDeParticipantes == null){
+                return NotFound();
+            }
+            return Ok(listaDeParticipantes);
         }
 
         [HttpGet]
         [Route("api/participante/{id}")]
         public IActionResult GetParticipanteById(int Id)
         {
-            return Ok();
+            var participante = _fachada.buscarParticipante(Id);
+            if(participante == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(participante);
         }
 
         [HttpPost]
@@ -42,14 +54,26 @@ namespace Olimpo.Web
                 return BadRequest("Invalid data.");
             }
 
-            return Ok();
+            _fachada.cadastrarParticipante(participante);
+
+            return StatusCode(StatusCodes.Status201Created, participante);
         }
 
         [HttpDelete]
         [Route("api/participante/{id}")]
         public IActionResult DeleteParticipanteById(int id)
         {
-            Console.WriteLine(id);
+            if (id == null || id < 0)
+            {
+                return BadRequest("Invalid Id.");
+            }
+
+            var isDeleted = _fachada.removerParticipante(id);
+            if (!isDeleted)
+            {
+                return NoContent();
+            }
+
             return NoContent();
         }
         #endregion

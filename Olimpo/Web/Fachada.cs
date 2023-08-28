@@ -5,25 +5,30 @@ namespace Olimpo.Web
 {
     class Fachada
     {
-        private ParticipanteController participanteController;
-        private EquipeController equipeController;
-        private EventoController eventoController;
-        private TdpController tdpController;
+        private ParticipanteController participanteController = new ParticipanteController();
+        private EquipeController equipeController = new EquipeController();
+        private EventoController eventoController = new EventoController();
+        private TdpController tdpController = new TdpController();
 
         #region Participante
-        public void cadastrarParticipante()
+        public void cadastrarParticipante(Participante participante)
         {
-            participanteController.;
+            participanteController.CreateParticipante(participante);
         }
 
-        public Participante buscarParticipante()
+        public Participante buscarParticipante(int Id)
         {
-            throw new NotImplementedException();
+            return participanteController.GetParticipanteById(Id);
         }
 
         public IEnumerable<Participante> buscarTodosParticipantes()
         {
-            throw new NotImplementedException();
+            return participanteController.GetParticipanteList();
+        }
+
+        public bool removerParticipante(int Id)
+        {
+            return participanteController.DeleteParticipanteById(Id);
         }
         #endregion
 
@@ -40,7 +45,7 @@ namespace Olimpo.Web
 
         public IEnumerable<Equipe> buscarTodasEquipes()
         {
-            throw new NotImplementedError();
+            throw new NotImplementedException();
         }
 
         public void cadastrarParticipanteEmEquipe()
@@ -62,7 +67,7 @@ namespace Olimpo.Web
 
         public IEnumerable<Evento> buscarTodosEventos()
         {
-            throw new NotImplementedError();
+            throw new NotImplementedException();
         }
 
         public void inscreverEquipeEvento()
