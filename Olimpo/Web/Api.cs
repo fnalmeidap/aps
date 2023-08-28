@@ -36,6 +36,11 @@ namespace Olimpo.Web
         [Route("api/participante/{id}")]
         public IActionResult GetParticipanteById(int Id)
         {
+            if (Id == null || Id < 0)
+            {
+                return BadRequest("Invalid data.");
+            }
+
             var participante = _fachada.buscarParticipante(Id);
             if(participante == null)
             {
@@ -71,7 +76,7 @@ namespace Olimpo.Web
             var isDeleted = _fachada.removerParticipante(id);
             if (!isDeleted)
             {
-                return NoContent();
+                return NotFound(id);
             }
 
             return NoContent();
