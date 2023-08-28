@@ -18,6 +18,7 @@ export const TelaEvento = () => {
   const { user } = useLogin();
   const [listaDeEventos, setlistaDeEventos] = useState(null);
   const [eventoSelecionado, setEventoSelecionado] = useState(null);
+  const [temEquipe, setTemEquipe] = useState(false);
   const navigate = useNavigate()
 
   const handleEventoSelect = (evento) => {
@@ -47,7 +48,37 @@ export const TelaEvento = () => {
           }
         })
         .catch(() => {
-          alert("OPS, ALGO DEU ERRADO");
+          alert("OPS, ALGO DEU ERRADO AO PUXAR EQUIPES");
+        });
+    }
+    fetchEventos();
+  }, []);
+
+  useEffect(() => {
+    async function fetchEventos() {
+      fetch("/api/Equipe", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data, user);
+          if (data) {
+            data.forEach(equipe => {
+              const memberFound = equipe.members.find(member => member.id === user.participante.id)
+              if(memberFound){
+                setTemEquipe(true)
+              }
+            })
+          } else {
+            // Show an error message
+            alert(data.error);
+          }
+        })
+        .catch(() => {
+          // alert("OPS, ALGO DEU ERRADO");
         });
     }
     fetchEventos();
@@ -112,7 +143,7 @@ export const TelaEvento = () => {
                 </Button>
                 <Button
                   color="primary"
-                  disabled={!eventoSelecionado}
+                  disabled={!eventoSelecionado || !temEquipe}
                   onClick={handleInscreverSeEvento}
                   className="mt-3"
                 >
