@@ -8,9 +8,7 @@ export function NavMenu()  {
   const { user } = useLogin()
   const location = useLocation();
 
-  console.log("Localização atual:", location.pathname);
-
-
+  // console.log("Localização atual:", location);
 
     return (
       <header>
@@ -38,7 +36,7 @@ export function NavMenu()  {
                   <NavLink tag={Link} className="text-dark" to="/tela-equipes">Equipes</NavLink>
                 </NavItem>
               </Collapse>
-              <Collapse isOpen={user && ['/tela-equipes'].includes(location.pathname)} horizontal>
+              <Collapse isOpen={user && ['/tela-equipes', '/tela-evento/:id'].includes(location.pathname)} horizontal>
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/tela-evento">Eventos</NavLink>
                 </NavItem>

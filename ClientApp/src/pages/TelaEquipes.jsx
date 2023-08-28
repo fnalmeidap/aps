@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Badge, Button, Col, Collapse, Container, ListGroup, ListGroupItem, Spinner } from 'reactstrap';
 import { useLogin } from '../hooks/Login';
+import { useNavigate } from 'react-router-dom';
 
 export default function TelaEquipes() {
   const { user, setUser } = useLogin()
   const [equipes, setEquipes] = useState(null);
   const [equipeSelecionada, setEquipeSelecionada] = useState(null);
+  const navigate = useNavigate()
 
   const handleEquipeSelect = (equipe) => {
     setEquipeSelecionada(equipe);
@@ -50,6 +52,7 @@ export default function TelaEquipes() {
       });
       setUser(p => ({...p, equipe: {id: equipeSelecionada.id}}))
       alert("Inscrito");
+      navigate('/tela-evento')
     } catch (error) {
       console.error("Erro na requisição POST:", error);
       // alert("OPS, ALGO DEU ERRADO");

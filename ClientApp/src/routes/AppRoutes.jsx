@@ -12,6 +12,7 @@ import { TelaEvento } from '../pages/TelaEvento';
 import TelaEquipes from '../pages/TelaEquipes';
 import { TelaCadastrarEvento } from '../pages/TelaCadastroEvento';
 import { TelaTDP } from '../pages/TelaTDP';
+import { TelaInscricaoEvento } from '../pages/TelaInscricaoEvento';
 
 const routes = [
   {
@@ -42,6 +43,14 @@ const routes = [
     path: '/tela-evento',
     element: <TelaEvento />
   },
+  {
+    path: '/tela-evento/:id',
+    element: <TelaInscricaoEvento />
+  },
+  // {
+  //   path: '/tela-organizacao-evento',
+  //   element: <TelaInscricaoEvento />
+  // },
   {
     path: '/tela-equipes',
     element: <TelaEquipes />
