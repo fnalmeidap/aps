@@ -33,24 +33,29 @@ namespace Olimpo.Web
         #endregion
 
         #region Equipe
-        public void cadastrarEquipe()
+        public void cadastrarEquipe(Equipe equipe)
         {
-            throw new NotImplementedException();
+            equipeController.CreateEquipe(equipe);
         }
 
-        public Equipe buscarEquipe()
+        public Equipe buscarEquipe(int Id)
         {
-            throw new NotImplementedException();
+            return equipeController.GetEquipeById(Id);
         }
 
         public IEnumerable<Equipe> buscarTodasEquipes()
         {
-            throw new NotImplementedException();
+            return equipeController.GetEquipeList();
         }
 
-        public void cadastrarParticipanteEmEquipe()
+        public bool cadastrarParticipanteEmEquipe(ParticipanteEquipeRequest request)
         {
-            throw new NotImplementedException();
+            return equipeController.AddParticipanteToEquipe(request);
+        }
+
+        public bool removerEquipe(int Id)
+        {
+            return equipeController.DeleteEquipeById(Id);
         }
         #endregion
 

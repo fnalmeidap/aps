@@ -26,9 +26,11 @@ namespace Olimpo.Web
         {
             var listaDeParticipantes = _fachada.buscarTodosParticipantes();
 
-            if (listaDeParticipantes == null){
+            if(listaDeParticipantes == null)
+            {
                 return NotFound();
             }
+            
             return Ok(listaDeParticipantes);
         }
 
@@ -36,7 +38,7 @@ namespace Olimpo.Web
         [Route("api/participante/{id}")]
         public IActionResult GetParticipanteById(int Id)
         {
-            if (Id == null || Id < 0)
+            if(Id == null || Id < 0)
             {
                 return BadRequest("Invalid data.");
             }
@@ -54,7 +56,7 @@ namespace Olimpo.Web
         [Route("api/participante")]
         public IActionResult CreateParticipante([FromBody] Participante participante)
         {
-            if (participante == null)
+            if(participante == null)
             {
                 return BadRequest("Invalid data.");
             }
@@ -74,7 +76,7 @@ namespace Olimpo.Web
             }
 
             var isDeleted = _fachada.removerParticipante(id);
-            if (!isDeleted)
+            if(!isDeleted)
             {
                 return NotFound(id);
             }
@@ -88,15 +90,32 @@ namespace Olimpo.Web
         [Route("api/equipe")]
         public IActionResult GetEquipeList()
         {
-            return Ok();
+            var listaDeEquipes = _fachada.buscarTodasEquipes();
+
+            if(listaDeEquipes == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(listaDeEquipes);
         }
 
         [HttpGet]
         [Route("api/equipe/{id}")]
         public IActionResult GetEquipeById(int id)
         {   
-            Console.WriteLine(id);
-            return Ok();
+            if(id == null || id < 0)
+            {
+                return NotFound();
+            }
+            
+            var equipe = _fachada.buscarEquipe(id);
+            if(equipe == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(equipe);
         }
 
         [HttpPost]
@@ -108,15 +127,26 @@ namespace Olimpo.Web
                 return BadRequest("Invalid data.");
             }
 
-            return Ok();
+            _fachada.cadastrarEquipe(equipe);
+
+            return StatusCode(StatusCodes.Status201Created, equipe);
         }
 
         [HttpDelete]
         [Route("api/equipe/{id}")]
         public IActionResult DeleteEquipeById(int id)
         {
+            if(id == null || id < 0)
+            {
+                return BadRequest("Invalid Id");
+            }
 
-            Console.WriteLine(id);
+            var isDeleted = _fachada.removerEquipe(id);
+            if(!isDeleted)
+            {
+                return NotFound(id);
+            }
+
             return NoContent();
         }
 
@@ -125,7 +155,18 @@ namespace Olimpo.Web
         public IActionResult AddParticipanteToEquipe([FromBody] ParticipanteEquipeRequest participanteEquipeRequest)
         {
 
-            return NoContent();
+            if(participanteEquipeRequest == null)
+            {
+                return BadRequest("Invalid request");
+            }
+
+            var isAdicionado = _fachada.cadastrarParticipanteEmEquipe(participanteEquipeRequest);
+            if(!isAdicionado)
+            {
+                return NoContent();
+            }
+
+            return StatusCode(StatusCodes.Status201Created, participanteEquipeRequest);
         }
         #endregion
 
