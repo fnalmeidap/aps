@@ -154,7 +154,6 @@ namespace Olimpo.Web
         [Route("api/equipe")]
         public IActionResult AddParticipanteToEquipe([FromBody] ParticipanteEquipeRequest participanteEquipeRequest)
         {
-
             if(participanteEquipeRequest == null)
             {
                 return BadRequest("Invalid request");
@@ -175,16 +174,31 @@ namespace Olimpo.Web
         [Route("api/evento")]
         public IActionResult GetEventosList()
         {
-            return Ok();
+            var listaDeEventos = _fachada.buscarTodosEventos();
+            if(listaDeEventos == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(listaDeEventos);
         }
 
         [HttpGet]
         [Route("api/evento/{id}")]
-        public ActionResult<Evento> GetEventoById(int id)
+        public IActionResult GetEventoById(int id)
         {
-            Console.WriteLine(id);
+            if(id == null || id < 0)
+            {
+                return NotFound();
+            }
+            
+            var evento = _fachada.buscarEvento(id);
+            if(evento == null)
+            {
+                return NotFound();
+            }
 
-            return Ok();
+            return Ok(evento);
         }
 
         [HttpPost]
@@ -196,14 +210,25 @@ namespace Olimpo.Web
                 return BadRequest("Invalid data.");
             }
 
-            return Ok();
+            _fachada.cadastrarEvento(evento);
+
+            return StatusCode(StatusCodes.Status201Created, evento);
         }
 
         [HttpDelete]
         [Route("api/evento/{id}")]
         public IActionResult DeleteEventoById(int id)
         {
-            Console.WriteLine(id);
+            if(id == null || id < 0)
+            {
+                return BadRequest("Invalid Id");
+            }
+
+            var isDeleted = _fachada.removerEvento(id);
+            if(!isDeleted)
+            {
+                return NotFound(id);
+            }
 
             return NoContent();
         }
@@ -212,8 +237,18 @@ namespace Olimpo.Web
         [Route("api/evento")]
         public IActionResult AddEquipeToEvento([FromBody] InscricaoEquipeRequest equipeData)
         {
+            if(equipeData == null)
+            {
+                return BadRequest("Invalid request");
+            }
 
-            return Ok();
+            var isAdicionado = _fachada.inscreverEquipeEvento(equipeData);
+            if(!isAdicionado)
+            {
+                return NoContent();
+            }
+
+            return StatusCode(StatusCodes.Status201Created, equipeData);
         }
         #endregion
 

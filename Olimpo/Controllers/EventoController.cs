@@ -35,14 +35,14 @@ public class EventoController
         cadastroEventos.Add(evento);
     }
 
-    public Evento? DeleteEventoById(int id)
+    public bool DeleteEventoById(int id)
     {
         var participante = cadastroEventos.FindById(id);
         if (participante != null)
         {
             cadastroEventos.Delete(participante);
         }
-        return participante;
+        return true;
     }
 
     public bool AddEquipeToEvento(InscricaoEquipeRequest inscricaoEquipeRequest)

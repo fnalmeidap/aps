@@ -60,24 +60,29 @@ namespace Olimpo.Web
         #endregion
 
         #region Evento
-        public void cadastrarEvento()
+        public void cadastrarEvento(Evento evento)
         {
-            throw new NotImplementedException();
+            eventoController.CreateEvento(evento);
         }
 
-        public Evento buscarEvento()
+        public Evento buscarEvento(int id)
         {
-            throw new NotImplementedException();
+            return eventoController.GetEventoById(id);
         }
 
         public IEnumerable<Evento> buscarTodosEventos()
         {
-            throw new NotImplementedException();
+            return eventoController.GetEventosList();
         }
 
-        public void inscreverEquipeEvento()
+        public bool inscreverEquipeEvento(InscricaoEquipeRequest request)
         {
-            throw new NotImplementedException();
+            return eventoController.AddEquipeToEvento(request);
+        }
+
+        public bool removerEvento(int Id)
+        {
+            return eventoController.DeleteEventoById(Id);
         }
         #endregion
     }
