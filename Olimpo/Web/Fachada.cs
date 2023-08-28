@@ -13,10 +13,15 @@ namespace Olimpo.Web
         #region Participante
         public void cadastrarParticipante()
         {
-            throw new NotImplementedException();
+            participanteController.;
         }
 
         public Participante buscarParticipante()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Participante> buscarTodosParticipantes()
         {
             throw new NotImplementedException();
         }
@@ -31,6 +36,11 @@ namespace Olimpo.Web
         public Equipe buscarEquipe()
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Equipe> buscarTodasEquipes()
+        {
+            throw new NotImplementedError();
         }
 
         public void cadastrarParticipanteEmEquipe()
@@ -48,6 +58,11 @@ namespace Olimpo.Web
         public Evento buscarEvento()
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Evento> buscarTodosEventos()
+        {
+            throw new NotImplementedError();
         }
 
         public void inscreverEquipeEvento()
