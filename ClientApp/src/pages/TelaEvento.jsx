@@ -55,7 +55,7 @@ export const TelaEvento = () => {
   }, []);
 
   useEffect(() => {
-    async function fetchEventos() {
+    async function fetchEquipes() {
       fetch("/api/Equipe", {
         method: "GET",
         headers: {
@@ -81,7 +81,7 @@ export const TelaEvento = () => {
           // alert("OPS, ALGO DEU ERRADO");
         });
     }
-    fetchEventos();
+    fetchEquipes();
   }, []);
 
   return (

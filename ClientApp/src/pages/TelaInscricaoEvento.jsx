@@ -18,6 +18,7 @@ export const TelaInscricaoEvento = () => {
   const { user } = useLogin();
   const [eventoSelecionado, setEventoSelecionado] = useState(null);
   const [categoriasSelecionadas, setCategoriasSelecionadas] = useState([]);
+  const [equipeId, setEquipeId] = useState(null)
   const { id } = useParams()
   const navigate = useNavigate()
 
@@ -60,6 +61,36 @@ export const TelaInscricaoEvento = () => {
     fetchEventos();
   }, []);
 
+  useEffect(() => {
+    async function fetchEquipes() {
+      fetch("/api/Equipe", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data, user);
+          if (data) {
+            data.forEach(equipe => {
+              const memberFound = equipe.members.find(member => member.id === user.participante.id)
+              if(memberFound){
+                setEquipeId(equipe.id)
+              }
+            })
+          } else {
+            // Show an error message
+            alert(data.error);
+          }
+        })
+        .catch(() => {
+          // alert("OPS, ALGO DEU ERRADO");
+        });
+    }
+    fetchEquipes();
+  }, []);
+
   console.log(categoriasSelecionadas);
 
   const handleInscricaoClick = async (e) => {
@@ -71,7 +102,7 @@ export const TelaInscricaoEvento = () => {
           "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
         },
         body: JSON.stringify({
-          EquipeId: user.equipe.id,
+          EquipeId: equipeId,
           EventoId: eventoSelecionado.id,
           Categorias: categoriasSelecionadas,
         }),
