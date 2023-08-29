@@ -5,7 +5,8 @@ using Olimpo.Model;
 namespace Olimpo.Controllers;
 public class ParticipanteController
 {
-    private static IRepository<Participante> cadastroParticipantes = ParticipantesRepository.GetInstance();
+    private static IRepositoryFactory _repositoryFactory = new RepositoryFactory();
+    private IRepository<Participante> cadastroParticipantes = _repositoryFactory.CreateParticipanteMemoryRepository();
     private static int generateId = 0;
 
     public IEnumerable<Participante> GetParticipanteList()
