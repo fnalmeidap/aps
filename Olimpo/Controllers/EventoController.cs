@@ -13,8 +13,9 @@ public class InscricaoEquipeRequest
 
 public class EventoController
 {
-    private static IRepository<Evento> cadastroEventos = EventosRepository.GetInstance();
-    private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
+    private static IRepositoryFactory _repositoryFactory = new RepositoryFactory();
+    private static IRepository<Evento> cadastroEventos = _repositoryFactory.CreateEventoMemoryRepository();
+    private static IRepository<Equipe> cadastroEquipes = _repositoryFactory.CreateEquipeMemoryRepository();
     private static int generateId = 0;
 
     public IEnumerable<Evento> GetEventosList()
@@ -35,14 +36,14 @@ public class EventoController
         cadastroEventos.Add(evento);
     }
 
-    public Evento? DeleteEventoById(int id)
+    public bool DeleteEventoById(int id)
     {
         var participante = cadastroEventos.FindById(id);
         if (participante != null)
         {
             cadastroEventos.Delete(participante);
         }
-        return participante;
+        return true;
     }
 
     public bool AddEquipeToEvento(InscricaoEquipeRequest inscricaoEquipeRequest)

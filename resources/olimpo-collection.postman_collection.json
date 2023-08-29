@@ -4,7 +4,7 @@
 		"name": "olimpo-collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "8052778",
-		"_collection_link": "https://crimson-satellite-592047.postman.co/workspace/olimpo~a62d11c9-e90a-47df-9403-e6e3277b2494/collection/8052778-cc853877-6c2c-426a-bdc8-b389ef4a1214?action=share&creator=8052778&source=collection_link"
+		"_collection_link": "https://crimson-satellite-592047.postman.co/workspace/olimpo~a62d11c9-e90a-47df-9403-e6e3277b2494/collection/8052778-cc853877-6c2c-426a-bdc8-b389ef4a1214?action=share&source=collection_link&creator=8052778"
 	},
 	"item": [
 		{
@@ -28,7 +28,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5211/api/Participante",
+							"raw": "http://localhost:5211/api/participante",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -36,7 +36,7 @@
 							"port": "5211",
 							"path": [
 								"api",
-								"Participante"
+								"participante"
 							]
 						}
 					},
@@ -48,7 +48,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5211/api/Participante/0",
+							"raw": "http://localhost:5211/api/participante/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -56,7 +56,7 @@
 							"port": "5211",
 							"path": [
 								"api",
-								"Participante",
+								"participante",
 								"0"
 							]
 						}
@@ -70,7 +70,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"Id\" : 199,\n    \"TokenId\" : \"thisisahashedtokenid\",\n    \"Name\" : \"Else\",\n    \"Email\": \"something@mail.com\",\n    \"University\": \"something university of else country\"\n}",
+							"raw": "{\n    \"TokenId\" : \"in the team\",\n    \"Name\" : \"Something\",\n    \"Email\": \"something@mail.com\",\n    \"University\": \"something university of else country\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -78,7 +78,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5211/api/Participante",
+							"raw": "http://localhost:5211/api/participante",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -86,36 +86,7 @@
 							"port": "5211",
 							"path": [
 								"api",
-								"Participante"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "AddParticipanteToEquipe",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"EquipeId\": 199,\n    \"ParticipanteId\": 199\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:5211/api/Equipe",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5211",
-							"path": [
-								"api",
-								"Equipe"
+								"participante"
 							]
 						}
 					},
@@ -127,7 +98,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5211/api/Participante/0",
+							"raw": "http://localhost:5211/api/participante/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -135,7 +106,7 @@
 							"port": "5211",
 							"path": [
 								"api",
-								"Participante",
+								"participante",
 								"0"
 							]
 						}
@@ -165,7 +136,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5211/api/Equipe",
+							"raw": "http://localhost:5211/api/equipe",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -173,7 +144,7 @@
 							"port": "5211",
 							"path": [
 								"api",
-								"Equipe"
+								"equipe"
 							]
 						}
 					},
@@ -189,7 +160,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"Id\" : 10\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -197,7 +168,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5211/api/Equipe/199",
+							"raw": "http://localhost:5211/api/equipe/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -205,8 +176,8 @@
 							"port": "5211",
 							"path": [
 								"api",
-								"Equipe",
-								"199"
+								"equipe",
+								"0"
 							]
 						}
 					},
@@ -219,7 +190,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"Id\" : 199,\n    \"Name\" : \"RoboCIn199\",\n    \"University\" : \"UFPE\",\n    \"Members\" : [{\n        \"Id\" : 199,\n        \"TokenId\" : \"thisisahashedtokenid\",\n        \"Name\" : \"Else\",\n        \"Email\": \"something@mail.com\",\n        \"University\": \"something university of else country\"}\n    ]\n}",
+							"raw": "{\n    \"Name\" : \"RoboCInComParticipanteValido\",\n    \"University\" : \"UFPE\",\n    \"Members\" : [\n        {\n            \"tokenId\": \"thisisahashedtokenid\",\n            \"name\": \"Else\",\n            \"email\": \"something@mail.com\",\n            \"university\": \"something university of else country\",\n            \"birthDay\": \"0001-01-01T00:00:00\",\n            \"id\": 0\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -227,7 +198,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5211/api/Equipe",
+							"raw": "http://localhost:5211/api/equipe",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -235,7 +206,36 @@
 							"port": "5211",
 							"path": [
 								"api",
-								"Equipe"
+								"equipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddParticipanteToEquipe",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"EquipeId\": 0,\n    \"ParticipanteId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5211/api/equipe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5211",
+							"path": [
+								"api",
+								"equipe"
 							]
 						}
 					},
@@ -247,7 +247,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5211/api/Equipe/0",
+							"raw": "http://localhost:5211/api/equipe/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -255,7 +255,7 @@
 							"port": "5211",
 							"path": [
 								"api",
-								"Equipe",
+								"equipe",
 								"0"
 							]
 						}
@@ -273,7 +273,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5211/api/Eventos",
+							"raw": "http://localhost:5211/api/evento",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -281,7 +281,7 @@
 							"port": "5211",
 							"path": [
 								"api",
-								"Eventos"
+								"evento"
 							]
 						}
 					},
@@ -293,7 +293,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5211/api/Eventos/0",
+							"raw": "http://localhost:5211/api/evento/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -301,7 +301,7 @@
 							"port": "5211",
 							"path": [
 								"api",
-								"Eventos",
+								"evento",
 								"0"
 							]
 						}
@@ -315,7 +315,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"EventoId\" : 0,\n    \"EquipeId\" : 199,\n    \"Categorias\" : [1,2]\n}",
+							"raw": "{\n    \"EventoId\" : 0,\n    \"EquipeId\" : 0,\n    \"Categorias\" : [1,2]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -323,7 +323,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5211/api/Eventos",
+							"raw": "http://localhost:5211/api/evento",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -331,7 +331,7 @@
 							"port": "5211",
 							"path": [
 								"api",
-								"Eventos"
+								"evento"
 							]
 						}
 					},
@@ -344,7 +344,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"Name\": \"MyEvent2\",\n    \"Endereco\" : { \n        \"Cidade\" : \"Recife\",\n        \"Estado\" : \"Pernambuco\",\n        \"Pais\" : \"Brasil\"\n    },\n    \"StartTime\" : \"2023-07-22T00:00:00Z\",\n    \"FinalTime\" : \"2023-07-27T00:00:00Z\",\n    \"Categorias\" : [1,2],\n    \"Equipes\":[]\n}",
+							"raw": "{\n    \"Name\": \"MyEvent2\",\n    \"Endereco\" : { \n        \"Cidade\" : \"Recife\",\n        \"Estado\" : \"Pernambuco\",\n        \"Pais\" : \"Brasil\"\n    },\n    \"StartTime\" : \"2023-07-22T00:00:00Z\",\n    \"FinalTime\" : \"2023-07-27T00:00:00Z\",\n    \"Categorias\" : [1,2]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -352,7 +352,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5211/api/Eventos",
+							"raw": "http://localhost:5211/api/evento",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -360,7 +360,7 @@
 							"port": "5211",
 							"path": [
 								"api",
-								"Eventos"
+								"evento"
 							]
 						}
 					},
@@ -372,7 +372,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5211/api/Eventos/0",
+							"raw": "http://localhost:5211/api/evento/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -380,7 +380,7 @@
 							"port": "5211",
 							"path": [
 								"api",
-								"Eventos",
+								"evento",
 								"0"
 							]
 						}
@@ -527,11 +527,23 @@
 			"item": [
 				{
 					"name": "isHashedUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:5211/api/Login/thisisahashedtokenid",
+							"raw": "http://localhost:5211/api/login",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -539,8 +551,7 @@
 							"port": "5211",
 							"path": [
 								"api",
-								"Login",
-								"thisisahashedtokenid"
+								"login"
 							]
 						}
 					},

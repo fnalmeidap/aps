@@ -1,58 +1,89 @@
 using Olimpo.Controllers;
 using Olimpo.Model;
+using Olimpo.Repository;
 
 namespace Olimpo.Web
 {
     class Fachada
     {
-        private ParticipanteController participanteController;
-        private EquipeController equipeController;
-        private EventoController eventoController;
-        private TdpController tdpController;
+        private ParticipanteController participanteController = new ParticipanteController();
+        private EquipeController equipeController = new EquipeController();
+        private EventoController eventoController = new EventoController();
+        private TdpController tdpController = new TdpController();
 
         #region Participante
-        public void cadastrarParticipante()
+        public void cadastrarParticipante(Participante participante)
         {
-            throw new NotImplementedException();
+            participanteController.CreateParticipante(participante);
         }
 
-        public Participante buscarParticipante()
+        public Participante buscarParticipante(int Id)
         {
-            throw new NotImplementedException();
+            return participanteController.GetParticipanteById(Id);
+        }
+
+        public IEnumerable<Participante> buscarTodosParticipantes()
+        {
+            return participanteController.GetParticipanteList();
+        }
+
+        public bool removerParticipante(int Id)
+        {
+            return participanteController.DeleteParticipanteById(Id);
         }
         #endregion
 
         #region Equipe
-        public void cadastrarEquipe()
+        public void cadastrarEquipe(Equipe equipe)
         {
-            throw new NotImplementedException();
+            equipeController.CreateEquipe(equipe);
         }
 
-        public Equipe buscarEquipe()
+        public Equipe buscarEquipe(int Id)
         {
-            throw new NotImplementedException();
+            return equipeController.GetEquipeById(Id);
         }
 
-        public void cadastrarParticipanteEmEquipe()
+        public IEnumerable<Equipe> buscarTodasEquipes()
         {
-            throw new NotImplementedException();
+            return equipeController.GetEquipeList();
+        }
+
+        public bool cadastrarParticipanteEmEquipe(ParticipanteEquipeRequest request)
+        {
+            return equipeController.AddParticipanteToEquipe(request);
+        }
+
+        public bool removerEquipe(int Id)
+        {
+            return equipeController.DeleteEquipeById(Id);
         }
         #endregion
 
         #region Evento
-        public void cadastrarEvento()
+        public void cadastrarEvento(Evento evento)
         {
-            throw new NotImplementedException();
+            eventoController.CreateEvento(evento);
         }
 
-        public Evento buscarEvento()
+        public Evento buscarEvento(int id)
         {
-            throw new NotImplementedException();
+            return eventoController.GetEventoById(id);
         }
 
-        public void inscreverEquipeEvento()
+        public IEnumerable<Evento> buscarTodosEventos()
         {
-            throw new NotImplementedException();
+            return eventoController.GetEventosList();
+        }
+
+        public bool inscreverEquipeEvento(InscricaoEquipeRequest request)
+        {
+            return eventoController.AddEquipeToEvento(request);
+        }
+
+        public bool removerEvento(int Id)
+        {
+            return eventoController.DeleteEventoById(Id);
         }
         #endregion
     }
