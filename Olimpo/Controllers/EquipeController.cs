@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Olimpo.Models;
+using Olimpo.Model;
 using Olimpo.Repository;
 
 namespace Olimpo.Controllers;
@@ -12,8 +12,9 @@ public class ParticipanteEquipeRequest
 
 public class EquipeController 
 {
-    private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
-    private static IRepository<Participante> cadastroParticipantes = ParticipantesRepository.GetInstance();
+    private static IRepositoryFactory _repositoryFactory = new RepositoryFactory();
+    private static IRepository<Equipe> cadastroEquipes = _repositoryFactory.CreateEquipeMemoryRepository();
+    private static IRepository<Participante> cadastroParticipantes = _repositoryFactory.CreateParticipanteMemoryRepository();
 
     private static int generateId = 0;
 

@@ -1,8 +1,7 @@
-﻿using Olimpo.Utils;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Olimpo.Models;
+namespace Olimpo.Model;
 
 public enum CategoriasType {
     NONE,
