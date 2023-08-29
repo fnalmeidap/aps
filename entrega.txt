@@ -1,5 +1,5 @@
 Especificação do Modelo de Negócio:
-    Modelo de Informação do Negócio
+    (ok) Modelo de Informação do Negócio
 
     (ok) Modelo Navegacional
 
@@ -10,11 +10,11 @@ Análise de Serviços:
 
     (ok) Modelo de Interação dos Serviços (pelo menos 4 serviços)
 
-    Modelo de Informação Refinado
+    (ok) Modelo de Informação Refinado
 
     (ok) Diagrama de Componentes dos Serviços (nível de análise)
 
 Projetar Serviços:
     (ok) Diagrama de Componentes do Sistema (com padrões arquiteturais)
 
-    Projeto detalhado de, pelo menos, 2 telas (Front-end) e 2 componentes Back-end 	(seguindo a atividade de Projetar Subsistema do RUP); O projeto deve explorar o 	máximo possível o uso de padrões de projeto e arquiteturais
+    (ok) Projeto detalhado de, pelo menos, 2 telas (Front-end) e 2 componentes Back-end 	(seguindo a atividade de Projetar Subsistema do RUP); O projeto deve explorar o 	máximo possível o uso de padrões de projeto e arquiteturais
