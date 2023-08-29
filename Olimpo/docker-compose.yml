@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  backend-app:
+    image: "olimpo-backend-app"
+    build: .
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+    restart: unless-stopped
+
+
+networks:
+  app-network:
+    driver: bridge
+  
