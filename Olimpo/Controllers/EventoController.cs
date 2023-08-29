@@ -13,8 +13,9 @@ public class InscricaoEquipeRequest
 
 public class EventoController
 {
-    private static IRepository<Evento> cadastroEventos = EventosRepository.GetInstance();
-    private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
+    private static IRepositoryFactory _repositoryFactory = new RepositoryFactory();
+    private static IRepository<Evento> cadastroEventos = _repositoryFactory.CreateEventoMemoryRepository();
+    private static IRepository<Equipe> cadastroEquipes = _repositoryFactory.CreateEquipeMemoryRepository();
     private static int generateId = 0;
 
     public IEnumerable<Evento> GetEventosList()

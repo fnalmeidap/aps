@@ -40,7 +40,7 @@ namespace Olimpo.Controllers
                         equipeDoParticipante = equipe; break;
                     }
                 }
-            }   
+            }
 
             return new LoginResponse(participante, equipeDoParticipante);
         }
