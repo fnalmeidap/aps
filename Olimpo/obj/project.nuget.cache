@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "zMfHkNpuoWeLrXRC6yiaNqSbWYRBC4Uj2jzwoQFa3Ujnj+JOrOYl5TL32U4snyliqhF8ZBzsttKWBjDWqHZ7Lg==",
+  "dgSpecHash": "+hU53UcpgLngLkNpEx+c3akQhwtScp+1Fl2Qkm7J2wKrWDV1mfSFjRV9eh1FXDdNYNeEkYPl2cfrVRrHOotD1w==",
   "success": true,
   "projectFilePath": "/home/fnap/github/aps-olimpo/Olimpo/Olimpo.csproj",
   "expectedPackageFiles": [
+    "/home/fnap/.nuget/packages/microsoft.aspnetcore.authentication.google/7.0.10/microsoft.aspnetcore.authentication.google.7.0.10.nupkg.sha512",
     "/home/fnap/.nuget/packages/microsoft.aspnetcore.openapi/7.0.9/microsoft.aspnetcore.openapi.7.0.9.nupkg.sha512",
     "/home/fnap/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "/home/fnap/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
