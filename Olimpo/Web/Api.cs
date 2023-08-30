@@ -65,9 +65,13 @@ namespace Olimpo.Web
                 return BadRequest("Invalid data.");
             }
 
-            _fachada.cadastrarParticipante(request);
+            var isCreated = _fachada.cadastrarParticipante(request);
+            if(isCreated)
+            {
+                return StatusCode(StatusCodes.Status201Created, request);
+            }
 
-            return StatusCode(StatusCodes.Status201Created, request);
+            return NoContent();
         }
 
         [HttpDelete]
