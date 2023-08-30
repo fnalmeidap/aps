@@ -15,6 +15,10 @@ public class EquipeController
     private static IRepositoryFactory _repositoryFactory = new RepositoryFactory();
     private static IRepository<Equipe> cadastroEquipes = _repositoryFactory.CreateEquipeMemoryRepository();
     //private static IRepository<Participante> cadastroParticipantes = _repositoryFactory.CreateParticipanteMemoryRepository();
+    private static HttpClient sharedClient = new()
+    {
+        BaseAddress = new Uri("http://localhost:5211/api/participante"),
+    };
 
     private static int generateId = 0;
 
@@ -37,9 +41,9 @@ public class EquipeController
         List<Participante> validMembers = new List<Participante>();
         /*
         foreach (var member in equipe.Members) {
-            var participante = cadastroParticipantes.FindById(member.Id);
+            var participante = await sharedClient.GetAsync("/"+member.Id);
             if (participante != null) {
-                validMembers.Add(participante);
+                Console.WriteLine(participante);
             }
         }*/
 

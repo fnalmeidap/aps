@@ -25,11 +25,35 @@ public class TdpController
         return equipeTdps;
     }
 
+    public bool atualizarTDP(TDP tdp)
+    {
+        var oldTdp = cadastroTdps.FindById(tdp.Id);
+        if (oldTdp == null)
+        {
+            return false;
+        }
+        cadastroTdps.Update(tdp);
+        return true;
+    }
+
     public TDP? GetTDPByEquipeCategoria(int equipeId, CategoriasType categoria)
     {
         var equipeTdps = cadastroTdps.FindByPredicate(t => 
             t.EquipeId == equipeId &&
             t.Categoria == categoria);
+
+        return equipeTdps;
+    }
+
+    public IEnumerable<TDP> buscarTDPsEmEvento(int eventoId)
+    {
+        return cadastroTdps.List.Where(t => t.EventoId == eventoId);
+    }
+
+
+    public TDP? GetTDPById(int id)
+    {
+        var equipeTdps = cadastroTdps.FindById(id);
 
         return equipeTdps;
     }

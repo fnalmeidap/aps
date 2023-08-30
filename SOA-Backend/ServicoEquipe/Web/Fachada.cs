@@ -13,7 +13,7 @@ namespace Olimpo.Web
             equipeController.CreateEquipe(equipe);
         }
 
-        public Equipe buscarEquipe(int Id)
+        public Equipe? buscarEquipe(int Id)
         {
             return equipeController.GetEquipeById(Id);
         }

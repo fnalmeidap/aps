@@ -15,24 +15,21 @@ namespace Olimpo.Web
         [Route("api/tdp")]
         public IActionResult GetTDPList()
         {
-            return Ok();
+            return Ok(_fachada.listarTDPs());
         }
 
         [HttpGet]
         [Route("api/tdp/{equipeId}")]
         public IActionResult GetTDPByEquipe(int equipeId)
         {
-            Console.WriteLine(equipeId);
-
-            return Ok();
+            return Ok(_fachada.listarTDPByEquipe(equipeId));
         }
 
         [HttpGet]
         [Route("api/tdp/{equipeId}/{categoria}")]
         public IActionResult GetTDPByEquipeCategoria(int equipeId, CategoriasType categoria)
         {
-            Console.WriteLine("equipeId: {0}\ncategoria: {1}", equipeId, categoria);
-            return Ok();
+            return Ok(_fachada.listarTDPByEquipeCategoria(equipeId, categoria));
         }
 
         //todo(fnap): fix route
@@ -40,6 +37,7 @@ namespace Olimpo.Web
         [Route("api/tdp")]
         public IActionResult CreateTdp([FromBody] TDP tdp)
         {
+            _fachada.cadastrarTDP(tdp);
             return Ok();
         }
 
@@ -47,8 +45,11 @@ namespace Olimpo.Web
         [Route("api/tdp/{equipeId}/{categoria}")]
         public IActionResult DeleteTdpById(int equipeId, CategoriasType categoria)
         {
-            Console.WriteLine("equipeId: {0}\ncategoria: {1}", equipeId, categoria);
-            return NoContent();
+            if (_fachada.deleteTDPByEquipeCategoria(equipeId, categoria))
+            {
+                return NoContent();
+            }
+            return NotFound();
         }
     }
 }
