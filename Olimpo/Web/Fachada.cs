@@ -12,7 +12,7 @@ namespace Olimpo.Web
         private TdpController tdpController = new TdpController();
 
         #region Login
-        public bool logarParticipante(string tokenId)
+        public Participante? logarParticipante(string tokenId)
         {
             return participanteController.Login(tokenId);
         }
