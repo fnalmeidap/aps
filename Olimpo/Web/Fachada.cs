@@ -12,9 +12,9 @@ namespace Olimpo.Web
         private TdpController tdpController = new TdpController();
 
         #region Participante
-        public void cadastrarParticipante(Participante participante)
-        {
-            participanteController.CreateParticipante(participante);
+        public void cadastrarParticipante(Participante request)
+        {   
+            participanteController.CreateParticipante(request);
         }
 
         public Participante buscarParticipante(int Id)

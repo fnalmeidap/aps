@@ -22,6 +22,10 @@ public class ParticipanteController
 
     public void CreateParticipante(Participante participante)
     {
+        var googleId = participante.GoogleId;
+        var tokenId = participante.TokenId;
+
+        //todo(fnap): checar no endpoint do google se este participante é válido
         participante.Id = generateId;
         generateId += 1;
 
