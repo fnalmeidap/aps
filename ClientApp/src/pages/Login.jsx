@@ -16,10 +16,6 @@ export function Login() {
         }
       });
 
-      if (!response.ok) {
-        throw new Error("Erro na requisição");
-      }
-
       const responseData = await response.json(); // Parse da resposta para JSON
       setUser(responseData)
       navigate('/tela-evento')

@@ -47,7 +47,7 @@ export default function TelaEquipes() {
         },
         body: JSON.stringify({
           EquipeId: Number(equipeSelecionada.id),
-          ParticipanteId: Number(user.participante.id)
+          ParticipanteId: Number(user.id)
         }),
       });
       setUser(p => ({...p, equipe: {id: equipeSelecionada.id}}))

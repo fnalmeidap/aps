@@ -67,7 +67,7 @@ export const TelaEvento = () => {
           console.log(data, user);
           if (data) {
             data.forEach(equipe => {
-              const memberFound = equipe.members.find(member => member.id === user.participante.id)
+              const memberFound = equipe.members.find(member => member.id === user.id)
               if(memberFound){
                 setTemEquipe(true)
               }
