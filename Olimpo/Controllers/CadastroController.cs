@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Olimpo.Models;
+using Olimpo.Model;
 using Olimpo.Repository;
 
 namespace Olimpo.Controllers
@@ -40,7 +40,7 @@ namespace Olimpo.Controllers
                         equipeDoParticipante = equipe; break;
                     }
                 }
-            }   
+            }
 
             return new LoginResponse(participante, equipeDoParticipante);
         }

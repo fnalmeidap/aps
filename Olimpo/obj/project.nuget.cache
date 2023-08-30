@@ -1,16 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "LpCZX6To3BjU11mOtrIVirzFAG0F7RZspP8hzD6tE3y5vgAqUZVFgS+44Xma7BGbvlPjFLRO7oT49vj9AYWKTg==",
+  "dgSpecHash": "tRPSHcGwkJFpsAAzrkoShIgD979UO5oyjhgNJQ4qZKndDDFq+vg6pb01U7SZLiQm5SchjgnNHxTGsBmF4ZXleQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\RieiR\\Downloads\\aps-olimpo\\Olimpo\\Olimpo.csproj",
+  "projectFilePath": "C:\\Users\\RieiR\\Documents\\aps-olimpo\\Olimpo\\Olimpo.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\RieiR\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.9\\microsoft.aspnetcore.openapi.7.0.9.nupkg.sha512",
-    "C:\\Users\\RieiR\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
-    "C:\\Users\\RieiR\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
-    "C:\\Users\\RieiR\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
-    "C:\\Users\\RieiR\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
-    "C:\\Users\\RieiR\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
-    "C:\\Users\\RieiR\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+    "/home/fnap/.nuget/packages/microsoft.aspnetcore.authentication.google/7.0.10/microsoft.aspnetcore.authentication.google.7.0.10.nupkg.sha512",
+    "/home/fnap/.nuget/packages/microsoft.aspnetcore.openapi/7.0.9/microsoft.aspnetcore.openapi.7.0.9.nupkg.sha512",
+    "/home/fnap/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/fnap/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/home/fnap/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/home/fnap/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/home/fnap/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/home/fnap/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/home/fnap/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
   ],
   "logs": []
 }
