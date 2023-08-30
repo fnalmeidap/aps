@@ -9,24 +9,20 @@ export function Login() {
   const navigate = useNavigate()
   async function onSuccess(data) {
     try {
-      const response = await fetch(`/api/Login/${data.googleId}`, {
+      const response = await fetch(`/api/login/${data.tokenId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
         }
       });
 
-      if (!response.ok) {
-        throw new Error("Erro na requisição");
-      }
-
       const responseData = await response.json(); // Parse da resposta para JSON
       setUser(responseData)
       navigate('/tela-evento')
     } catch (error) {
       console.error("Erro na requisição POST:", error);
-      alert("OPS, ALGO DEU ERRADO");
-      navigate('/cadastro')
+      alert("OPS, parece que você ainda não possui conta!");
+      navigate('/')
     }
   }
 
@@ -47,7 +43,7 @@ export function Login() {
           cookiePolicy={'single_host_origin'}
         />
          <p>Ainda não possui conta?</p>
-         <Link to={'/cadastro'}>
+         <Link to={'/'}>
           Cadastro
         </Link>
       </Col>

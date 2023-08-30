@@ -12,28 +12,29 @@ import { TelaEvento } from '../pages/TelaEvento';
 import TelaEquipes from '../pages/TelaEquipes';
 import { TelaCadastrarEvento } from '../pages/TelaCadastroEvento';
 import { TelaTDP } from '../pages/TelaTDP';
+import { TelaInscricaoEvento } from '../pages/TelaInscricaoEvento';
 
 const routes = [
   {
     index: true,
-    element: <Login />
-  },
-  {
-    path: '/home',
-    element: <Home />
-  },
-  {
-    path: '/cadastro',
     element: <TelaCadastro />
   },
   {
-    path: '/counter',
-    element: <Counter />
+    path: '/login',
+    element: <Login />
   },
-  {
-    path: '/fetch-data',
-    element: <FetchData />
-  },
+  // {
+  //   path: '/home',
+  //   element: <Home />
+  // },
+  // {
+  //   path: '/counter',
+  //   element: <Counter />
+  // },
+  // {
+  //   path: '/fetch-data',
+  //   element: <FetchData />
+  // },
   {
     path: '/tela-equipe',
     element: <TelaEquipe />
@@ -42,6 +43,14 @@ const routes = [
     path: '/tela-evento',
     element: <TelaEvento />
   },
+  {
+    path: '/tela-evento/:id',
+    element: <TelaInscricaoEvento />
+  },
+  // {
+  //   path: '/tela-organizacao-evento',
+  //   element: <TelaInscricaoEvento />
+  // },
   {
     path: '/tela-equipes',
     element: <TelaEquipes />

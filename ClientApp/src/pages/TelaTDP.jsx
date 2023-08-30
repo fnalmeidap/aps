@@ -13,7 +13,7 @@ export const TelaTDP = () => {
 
   useEffect(() => {
     async function fetchEventos() {
-      fetch("/api/Eventos", {
+      fetch("/api/evento", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export const TelaTDP = () => {
     if (arquivo) {
       console.log("Arquivo selecionado:", arquivo);
       try {
-        await fetch("/api/Tdp", {
+        await fetch("/api/tdp", {
           method: "POST",
           headers: {
             "Content-Type": "application/json", // Define o tipo de conteúdo como JSON

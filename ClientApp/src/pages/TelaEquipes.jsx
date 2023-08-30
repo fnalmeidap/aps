@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Badge, Button, Col, Collapse, Container, ListGroup, ListGroupItem, Spinner } from 'reactstrap';
 import { useLogin } from '../hooks/Login';
+import { useNavigate } from 'react-router-dom';
 
 export default function TelaEquipes() {
   const { user, setUser } = useLogin()
   const [equipes, setEquipes] = useState(null);
   const [equipeSelecionada, setEquipeSelecionada] = useState(null);
+  const navigate = useNavigate()
 
   const handleEquipeSelect = (equipe) => {
     setEquipeSelecionada(equipe);
@@ -13,7 +15,7 @@ export default function TelaEquipes() {
 
   useEffect(() => {
     async function fetchEquipes() {
-      fetch("/api/Equipe", {
+      fetch("/api/equipe", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -38,18 +40,19 @@ export default function TelaEquipes() {
 
   const handleInscricaoClick = async () => {
     try {
-      await fetch("/api/Equipe", {
+      await fetch("/api/equipe", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
         },
         body: JSON.stringify({
           EquipeId: Number(equipeSelecionada.id),
-          ParticipanteId: Number(user.participante.id)
+          ParticipanteId: Number(user.id)
         }),
       });
       setUser(p => ({...p, equipe: {id: equipeSelecionada.id}}))
       alert("Inscrito");
+      navigate('/tela-evento')
     } catch (error) {
       console.error("Erro na requisição POST:", error);
       // alert("OPS, ALGO DEU ERRADO");

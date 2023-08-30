@@ -12,26 +12,33 @@ import {
 import { categoriesEnum } from "../utils/constants";
 import { formatAddress, formatDate } from "../utils/formatters";
 import { useLogin } from "../hooks/Login";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export const TelaEvento = () => {
+export const TelaInscricaoEvento = () => {
   const { user } = useLogin();
-  const [listaDeEventos, setlistaDeEventos] = useState(null);
   const [eventoSelecionado, setEventoSelecionado] = useState(null);
-  const [temEquipe, setTemEquipe] = useState(false);
+  const [categoriasSelecionadas, setCategoriasSelecionadas] = useState([]);
+  const [equipeId, setEquipeId] = useState(null)
+  const { id } = useParams()
   const navigate = useNavigate()
 
   const handleEventoSelect = (evento) => {
     setEventoSelecionado(evento);
+    setCategoriasSelecionadas([]); // Limpar a lista de categorias selecionados ao selecionar um novo evento
   };
 
-  const handleInscreverSeEvento = () => {
-    navigate('/tela-evento/' + eventoSelecionado.id)
-  }
+  const handleCategorySelect = (category) => {
+    // Toggle da seleção do participante
+    setCategoriasSelecionadas((prevState) =>
+      prevState.includes(category)
+        ? prevState.filter((item) => item !== category)
+        : [...prevState, category]
+    );
+  };
 
   useEffect(() => {
     async function fetchEventos() {
-      fetch("/api/evento", {
+      fetch("/api/evento/" + id, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -41,14 +48,14 @@ export const TelaEvento = () => {
         .then((data) => {
           console.log(data);
           if (data) {
-            setlistaDeEventos(data);
+            setEventoSelecionado(data);
           } else {
             // Show an error message
             alert(data.error);
           }
         })
         .catch(() => {
-          alert("OPS, ALGO DEU ERRADO AO PUXAR EQUIPES");
+          alert("OPS, ALGO DEU ERRADO");
         });
     }
     fetchEventos();
@@ -69,7 +76,7 @@ export const TelaEvento = () => {
             data.forEach(equipe => {
               const memberFound = equipe.members.find(member => member.id === user.id)
               if(memberFound){
-                setTemEquipe(true)
+                setEquipeId(equipe.id)
               }
             })
           } else {
@@ -84,6 +91,30 @@ export const TelaEvento = () => {
     fetchEquipes();
   }, []);
 
+  console.log(categoriasSelecionadas);
+
+  const handleInscricaoClick = async (e) => {
+    e.preventDefault();
+    try {
+      await fetch("/api/evento", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
+        },
+        body: JSON.stringify({
+          EquipeId: equipeId,
+          EventoId: eventoSelecionado.id,
+          Categorias: categoriasSelecionadas,
+        }),
+      });
+      alert("Equipe inscrita");
+      navigate('/tela-organizacao-evento')
+    } catch (error) {
+      console.error("Erro na requisição PATCH:", error);
+      alert("OPS, ALGO DEU ERRADO");
+    }
+  };
+
   return (
     <Container>
       <Col
@@ -91,15 +122,13 @@ export const TelaEvento = () => {
           size: 12,
         }}
       >
-        <h2>Eventos de Robótica</h2>
-        {!listaDeEventos ? (
+        <h2>Inscrição em Evento</h2>
+        {!eventoSelecionado ? (
           <Spinner>Loading...</Spinner>
-        ) : listaDeEventos.length === 0 ? (
-          <p>NÃO EXISTEM EVENTOS DISPONÍVEIS</p>
         ) : (
           <>
             <ListGroup>
-              {listaDeEventos.map((evento) => (
+              {[eventoSelecionado].map((evento) => (
                 <ListGroupItem
                   key={evento.id}
                   active={eventoSelecionado === evento}
@@ -128,28 +157,38 @@ export const TelaEvento = () => {
                 </ListGroupItem>
               ))}
             </ListGroup>
+            <Collapse isOpen={!!eventoSelecionado} className="mt-3">
+              <div className="mt-4">
+                <h3>Categorias</h3>
+                <ListGroup horizontal>
+                  {eventoSelecionado?.categorias.map((categoria) => (
+                    <ListGroupItem
+                      key={categoria}
+                      tag="div"
+                      onClick={() => handleCategorySelect(categoria)}
+                      active={categoriasSelecionadas.includes(categoria)}
+                      action
+                    >
+                      <Badge color="secondary" style={{ marginLeft: 8 }}>
+                        {categoriesEnum[categoria]}
+                      </Badge>
+                    </ListGroupItem>
+                  ))}
+                </ListGroup>
+              </div>
+            </Collapse>
             <Collapse
-              isOpen={!!eventoSelecionado}
+              isOpen={!!eventoSelecionado && categoriasSelecionadas.length > 0}
               className="mt-3"
             >
-              <Container className='d-flex gap-2'>
-                <Button
-                  color="primary"
-                  disabled={!eventoSelecionado}
-                  onClick={() => null}
-                  className="mt-3"
-                >
-                  Ver detalhes do evento
-                </Button>
-                <Button
-                  color="primary"
-                  disabled={!eventoSelecionado || !temEquipe}
-                  onClick={handleInscreverSeEvento}
-                  className="mt-3"
-                >
-                  Inscrever-se
-                </Button>
-              </Container>
+              <Button
+                color="primary"
+                disabled={!eventoSelecionado || !categoriasSelecionadas.length}
+                onClick={handleInscricaoClick}
+                className="mt-3"
+              >
+                Inscrever-se
+              </Button>
             </Collapse>
           </>
         )}
