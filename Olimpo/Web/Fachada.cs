@@ -93,5 +93,32 @@ namespace Olimpo.Web
             return eventoController.DeleteEventoById(Id);
         }
         #endregion
+
+        #region Tdp
+        public IEnumerable<TDP> buscarTodosTdps()
+        {
+            return tdpController.GetTDPList();
+        }
+
+        public TDP? buscarTdpByEquipe(int equipeId)
+        {
+            return tdpController.GetTDPByEquipe(equipeId);
+        }
+
+        public TDP? buscarTdpByEquipeCategoria(int equipeId, CategoriasType categoria)
+        {
+            return tdpController.GetTDPByEquipeCategoria(equipeId, categoria);
+        }
+
+        public bool cadastrarTdp(TDP tdp)
+        {
+            return tdpController.CreateTdp(tdp);
+        }
+
+        public bool removerTdp(int equipeId, CategoriasType categoria)
+        {
+            return tdpController.DeleteTdpById(equipeId, categoria);
+        }
+        #endregion
     }
 }
