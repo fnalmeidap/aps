@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Olimpo.Models;
+namespace Olimpo.Model;
 
 [Table("Equipe")]
 public partial class Equipe : EntidadeBase

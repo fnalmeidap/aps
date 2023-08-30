@@ -1,4 +1,4 @@
-﻿namespace Olimpo.Models
+﻿namespace Olimpo.Model
 {
     public class EntidadeBase
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace Olimpo.Utils
+namespace Olimpo.Model
 {
     public class Endereco
     {

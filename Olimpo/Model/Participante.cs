@@ -1,13 +1,16 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Olimpo.Models;
+namespace Olimpo.Model;
 
 [Table("Participante")]
 public partial class Participante : EntidadeBase
 {
     [Required]
     public string TokenId { get; set; }
+
+    [Required]
+    public string GoogleId { get; set; }
 
     [Required]
     public string Name { get; set; }

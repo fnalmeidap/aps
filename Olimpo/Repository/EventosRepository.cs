@@ -1,4 +1,4 @@
-using Olimpo.Models;
+using Olimpo.Model;
 using System.Linq;
 
 namespace Olimpo.Repository;

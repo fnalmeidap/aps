@@ -1,4 +1,4 @@
-using Olimpo.Models;
+using Olimpo.Model;
 
 namespace Olimpo.Repository;
 public class TdpsRepository : IRepository<TDP>
