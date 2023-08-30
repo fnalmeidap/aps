@@ -9,7 +9,7 @@ export function Login() {
   const navigate = useNavigate()
   async function onSuccess(data) {
     try {
-      const response = await fetch(`/api/login/${data.googleId}`, {
+      const response = await fetch(`/api/login/${data.tokenId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json", // Define o tipo de conteúdo como JSON

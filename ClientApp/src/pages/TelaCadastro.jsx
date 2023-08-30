@@ -13,13 +13,20 @@ export const TelaCadastro = () => {
     email: "",
     university: "",
     birthday: "",
+    googleId: ""
   });
 
   const [isLogged, setIsLogged] = useState(false);
 
   function onSuccess(data) {
     console.log(data)
-    setParticipante({...participante, name: data.profileObj.name, email: data.profileObj.email, tokenId: data.googleId})
+    setParticipante({
+      ...participante,
+      name: data.profileObj.name,
+      email: data.profileObj.email,
+      tokenId: data.tokenId,
+      googleId: data.googleId
+    })
     setIsLogged(true)
   }
 
