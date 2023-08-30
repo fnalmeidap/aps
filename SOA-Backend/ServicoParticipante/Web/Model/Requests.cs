@@ -1,4 +1,4 @@
-namespace Olimpo.Web.Model
+namespace ServicoParticipante.Web.Model
 {
     public class LoginRequest
     {

@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using Olimpo.Controllers;
-using Olimpo.Model;
-using Olimpo.Web.Model;
+using ServicoParticipante.Controllers;
+using ServicoParticipante.Model;
+using ServicoParticipante.Web.Model;
 
-namespace Olimpo.Web
+namespace ServicoParticipante.Web
 {
     [ApiController]
     [Route("/")]

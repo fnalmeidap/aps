@@ -1,4 +1,4 @@
-﻿namespace Olimpo.Model
+﻿namespace ServicoParticipante.Model
 {
     public class EntidadeBase
     {

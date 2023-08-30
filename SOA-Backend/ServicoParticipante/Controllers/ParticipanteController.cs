@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Olimpo.Repository;
-using Olimpo.Model;
+using ServicoParticipante.Repository;
+using ServicoParticipante.Model;
 
-namespace Olimpo.Controllers;
+namespace ServicoParticipante.Controllers;
 public class ParticipanteController
 {
     private static IRepositoryFactory _repositoryFactory = new RepositoryFactory();
