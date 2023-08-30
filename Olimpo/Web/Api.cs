@@ -17,7 +17,7 @@ namespace Olimpo.Web
         #region Login
         [HttpGet]
         [Route("api/login/{tokenId}")]
-        public IActionResult LoginParticipante([FromBody] string tokenId)
+        public IActionResult LoginParticipante(string tokenId)
         {
             var isLoggedIn = _fachada.logarParticipante(tokenId);
             if(isLoggedIn)
