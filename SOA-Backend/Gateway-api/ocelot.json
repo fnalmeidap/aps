@@ -1,79 +1,164 @@
 {
   "Routes": [
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/participante",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5139
-        }
-      ],
+      "ServiceName": "ServicoParticipante",
       "UpstreamPathTemplate": "/api/participante",
-      "UpstreamHttpMethod": ["Get"]
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
     },
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/swagger/index.html",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5139
-        }
-      ],
+      "ServiceName": "ServicoParticipante",
       "UpstreamPathTemplate": "/",
-      "UpstreamHttpMethod": ["Get"]
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
     },
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/participante/{id}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5139
-        }
-      ],
+      "ServiceName": "ServicoParticipante",
       "UpstreamPathTemplate": "/api/participante/{id}",
-      "UpstreamHttpMethod": ["Get"]
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
     },
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/participante",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5139
-        }
-      ],
+      "ServiceName": "ServicoParticipante",
       "UpstreamPathTemplate": "/api/participante",
-      "UpstreamHttpMethod": ["Post"]
+      "UpstreamHttpMethod": ["Post"],
+      "ReRoutesCaseSensitive": false
     },
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/participante/{id}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5139
-        }
-      ],
+      "ServiceName": "ServicoParticipante",
       "UpstreamPathTemplate": "/api/participante/{id}",
-      "UpstreamHttpMethod": ["Delete"]
+      "UpstreamHttpMethod": ["Delete"],
+      "ReRoutesCaseSensitive": false
     },
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/login",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5139
-        }
-      ],
+      "ServiceName": "ServicoParticipante",
       "UpstreamPathTemplate": "/api/login",
-      "UpstreamHttpMethod": ["Post"]
+      "UpstreamHttpMethod": ["Post"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Equipe",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEquipe",
+      "UpstreamPathTemplate": "/api/Equipe",
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Equipe/{id}",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEquipe",
+      "UpstreamPathTemplate": "/api/Equipe/{id}",
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Equipe",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEquipe",
+      "UpstreamPathTemplate": "/api/Equipe",
+      "UpstreamHttpMethod": ["Post"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Equipe/{id}",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEquipe",
+      "UpstreamPathTemplate": "/api/Equipe/{id}",
+      "UpstreamHttpMethod": ["Delete"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Eventos",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEvento",
+      "UpstreamPathTemplate": "/api/Eventos",
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Eventos/{id}",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEvento",
+      "UpstreamPathTemplate": "/api/Eventos/{id}",
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Eventos",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEvento",
+      "UpstreamPathTemplate": "/api/Eventos",
+      "UpstreamHttpMethod": ["Post"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Eventos/{id}",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEvento",
+      "UpstreamPathTemplate": "/api/Eventos/{id}",
+      "UpstreamHttpMethod": ["Delete"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Eventos/",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEvento",
+      "UpstreamPathTemplate": "/api/Eventos",
+      "UpstreamHttpMethod": ["Patch"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Tdp",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoTDP",
+      "UpstreamPathTemplate": "/api/Tdp",
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Tdp/CreateTdp",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoTDP",
+      "UpstreamPathTemplate": "/api/Tdp/CreateTdp",
+      "UpstreamHttpMethod": ["Post"],
+      "ReRoutesCaseSensitive": false
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5211"
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500,
+      "Type": "Consul"
+    }
   }
 }
