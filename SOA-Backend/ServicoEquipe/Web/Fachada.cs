@@ -1,16 +1,25 @@
+using MassTransit;
 using Olimpo.Controllers;
 using Olimpo.Model;
 using Olimpo.Repository;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Olimpo.Web
 {
     class Fachada
     {
-        private EquipeController equipeController = new EquipeController();
+        private EquipeController equipeController;
+        public readonly IPublishEndpoint publishEndpoint;
 
-        public void cadastrarEquipe(Equipe equipe)
+        public Fachada(IPublishEndpoint publishEndpoint)
         {
-            equipeController.CreateEquipe(equipe);
+            this.publishEndpoint = publishEndpoint;
+            equipeController =  new EquipeController(publishEndpoint);
+        }
+
+        public Task<IActionResult> cadastrarEquipe(Equipe equipe)
+        {
+           return equipeController.CreateEquipe(equipe);
         }
 
         public Equipe buscarEquipe(int Id)

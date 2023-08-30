@@ -1,7 +1,8 @@
 using ServiceDiscovery;
+using MassTransit;
+using ServicoEquipe.RabbitMQ;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -10,6 +11,22 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddConsulConfig(builder.Configuration);
+
+builder.Services.AddMassTransit(busConfigurator =>
+{
+    busConfigurator.SetKebabCaseEndpointNameFormatter();
+    busConfigurator.UsingRabbitMq((context, busFactoryConfigurator) =>
+    {
+        busFactoryConfigurator.Host("amqp://guest:guest@localhost:5672", hostConfigurator => { });
+    });
+});
+
+builder.Services.Configure<MassTransitHostOptions>(options =>
+{
+    options.WaitUntilStarted = true;
+    options.StartTimeout = TimeSpan.FromSeconds(30);
+    options.StopTimeout = TimeSpan.FromMinutes(1);
+});
 
 var app = builder.Build();
 

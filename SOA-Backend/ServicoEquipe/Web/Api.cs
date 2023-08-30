@@ -1,3 +1,4 @@
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Olimpo.Controllers;
 using Olimpo.Model;
@@ -9,7 +10,14 @@ namespace Olimpo.Web
     [Route("/")]
     public class Api : ControllerBase
     {
-        private static Fachada _fachada = new Fachada();
+        public readonly IPublishEndpoint publishEndpoint;
+        private static Fachada _fachada = null;
+
+        public Api(IPublishEndpoint publishEndpoint)
+        {
+            this.publishEndpoint = publishEndpoint;
+            _fachada = new Fachada(publishEndpoint);
+        }
         
         [HttpGet]
         [Route("api/equipe")]
@@ -45,14 +53,14 @@ namespace Olimpo.Web
 
         [HttpPost]
         [Route("api/equipe")]
-        public IActionResult CreateEquipe([FromBody] Equipe equipe)
+        public async Task<IActionResult>  CreateEquipe([FromBody] Equipe equipe)
         {
             if (equipe == null)
             {
                 return BadRequest("Invalid data.");
             }
 
-            _fachada.cadastrarEquipe(equipe);
+            await _fachada.cadastrarEquipe(equipe);
 
             return StatusCode(StatusCodes.Status201Created, equipe);
         }
