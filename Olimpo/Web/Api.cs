@@ -271,24 +271,49 @@ namespace Olimpo.Web
         [Route("api/tdp")]
         public IActionResult GetTDPList()
         {
-            return Ok();
+            var listaDeTdps = _fachada.buscarTodosTdps();
+            if(listaDeTdps == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(listaDeTdps);
         }
 
         [HttpGet]
         [Route("api/tdp/{equipeId}")]
         public IActionResult GetTDPByEquipe(int equipeId)
         {
-            Console.WriteLine(equipeId);
+            if(equipeId == null || equipeId < 0)
+            {
+                return NotFound();
+            }
+            
+            var tdp = _fachada.buscarTdpByEquipe(equipeId);
+            if(tdp == null)
+            {
+                return NotFound();
+            }
 
-            return Ok();
+            return Ok(tdp);
         }
 
         [HttpGet]
         [Route("api/tdp/{equipeId}/{categoria}")]
         public IActionResult GetTDPByEquipeCategoria(int equipeId, CategoriasType categoria)
         {
-            Console.WriteLine("equipeId: {0}\ncategoria: {1}", equipeId, categoria);
-            return Ok();
+            if(equipeId < 0)
+            {
+                return NotFound();
+            }
+            
+            var tdp = _fachada.buscarTdpByEquipeCategoria(equipeId, categoria);
+            if(tdp == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(tdp);
         }
 
         //todo(fnap): fix route
@@ -296,14 +321,31 @@ namespace Olimpo.Web
         [Route("api/tdp")]
         public IActionResult CreateTdp([FromBody] TDP tdp)
         {
-            return Ok();
+            if (tdp == null)
+            {
+                return BadRequest("Invalid data.");
+            }
+
+            _fachada.cadastrarTdp(tdp);
+
+            return StatusCode(StatusCodes.Status201Created, tdp);
         }
 
         [HttpDelete]
         [Route("api/tdp/{equipeId}/{categoria}")]
         public IActionResult DeleteTdpById(int equipeId, CategoriasType categoria)
         {
-            Console.WriteLine("equipeId: {0}\ncategoria: {1}", equipeId, categoria);
+            if(equipeId < 0 || categoria < 0)
+            {
+                return BadRequest("Invalid equipeId");
+            }
+
+            var isDeleted = _fachada.removerTdp(equipeId, categoria);
+            if(!isDeleted)
+            {
+                return NotFound(equipeId);
+            }
+
             return NoContent();
         }
         #endregion
