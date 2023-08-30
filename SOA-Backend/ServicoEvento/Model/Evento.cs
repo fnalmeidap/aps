@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Olimpo.Model;
+namespace ServicoEvento.Model;
 
 public enum CategoriasType {
     NONE,

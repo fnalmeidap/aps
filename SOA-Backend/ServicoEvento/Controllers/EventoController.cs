@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using Olimpo.Model;
-using Olimpo.Repository;
+using ServicoEvento.Model;
+using ServicoEvento.Repository;
+using ServicoEvento.Web;
 
-namespace Olimpo.Controllers;
+namespace ServicoEvento.Controllers;
 
 public class InscricaoEquipeRequest
 {
@@ -15,7 +16,8 @@ public class EventoController
 {
     private static IRepositoryFactory _repositoryFactory = new RepositoryFactory();
     private static IRepository<Evento> cadastroEventos = _repositoryFactory.CreateEventoMemoryRepository();
-    //private static IRepository<Equipe> cadastroEquipes = _repositoryFactory.CreateEquipeMemoryRepository();
+    private EquipeService _equipeService = new EquipeService("http://localhost:5211");
+
     private static int generateId = 0;
 
     public IEnumerable<Evento> GetEventosList()
@@ -57,12 +59,11 @@ public class EventoController
         {
             return false;
         }
-        /*
-        var equipe = cadastroEquipes.FindById(equipeId);
+        var equipe = _equipeService.FindEquipeById(equipeId);
         if (equipe == null)
         {
             return false;
-        }*/
+        }
 
         if(categorias == null || categorias.Count == 0) {
             return false;

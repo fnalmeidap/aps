@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 
-namespace Olimpo.Model;
+namespace ServicoEvento.Model;
 
 [Table("TDP")]
 public partial class TDP : EntidadeBase

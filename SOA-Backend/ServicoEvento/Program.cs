@@ -1,4 +1,4 @@
-using ServiceDiscovery;
+using ServicoEvento.ServiceDiscovery;
 
 var builder = WebApplication.CreateBuilder(args);
 

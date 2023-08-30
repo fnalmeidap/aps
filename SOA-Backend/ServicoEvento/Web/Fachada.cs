@@ -1,8 +1,8 @@
-using Olimpo.Controllers;
-using Olimpo.Model;
-using Olimpo.Repository;
+using ServicoEvento.Controllers;
+using ServicoEvento.Model;
+using ServicoEvento.Repository;
 
-namespace Olimpo.Web
+namespace ServicoEvento.Web
 {
     class Fachada
     {

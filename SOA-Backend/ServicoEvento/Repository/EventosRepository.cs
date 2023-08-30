@@ -1,7 +1,7 @@
-using Olimpo.Model;
+using ServicoEvento.Model;
 using System.Linq;
 
-namespace Olimpo.Repository;
+namespace ServicoEvento.Repository;
 public class EventosRepository : IRepository<Evento>
 {
 

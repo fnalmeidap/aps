@@ -1,7 +1,7 @@
-using Olimpo.Repository;
-using Olimpo.Model;
+using ServicoEvento.Repository;
+using ServicoEvento.Model;
 
-namespace Olimpo.Repository
+namespace ServicoEvento.Repository
 {
     public interface IRepositoryFactory
     {

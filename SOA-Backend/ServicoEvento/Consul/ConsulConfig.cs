@@ -1,4 +1,4 @@
-﻿namespace ServicoParticipante.Consul
+﻿namespace ServicoEvento.ServicoParticipante.Consul
 {
     public class ConsulConfig
     {
