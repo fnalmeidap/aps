@@ -11,9 +11,27 @@ public class ParticipanteController
 {
     private readonly string _googleApiEndpoint = "https://oauth2.googleapis.com/tokeninfo?id_token=";
     private static IRepositoryFactory _repositoryFactory = new RepositoryFactory();
-    private static GoogleAuthenticationApi googleAuthenticationApi = new GoogleAuthenticationApi("https://oauth2.googleapis.com/tokeninfo?id_token=");
     private IRepository<Participante> cadastroParticipantes = _repositoryFactory.CreateParticipanteMemoryRepository();
     private static int generateId = 0;
+
+    public bool Login(string tokenId)
+    {
+        var googleResponse = RequestGoogleInformation(tokenId);
+        if(googleResponse == null)
+        {
+            return false;
+        }
+
+        var participante = cadastroParticipantes.FindByPredicate(
+            p => p.GoogleId == googleResponse.sub);
+
+        if(IsParticipanteValido(participante, googleResponse))
+        {
+            return true;
+        }
+
+        return false;
+    }
 
     public IEnumerable<Participante> GetParticipanteList()
     {
@@ -28,19 +46,15 @@ public class ParticipanteController
 
     public bool CreateParticipante(Participante participante)
     {
-        var participanteGoogleInfo = new GoogleApiResponse();
-
-        HttpClient client = new HttpClient();
-        HttpResponseMessage response = client.GetAsync(_googleApiEndpoint + participante.TokenId).Result;
-        if(response.IsSuccessStatusCode)
+        var googleResponse =  RequestGoogleInformation(participante.TokenId);
+        if(googleResponse == null)
         {
-            string responseBody = response.Content.ReadAsStringAsync().Result;
-            participanteGoogleInfo = JsonConvert.DeserializeObject<GoogleApiResponse>(responseBody);
+            return false;
         }
 
-        if(IsParticipanteValido(participante, participanteGoogleInfo))
+        if(IsParticipanteValido(participante, googleResponse))
         {
-            participante.GoogleId = participanteGoogleInfo.sub;
+            participante.GoogleId = googleResponse.sub;
             participante.Id = generateId;
             generateId += 1;
 
@@ -62,10 +76,23 @@ public class ParticipanteController
         return true;
     }
 
+    private GoogleApiResponse? RequestGoogleInformation(string tokenId)
+    {
+        var participanteGoogleInfo = new GoogleApiResponse();
+
+        HttpClient client = new HttpClient();
+        HttpResponseMessage response = client.GetAsync(_googleApiEndpoint + tokenId).Result;
+        if(response.IsSuccessStatusCode)
+        {
+            string responseBody = response.Content.ReadAsStringAsync().Result;
+            participanteGoogleInfo = JsonConvert.DeserializeObject<GoogleApiResponse>(responseBody);
+        }
+
+        return participanteGoogleInfo;
+    }
+
     private bool IsParticipanteValido(Participante participante, GoogleApiResponse googleResponse)
     {
-        Console.WriteLine(googleResponse.sub);
-        Console.WriteLine(googleResponse.email)
         if(googleResponse == null)
         {
             return false;
