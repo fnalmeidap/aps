@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Olimpo.Model;
-using Olimpo.Repository;
+using ServicoEquipe.Model;
+using ServicoEquipe.Repository;
 
-namespace Olimpo.Controllers;
+namespace ServicoEquipe.Controllers;
 
 public class ParticipanteEquipeRequest
 {

@@ -1,6 +1,6 @@
-using Olimpo.Model;
+using ServicoEquipe.Model;
 
-namespace Olimpo.Repository;
+namespace ServicoEquipe.Repository;
 public class EquipesRepository : IRepository<Equipe>
 {
 

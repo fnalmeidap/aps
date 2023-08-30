@@ -1,4 +1,4 @@
-using ServiceDiscovery;
+using ServicoEquipe.ServiceDiscovery;
 
 var builder = WebApplication.CreateBuilder(args);
 

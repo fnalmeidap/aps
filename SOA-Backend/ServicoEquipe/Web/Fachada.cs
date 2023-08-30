@@ -1,8 +1,8 @@
-using Olimpo.Controllers;
-using Olimpo.Model;
-using Olimpo.Repository;
+using ServicoEquipe.Controllers;
+using ServicoEquipe.Model;
+using ServicoEquipe.Repository;
 
-namespace Olimpo.Web
+namespace ServicoEquipe.Web
 {
     class Fachada
     {
