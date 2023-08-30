@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Olimpo.Controllers;
 using Olimpo.Model;
@@ -12,8 +16,8 @@ namespace Olimpo.Web
         private static Fachada _fachada = new Fachada();
         #region Login
         [HttpPost]
-        [Route("api/login")]
-        public IActionResult LoginParticipante([FromBody] LoginRequest loginRequest)
+        [Route("api/login/{tokenId}")]
+        public IActionResult LoginParticipante([FromBody] string tokenId)
         {
             return Ok();
         }
@@ -54,16 +58,20 @@ namespace Olimpo.Web
 
         [HttpPost]
         [Route("api/participante")]
-        public IActionResult CreateParticipante([FromBody] Participante participante)
+        public IActionResult CreateParticipante([FromBody] Participante request)
         {
-            if(participante == null)
+            if(request == null)
             {
                 return BadRequest("Invalid data.");
             }
 
-            _fachada.cadastrarParticipante(participante);
+            var isCreated = _fachada.cadastrarParticipante(request);
+            if(isCreated)
+            {
+                return StatusCode(StatusCodes.Status201Created, request);
+            }
 
-            return StatusCode(StatusCodes.Status201Created, participante);
+            return NoContent();
         }
 
         [HttpDelete]
