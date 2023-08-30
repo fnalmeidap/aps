@@ -11,6 +11,13 @@ namespace Olimpo.Web
         private EventoController eventoController = new EventoController();
         private TdpController tdpController = new TdpController();
 
+        #region Login
+        public bool logarParticipante(string tokenId)
+        {
+            return participanteController.Login(tokenId);
+        }
+        #endregion
+
         #region Participante
         public bool cadastrarParticipante(Participante request)
         {   

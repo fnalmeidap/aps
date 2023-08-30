@@ -15,11 +15,16 @@ namespace Olimpo.Web
     {
         private static Fachada _fachada = new Fachada();
         #region Login
-        [HttpPost]
+        [HttpGet]
         [Route("api/login/{tokenId}")]
         public IActionResult LoginParticipante([FromBody] string tokenId)
         {
-            return Ok();
+            var isLoggedIn = _fachada.logarParticipante(tokenId);
+            if(isLoggedIn)
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
         #endregion
 
