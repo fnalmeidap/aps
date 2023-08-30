@@ -14,12 +14,12 @@ public class ParticipanteController
     private IRepository<Participante> cadastroParticipantes = _repositoryFactory.CreateParticipanteMemoryRepository();
     private static int generateId = 0;
 
-    public bool Login(string tokenId)
+    public Participante? Login(string tokenId)
     {
         var googleResponse = RequestGoogleInformation(tokenId);
         if(googleResponse == null)
         {
-            return false;
+            return null;
         }
 
         var participante = cadastroParticipantes.FindByPredicate(
@@ -27,10 +27,10 @@ public class ParticipanteController
 
         if(IsParticipanteValido(participante, googleResponse))
         {
-            return true;
+            return participante;
         }
 
-        return false;
+        return null;
     }
 
     public IEnumerable<Participante> GetParticipanteList()
