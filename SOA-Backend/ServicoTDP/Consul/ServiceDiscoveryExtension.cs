@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 
-namespace ServiceDiscovery
+namespace ServicoTDP.Consul.ServiceDiscovery
 {
     public static class ServiceDiscoveryExtension
     {

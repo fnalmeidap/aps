@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Olimpo.Model;
-using Olimpo.Repository;
+using ServicoTDP.Model;
+using ServicoTDP.Repository;
 
-namespace Olimpo.Controllers;
+namespace ServicoTDP.Controllers;
 
 public class TdpController
 {

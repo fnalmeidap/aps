@@ -1,9 +1,9 @@
-using Olimpo.Controllers;
-using Olimpo.Model;
-using Olimpo.Repository;
+using ServicoTDP.Controllers;
+using ServicoTDP.Model;
+using ServicoTDP.Repository;
 using System.Runtime.Intrinsics.Arm;
 
-namespace Olimpo.Web
+namespace ServicoTDP.Web
 {
     class Fachada
     {

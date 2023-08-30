@@ -1,7 +1,7 @@
-using Olimpo.Repository;
-using Olimpo.Model;
+using ServicoTDP.Repository;
+using ServicoTDP.Model;
 
-namespace Olimpo.Repository
+namespace ServicoTDP.Repository
 {
     public interface IRepositoryFactory
     {

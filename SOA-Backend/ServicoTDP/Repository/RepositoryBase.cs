@@ -1,6 +1,6 @@
-﻿using Olimpo.Model;
+﻿using ServicoTDP.Model;
 
-namespace Olimpo.Repository
+namespace ServicoTDP.Repository
 {
     public interface IRepository<T> where T : EntidadeBase
     {

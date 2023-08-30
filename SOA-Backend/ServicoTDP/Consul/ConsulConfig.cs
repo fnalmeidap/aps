@@ -1,4 +1,4 @@
-﻿namespace ServicoParticipante.Consul
+﻿namespace ServicoTDP.Consul
 {
     public class ConsulConfig
     {

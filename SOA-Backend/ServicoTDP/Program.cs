@@ -1,4 +1,4 @@
-using ServiceDiscovery;
+using ServicoTDP.Consul.ServiceDiscovery;
 
 var builder = WebApplication.CreateBuilder(args);
 

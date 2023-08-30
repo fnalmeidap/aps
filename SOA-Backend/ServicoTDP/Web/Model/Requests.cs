@@ -1,4 +1,4 @@
-namespace Olimpo.Web.Model
+namespace ServicoTDP.Web.Model
 {
     public class LoginRequest
     {

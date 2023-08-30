@@ -1,4 +1,4 @@
-﻿namespace Olimpo.Model
+﻿namespace ServicoTDP.Model
 {
     public class EntidadeBase
     {

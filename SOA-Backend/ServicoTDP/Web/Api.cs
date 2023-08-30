@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using Olimpo.Controllers;
-using Olimpo.Model;
-using Olimpo.Web.Model;
+using ServicoTDP.Controllers;
+using ServicoTDP.Model;
+using ServicoTDP.Web.Model;
 
-namespace Olimpo.Web
+namespace ServicoTDP.Web
 {
     [ApiController]
     [Route("/")]
