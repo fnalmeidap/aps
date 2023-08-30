@@ -31,7 +31,7 @@ export const TelaEvento = () => {
 
   useEffect(() => {
     async function fetchEventos() {
-      fetch("/api/Eventos", {
+      fetch("/api/evento", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export const TelaEvento = () => {
 
   useEffect(() => {
     async function fetchEquipes() {
-      fetch("/api/Equipe", {
+      fetch("/api/equipe", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

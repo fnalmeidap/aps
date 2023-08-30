@@ -8,18 +8,18 @@ export const TelaCadastro = () => {
   const navigate = useNavigate()
   const { setUser } = useLogin()
   const [participante, setParticipante] = useState({
-    Name: "",
-    TokenId: "",
-    Email: "",
-    University: "",
-    BirthDay: "",
+    name: "",
+    tokenId: "",
+    email: "",
+    university: "",
+    birthday: "",
   });
 
   const [isLogged, setIsLogged] = useState(false);
 
   function onSuccess(data) {
     console.log(data)
-    setParticipante({...participante, Name: data.profileObj.name, Email: data.profileObj.email, TokenId: data.googleId})
+    setParticipante({...participante, name: data.profileObj.name, email: data.profileObj.email, tokenId: data.googleId})
     setIsLogged(true)
   }
 
@@ -27,7 +27,7 @@ export const TelaCadastro = () => {
     e.preventDefault();
 
     console.log(participante)
-    fetch("/api/Participante", {
+    fetch("/api/participante", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -78,11 +78,11 @@ export const TelaCadastro = () => {
             <Form onSubmit={handleSubmit}>
               <FormGroup>
                 <Label for="universidade">Universidade</Label>
-                <Input required type="text" name="University" value={participante.University} onChange={handleChange} />
+                <Input required type="text" name="university" value={participante.university} onChange={handleChange} />
               </FormGroup>
               <FormGroup>
                 <Label for="aniversario">Aniversário</Label>
-                <Input required type="date" name="BirthDay" value={participante.BirthDay} onChange={handleChange} />
+                <Input required type="date" name="birthday" value={participante.birthday} onChange={handleChange} />
               </FormGroup>
               <Button type='submit' color='primary'>
                 Enviar

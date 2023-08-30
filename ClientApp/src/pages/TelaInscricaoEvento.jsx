@@ -38,7 +38,7 @@ export const TelaInscricaoEvento = () => {
 
   useEffect(() => {
     async function fetchEventos() {
-      fetch("/api/Eventos/" + id, {
+      fetch("/api/evento/" + id, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -63,7 +63,7 @@ export const TelaInscricaoEvento = () => {
 
   useEffect(() => {
     async function fetchEquipes() {
-      fetch("/api/Equipe", {
+      fetch("/api/equipe", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -96,7 +96,7 @@ export const TelaInscricaoEvento = () => {
   const handleInscricaoClick = async (e) => {
     e.preventDefault();
     try {
-      await fetch("/api/Eventos", {
+      await fetch("/api/evento", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json", // Define o tipo de conteúdo como JSON

@@ -42,7 +42,7 @@ export const TelaEquipe = () => {
     console.log("Dados da equipe:", equipe);
 
     try {
-      const response = await fetch("/api/Equipe", {
+      const response = await fetch("/api/equipe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Define o tipo de conteúdo como JSON

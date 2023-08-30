@@ -15,7 +15,7 @@ export default function TelaEquipes() {
 
   useEffect(() => {
     async function fetchEquipes() {
-      fetch("/api/Equipe", {
+      fetch("/api/equipe", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +40,7 @@ export default function TelaEquipes() {
 
   const handleInscricaoClick = async () => {
     try {
-      await fetch("/api/Equipe", {
+      await fetch("/api/equipe", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json", // Define o tipo de conteúdo como JSON

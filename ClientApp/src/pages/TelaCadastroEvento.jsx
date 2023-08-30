@@ -52,7 +52,7 @@ export const TelaCadastrarEvento = () => {
     console.log("Evento cadastrado:", evento);
 
     try {
-      const response = await fetch("/api/Eventos", {
+      const response = await fetch("/api/evento", {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
