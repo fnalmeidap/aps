@@ -550,11 +550,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/fnap/github/aps-olimpo/Olimpo/Olimpo.csproj",
+      "projectUniqueName": "C:\\Users\\RieiR\\Documents\\aps-olimpo\\Olimpo\\Olimpo.csproj",
       "projectName": "Olimpo",
-      "projectPath": "/home/fnap/github/aps-olimpo/Olimpo/Olimpo.csproj",
-      "packagesPath": "/home/fnap/.nuget/packages/",
-      "outputPath": "/home/fnap/github/aps-olimpo/Olimpo/obj/",
+      "projectPath": "C:\\Users\\RieiR\\Documents\\aps-olimpo\\Olimpo\\Olimpo.csproj",
+      "packagesPath": "C:\\Users\\RieiR\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\RieiR\\Documents\\aps-olimpo\\Olimpo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/fnap/.nuget/NuGet/NuGet.Config"
