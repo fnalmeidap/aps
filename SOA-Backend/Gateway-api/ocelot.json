@@ -47,11 +47,11 @@
     },
     {
       "UseServiceDiscovery": true,
-      "DownstreamPathTemplate": "/api/login",
+      "DownstreamPathTemplate": "/api/login/{tokenId}",
       "DownstreamScheme": "http",
       "ServiceName": "ServicoParticipante",
-      "UpstreamPathTemplate": "/api/login",
-      "UpstreamHttpMethod": ["Post"],
+      "UpstreamPathTemplate": "/api/login/{tokenId}",
+      "UpstreamHttpMethod": ["Get"],
       "ReRoutesCaseSensitive": false
     },
     {
