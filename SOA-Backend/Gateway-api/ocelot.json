@@ -1,0 +1,164 @@
+{
+  "Routes": [
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/participante",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoParticipante",
+      "UpstreamPathTemplate": "/api/participante",
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/swagger/index.html",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoParticipante",
+      "UpstreamPathTemplate": "/",
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/participante/{id}",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoParticipante",
+      "UpstreamPathTemplate": "/api/participante/{id}",
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/participante",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoParticipante",
+      "UpstreamPathTemplate": "/api/participante",
+      "UpstreamHttpMethod": ["Post"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/participante/{id}",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoParticipante",
+      "UpstreamPathTemplate": "/api/participante/{id}",
+      "UpstreamHttpMethod": ["Delete"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/login",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoParticipante",
+      "UpstreamPathTemplate": "/api/login",
+      "UpstreamHttpMethod": ["Post"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Equipe",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEquipe",
+      "UpstreamPathTemplate": "/api/Equipe",
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Equipe/{id}",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEquipe",
+      "UpstreamPathTemplate": "/api/Equipe/{id}",
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Equipe",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEquipe",
+      "UpstreamPathTemplate": "/api/Equipe",
+      "UpstreamHttpMethod": ["Post"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Equipe/{id}",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEquipe",
+      "UpstreamPathTemplate": "/api/Equipe/{id}",
+      "UpstreamHttpMethod": ["Delete"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Evento",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEvento",
+      "UpstreamPathTemplate": "/api/Evento",
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Evento/{id}",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEvento",
+      "UpstreamPathTemplate": "/api/Evento/{id}",
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Evento",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEvento",
+      "UpstreamPathTemplate": "/api/Evento",
+      "UpstreamHttpMethod": ["Post"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Evento/{id}",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEvento",
+      "UpstreamPathTemplate": "/api/Evento/{id}",
+      "UpstreamHttpMethod": ["Delete"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Evento",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoEvento",
+      "UpstreamPathTemplate": "/api/Evento",
+      "UpstreamHttpMethod": ["Patch"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Tdp",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoTDP",
+      "UpstreamPathTemplate": "/api/Tdp",
+      "UpstreamHttpMethod": ["Get"],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/Tdp/CreateTdp",
+      "DownstreamScheme": "http",
+      "ServiceName": "ServicoTDP",
+      "UpstreamPathTemplate": "/api/Tdp/CreateTdp",
+      "UpstreamHttpMethod": ["Post"],
+      "ReRoutesCaseSensitive": false
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500,
+      "Type": "Consul"
+    }
+  }
+}
