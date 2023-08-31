@@ -10,6 +10,9 @@ public partial class Participante : EntidadeBase
     public string TokenId { get; set; }
 
     [Required]
+    public string GoogleId { get; set; }
+
+    [Required]
     public string Name { get; set; }
     
     [Required]

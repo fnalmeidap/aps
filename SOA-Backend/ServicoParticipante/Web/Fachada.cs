@@ -8,9 +8,14 @@ namespace ServicoParticipante.Web
     {
         private ParticipanteController participanteController = new ParticipanteController();
         
-        public void cadastrarParticipante(Participante participante)
+        public Participante? logarParticipante(string tokenId)
         {
-            participanteController.CreateParticipante(participante);
+            return participanteController.Login(tokenId);
+        }
+
+        public bool cadastrarParticipante(Participante participante)
+        {
+            return participanteController.CreateParticipante(participante);
         }
 
         public Participante buscarParticipante(int Id)

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ServicoParticipante.Controllers;
 using ServicoParticipante.Model;
-using ServicoParticipante.Web.Model;
+using Olimpo.Web.Model;
 
 namespace ServicoParticipante.Web
 {
@@ -10,11 +10,17 @@ namespace ServicoParticipante.Web
     public class Api : ControllerBase
     {
         private static Fachada _fachada = new Fachada();
-        [HttpPost]
-        [Route("api/login")]
-        public IActionResult LoginParticipante([FromBody] LoginRequest loginRequest)
+        [HttpGet]
+        [Route("api/login/{tokenId}")]
+        public IActionResult LoginParticipante(string tokenId)
         {
-            return Ok();
+            var participante = _fachada.logarParticipante(tokenId);
+            if(participante == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(participante);
         }
 
         [HttpGet]
@@ -51,16 +57,20 @@ namespace ServicoParticipante.Web
 
         [HttpPost]
         [Route("api/participante")]
-        public IActionResult CreateParticipante([FromBody] Participante participante)
+        public IActionResult CreateParticipante([FromBody] Participante request)
         {
-            if(participante == null)
+            if (request == null)
             {
                 return BadRequest("Invalid data.");
             }
 
-            _fachada.cadastrarParticipante(participante);
+            var isCreated = _fachada.cadastrarParticipante(request);
+            if (isCreated)
+            {
+                return StatusCode(StatusCodes.Status201Created, request);
+            }
 
-            return StatusCode(StatusCodes.Status201Created, participante);
+            return NoContent();
         }
 
         [HttpDelete]
