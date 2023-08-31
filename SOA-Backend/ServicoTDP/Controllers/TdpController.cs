@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServicoTDP.Model;
 using ServicoTDP.Repository;
+using ServicoTDP.Web;
 
 namespace ServicoTDP.Controllers;
 
 public class TdpController
 {
     private static IRepository<TDP> cadastroTdps = TDPRepository.GetInstance();
-    //private static IRepository<Evento> cadastroEventos = EventosRepository.GetInstance();
-    //private static IRepository<Equipe> cadastroEquipes = EquipesRepository.GetInstance();
-
+    private EquipeService _equipeService = new EquipeService("http://localhost:5211/api");
+    private EventoService _eventoService = new EventoService("http://localhost:5211/api");
     private static int generateId = 0;
 
     public IEnumerable<TDP> GetTDPList()
@@ -60,14 +60,13 @@ public class TdpController
 
     public bool CreateTdp(TDP tdp)
     {
-        /*
-        var evento = cadastroEventos.FindById(tdp.EventoId);
+        var evento = _eventoService.FindEventoById(tdp.EventoId);
         if (evento == null)
         {
             return false;
         }
 
-        var equipe = cadastroEquipes.FindById(tdp.EquipeId);
+        var equipe = _equipeService.FindEquipeById(tdp.EquipeId);
         if (equipe == null)
         {
             return false;
@@ -77,7 +76,7 @@ public class TdpController
         generateId += 1;
 
         cadastroTdps.Add(tdp);
-        */
+        
         return true;
     }
 

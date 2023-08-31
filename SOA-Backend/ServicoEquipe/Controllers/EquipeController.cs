@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ServicoEquipe.Model;
 using ServicoEquipe.Repository;
+using ServicoParticipante.Web;
 
 namespace ServicoEquipe.Controllers;
 
@@ -14,11 +15,7 @@ public class EquipeController
 {
     private static IRepositoryFactory _repositoryFactory = new RepositoryFactory();
     private static IRepository<Equipe> cadastroEquipes = _repositoryFactory.CreateEquipeMemoryRepository();
-    //private static IRepository<Participante> cadastroParticipantes = _repositoryFactory.CreateParticipanteMemoryRepository();
-    private static HttpClient sharedClient = new()
-    {
-        BaseAddress = new Uri("http://localhost:5211/api/participante"),
-    };
+    private ParticipanteService _participanteService = new ParticipanteService("http://localhost:5211/api");
 
     private static int generateId = 0;
 
@@ -39,13 +36,13 @@ public class EquipeController
         generateId += 1;
 
         List<Participante> validMembers = new List<Participante>();
-        /*
+        
         foreach (var member in equipe.Members) {
-            var participante = await sharedClient.GetAsync("/"+member.Id);
+            var participante = _participanteService.FindParticipanteById(member.Id);
             if (participante != null) {
-                Console.WriteLine(participante);
+                validMembers.Add(participante);
             }
-        }*/
+        }
 
         equipe.Members = validMembers;  
         cadastroEquipes.Add(equipe);
@@ -72,15 +69,15 @@ public class EquipeController
         {
             return false;
         }
-        /*
-        var participante = cadastroParticipantes.FindById(participanteId);
+        
+        var participante = _participanteService.FindParticipanteById(participanteId);
         if (participante == null)
         {
             return false;
         }
 
         equipe.Members.Add(participante);
-        cadastroEquipes.Update(equipe);*/
+        cadastroEquipes.Update(equipe);
 
         return true;
     }

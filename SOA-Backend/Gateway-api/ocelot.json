@@ -92,46 +92,46 @@
     },
     {
       "UseServiceDiscovery": true,
-      "DownstreamPathTemplate": "/api/Eventos",
+      "DownstreamPathTemplate": "/api/Evento",
       "DownstreamScheme": "http",
       "ServiceName": "ServicoEvento",
-      "UpstreamPathTemplate": "/api/Eventos",
+      "UpstreamPathTemplate": "/api/Evento",
       "UpstreamHttpMethod": ["Get"],
       "ReRoutesCaseSensitive": false
     },
     {
       "UseServiceDiscovery": true,
-      "DownstreamPathTemplate": "/api/Eventos/{id}",
+      "DownstreamPathTemplate": "/api/Evento/{id}",
       "DownstreamScheme": "http",
       "ServiceName": "ServicoEvento",
-      "UpstreamPathTemplate": "/api/Eventos/{id}",
+      "UpstreamPathTemplate": "/api/Evento/{id}",
       "UpstreamHttpMethod": ["Get"],
       "ReRoutesCaseSensitive": false
     },
     {
       "UseServiceDiscovery": true,
-      "DownstreamPathTemplate": "/api/Eventos",
+      "DownstreamPathTemplate": "/api/Evento",
       "DownstreamScheme": "http",
       "ServiceName": "ServicoEvento",
-      "UpstreamPathTemplate": "/api/Eventos",
+      "UpstreamPathTemplate": "/api/Evento",
       "UpstreamHttpMethod": ["Post"],
       "ReRoutesCaseSensitive": false
     },
     {
       "UseServiceDiscovery": true,
-      "DownstreamPathTemplate": "/api/Eventos/{id}",
+      "DownstreamPathTemplate": "/api/Evento/{id}",
       "DownstreamScheme": "http",
       "ServiceName": "ServicoEvento",
-      "UpstreamPathTemplate": "/api/Eventos/{id}",
+      "UpstreamPathTemplate": "/api/Evento/{id}",
       "UpstreamHttpMethod": ["Delete"],
       "ReRoutesCaseSensitive": false
     },
     {
       "UseServiceDiscovery": true,
-      "DownstreamPathTemplate": "/api/Eventos/",
+      "DownstreamPathTemplate": "/api/Evento",
       "DownstreamScheme": "http",
       "ServiceName": "ServicoEvento",
-      "UpstreamPathTemplate": "/api/Eventos",
+      "UpstreamPathTemplate": "/api/Evento",
       "UpstreamHttpMethod": ["Patch"],
       "ReRoutesCaseSensitive": false
     },

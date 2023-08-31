@@ -16,7 +16,7 @@ public class EventoController
 {
     private static IRepositoryFactory _repositoryFactory = new RepositoryFactory();
     private static IRepository<Evento> cadastroEventos = _repositoryFactory.CreateEventoMemoryRepository();
-    private EquipeService _equipeService = new EquipeService("http://localhost:5211");
+    private EquipeService _equipeService = new EquipeService("http://localhost:5211/api");
 
     private static int generateId = 0;
 
