@@ -1,0 +1,75 @@
+version: "3.4"
+
+services:
+  consul-discovery:
+    image: consul:1.15
+    command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
+    hostname: consul-discovery
+    container_name: consul-discovery
+
+    ports:
+      - "8500:8500"
+      - "8600:53/tcp"
+      - "8600:53/udp"
+
+    networks:
+      - app-network
+    restart: always
+
+  gatewayapi:
+    image: gatewayapi
+    build:
+      context: .
+      dockerfile: Gateway-api/Dockerfile
+
+    depends_on:
+      - consul-discovery
+
+    ports:
+      - "5211:80"
+      - "5001:443"
+
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+;http://+
+      - ASPNETCORE_HTTPS_PORT=5001
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=aps_tester
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+
+    volumes:
+      - .aspnet\https:/https/
+
+    networks:
+      - app-network
+    restart: on-failure
+
+  servicoequipe:
+    image: servicoequipe
+    build:
+      context: .
+      dockerfile: ServicoEquipe/Dockerfile
+    ports:
+      - "17211:80"
+      - "5002:443"
+
+    depends_on:
+      - consul-discovery
+      - gatewayapi
+
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+;http://+
+      - ASPNETCORE_HTTPS_PORT=5002
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=aps_tester
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+
+    volumes:
+      - .aspnet\https:/https/
+
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge

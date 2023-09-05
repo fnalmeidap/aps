@@ -44,7 +44,7 @@ namespace ServicoEquipe.ServiceDiscovery
 
             var serviceName = configuration.GetValue<string>("ConsulConfig:ServiceName");
             var serviceId = configuration.GetValue<string>("ConsulConfig:ServiceId");
-            var uri = new Uri("http://localhost:5181");
+            var uri = new Uri("http://servicoequipe:80");
 
             var registration = new AgentServiceRegistration()
             {
@@ -55,7 +55,7 @@ namespace ServicoEquipe.ServiceDiscovery
             };
 
             logger.LogInformation("Registering with Consul");
-            consulClient.Agent.ServiceDeregister(registration.ID).ConfigureAwait(true);
+            //consulClient.Agent.ServiceDeregister(registration.ID).ConfigureAwait(true);
             consulClient.Agent.ServiceRegister(registration).ConfigureAwait(true);
 
             lifetime.ApplicationStopping.Register(() =>
